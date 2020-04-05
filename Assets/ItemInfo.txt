@@ -1,0 +1,55 @@
+**Bomb**Testat**
+
+Deals great damage to students nearby when used
+
+**DamageBoost**Klausur**
+
+Increases damage dealt to students for 30 seconds
+
+**Distraction**Tutor**
+
+Spawn a tutor who will distract some students for 60 seconds
+
+**GlobalStun**Smartphone**
+
+Students won't be able to move
+
+**Grenade**Scrum**
+
+Throw a group project at a group of students for big damage
+
+**HealAll**Sanitäter**
+
+Heals all players by 50%
+
+**HealPotion**Kaffee**
+
+Fully heal yourself
+
+**Invisibility**
+
+You will be invisible to students for 30 seconds
+
+**Invulnerability**
+
+Take no damage from students for 30 seconds
+
+**OneHit**Thesis**
+
+Click on a student to instantly graduate him
+
+**OrientationLoss**Party**
+
+Students will have a short party
+
+**Speed**Schuhe**
+
+Increases speed for 30 seconds
+
+**SpeedBoost**Auto**
+
+Immensely increases speed for 5 seconds
+
+**Teleporter**PC**
+
+Teleports player to another location

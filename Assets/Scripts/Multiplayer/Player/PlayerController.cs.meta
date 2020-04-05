@@ -1,0 +1,47 @@
+fileFormatVersion: 2
+guid: 6c5d0272a7e18334292fb6241b820669
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - health: {instanceID: 0}
+  - inventory: {instanceID: 0}
+  - quickAccessBar: {instanceID: 0}
+  - skillSlots: {instanceID: 0}
+  - menu: {instanceID: 0}
+  - bulletPrefab: {instanceID: 0}
+  - bulletBoost: {instanceID: 0}
+  - bulletSpawn: {instanceID: 0}
+  - arm: {instanceID: 0}
+  - invisibleColor: {instanceID: 0}
+  - rainbow: {instanceID: 0}
+  - normal: {instanceID: 0}
+  - strongMaterial: {instanceID: 0}
+  - strongHealingBulletMaterial: {instanceID: 0}
+  - speedEffekt: {instanceID: 0}
+  - portEffektPrefab: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - slowbullet: {instanceID: 0}
+  - slowfield: {instanceID: 0}
+  - target: {instanceID: 0}
+  - skillMenu: {instanceID: 0}
+  - map: {instanceID: 0}
+  - wrathIndicator: {instanceID: 0}
+  - MNI_skill1mat: {instanceID: 0}
+  - MNI_skill3mat: {instanceID: 0}
+  - dmgBoostItemMat: {instanceID: 0}
+  - standartBulletMat: {instanceID: 0}
+  - healingBullet: {instanceID: 0}
+  - shieldItem: {instanceID: 0}
+  - coffeeMachineObject: {instanceID: 0}
+  - supportMainSkillObject: {fileID: 8172098284058033807, guid: 070f3d1b5f86f97459cda39af0eca988,
+      type: 3}
+  - damageBoostItem: {fileID: 1934164734306498, guid: 3665242c59ca27a46a6520a52e0a52ce,
+      type: 3}
+  - supportBullet: {fileID: 1896931107535402, guid: 340e669dfc64a0f4092c98e456e839e1,
+      type: 3}
+  executionOrder: 300
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

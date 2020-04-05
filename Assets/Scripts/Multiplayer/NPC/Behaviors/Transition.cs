@@ -1,0 +1,1 @@
+﻿using System.Collections;using System.Collections.Generic;using UnityEngine;public enum Transition{	None = 0,	SawTarget,	ReachedTarget,	LostTarget}

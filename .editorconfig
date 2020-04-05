@@ -1,0 +1,19 @@
+# This file defines a common editor configuration for a consistent code base. 
+# Learn more about this file at: http://EditorConfig.org
+
+# This configurations must adhere to the prevered standards seen at:
+# https://wiki.thm.de/SWT-P_WS-1718_Hologame#Code_Style_.26_Best_practices
+
+# Specifies this as the top-most EditorConfig file
+# NOTE: 
+#   This should be the FIRST property in this file,
+#   other properties shall follow!
+root = true
+
+# Set properties for C#-Files
+[*.cs]
+charset = utf-8
+indent_style = tab
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
