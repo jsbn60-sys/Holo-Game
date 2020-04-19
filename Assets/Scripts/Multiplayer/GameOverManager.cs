@@ -28,19 +28,19 @@ public class GameOverManager : NetworkBehaviour
 		BurnedOut
 	}
 	
-	private Dictionary<PlayerController, ProfMentalHealth> profs = new Dictionary<PlayerController, ProfMentalHealth>();
+	private Dictionary<Player, ProfMentalHealth> profs = new Dictionary<Player, ProfMentalHealth>();
 
 	private void OnEnable()
 	{
 		Instance = this;
 	}
 
-	public void AddProf(PlayerController player)
+	public void AddProf(Player player)
 	{
 		profs.Add(player, ProfMentalHealth.Fine);
 	}
 
-	public void RemoveProf(PlayerController player)
+	public void RemoveProf(Player player)
 	{
 		profs.Remove(player);
 	}
@@ -53,7 +53,7 @@ public class GameOverManager : NetworkBehaviour
 		foreach (var prof in profs.Keys)
 		{if (prof!= null)
 			{
-				prof.Recover();
+				prof.revive();
 				
 			}
 		}
@@ -69,7 +69,7 @@ public class GameOverManager : NetworkBehaviour
 		{
 			if (prof != null)
 			{
-				prof.skillMenu.SetSkillPoints(points);
+				prof.addSkillPoints(points);
 
 			}
 		}
@@ -79,7 +79,7 @@ public class GameOverManager : NetworkBehaviour
 	/// Sets the mental health of given Player to fine.
 	/// </summary>
 	/// <param name="player">The Prof-Player</param>
-	public void ProfIsFine(PlayerController player)
+	public void ProfIsFine(Player player)
 	{
 		profs[player] = ProfMentalHealth.Fine;
 	}
@@ -88,7 +88,7 @@ public class GameOverManager : NetworkBehaviour
 	/// Sets the mental health of the given Prof-Player to BurnedOut.
 	/// </summary>
 	/// <param name="player">The Prof-Player</param>
-	public void ProfIsBurnedOut(PlayerController player)
+	public void ProfIsBurnedOut(Player player)
 	{
 		profs[player] = ProfMentalHealth.BurnedOut;
 
@@ -96,8 +96,7 @@ public class GameOverManager : NetworkBehaviour
 			// all profs are burned out -> Game Over
 
 			//display GameOver panel
-			player.menu.SetActive(false);
-			player.skillMenu.menu.SetActive(false);
+			player.gameOver();
 			RpcGameOver();
 		}
 	}

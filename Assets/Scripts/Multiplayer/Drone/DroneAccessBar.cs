@@ -53,11 +53,11 @@ public class DroneAccessBar : NetworkBehaviour {
 				// instantiate ItemImage in the inventory
 				GameObject itemImage = Instantiate(itemImagePrefab);
 				itemImage.transform.SetParent(slot, false);
-				itemImage.GetComponent<InventoryItem>().item = item;
+				itemImage.GetComponent<ItemSlot>().insertContent(item);
 			}
 			craftedItem = i;
 			// get the right sprite to represent the item in the inventory
-			slot.GetChild(1).GetChild(1).GetComponent<Image>().sprite = item.sprite;
+			slot.GetChild(1).GetChild(1).GetComponent<Image>().sprite = item.getIcon();
 		}
 	}
 

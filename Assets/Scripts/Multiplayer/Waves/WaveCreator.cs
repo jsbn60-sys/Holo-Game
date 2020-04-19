@@ -13,8 +13,9 @@ using UnityEngine;
 public class WaveCreator : MonoBehaviour
 {
 	private const int NUMBER_OF_WAVES = 30;
-	
+
 	public static WaveCreator Instance = new WaveCreator();
+
 
 
 	[SerializeField]
@@ -32,10 +33,10 @@ public class WaveCreator : MonoBehaviour
 	[SerializeField]
 	public GameObject enemy_Kamikaze;
 
-	public static int playerCount = 0;
-
 	//Object to create EnemyGroups
 	EnemyGroup eGroupGenerator = new EnemyGroup();
+	public static int playerCount = 0;
+
 
 	private void OnEnable()
 	{

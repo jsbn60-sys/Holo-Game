@@ -106,6 +106,7 @@ namespace Multiplayer.Lobby
 
 		public void Spawnplayer(int x, GameObject lp, GameObject gp)
 		{
+			/* old version with PlayerController
 			LobbyPlayer lobbyPlayer = lp.GetComponent<LobbyPlayer>();
 			PlayerController playerController = gp.GetComponent<PlayerController>();
 
@@ -113,6 +114,17 @@ namespace Multiplayer.Lobby
 			GameObject p4 = Instantiate(players[x], new Vector3(-51, 0, 37), Quaternion.identity);
 			p4.name = lobbyPlayer.playerName;
 			p4.GetComponent<PlayerController>().playerName = lobbyPlayer.playerName;
+			NetworkServer.Spawn(p4);
+			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4, lobbyPlayer.playerControllerId);
+			*/
+
+			LobbyPlayer lobbyPlayer = lp.GetComponent<LobbyPlayer>();
+			Player playerController = gp.GetComponent<Player>();
+
+			NetworkServer.Destroy(gp);
+			GameObject p4 = Instantiate(players[x], new Vector3(-51, 0, 37), Quaternion.identity);
+			p4.name = lobbyPlayer.playerName;
+			p4.GetComponent<Player>().name = lobbyPlayer.playerName;
 			NetworkServer.Spawn(p4);
 			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4, lobbyPlayer.playerControllerId);
 		}
@@ -128,24 +140,24 @@ namespace Multiplayer.Lobby
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			LobbyPlayer lobbyPlayer = lp.GetComponent<LobbyPlayer>();
-			PlayerController playerController = gp.GetComponent<PlayerController>();
+			Player player = gp.GetComponent<Player>();
 			switch (lobbyPlayer.playerRole)
 			{
 				case PlayerRole.MNI:
-					playerController.role = 0;
-					gp.GetComponent<PlayerController>().playerName = lobbyPlayer.playerName;
+					player.setRole(0);
+					player.name = lobbyPlayer.playerName;
 					Spawnplayer(0, lp, gp);
 					return false;
 				case PlayerRole.LSE:
-					playerController.role = 1;
+					player.setRole(1);
 					Spawnplayer(1, lp, gp);
 					return false;
 				case PlayerRole.Wirtschaft:
-					playerController.role = 2;
+					player.setRole(2);
 					Spawnplayer(2, lp, gp);
 					return false;
 				case PlayerRole.Gesundheit:
-					playerController.role = 3;
+					player.setRole(3);
 					Spawnplayer(3, lp, gp);
 					return false;
 				case PlayerRole.Drone:

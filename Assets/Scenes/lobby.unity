@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 818078835}
   m_HandleRect: {fileID: 818078834}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11886,7 +11886,7 @@ MonoBehaviour:
   m_MinPlayers: 1
   m_LobbyPlayerPrefab: {fileID: 114321606971948076, guid: d06b3f86c3449084fb13cda735c24296,
     type: 3}
-  m_GamePlayerPrefab: {fileID: 1807022222494588, guid: d9ccb87d84ad0d04e88334275d791dea,
+  m_GamePlayerPrefab: {fileID: 1334398956985376, guid: 4d60f31cef56c174c91f2d70ed816045,
     type: 3}
   m_LobbyScene: lobby
   m_PlayScene: multiplayer
@@ -12138,7 +12138,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224352966452602554}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

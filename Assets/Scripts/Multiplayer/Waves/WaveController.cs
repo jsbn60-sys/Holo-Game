@@ -42,10 +42,10 @@ public class WaveController : NetworkBehaviour
 
 		foreach (GameObject player in players)
 		{
-			PlayerController playerController = player.GetComponent<PlayerController>();
+			Player playerController = player.GetComponent<Player>();
 			if (playerController != null)
 			{
-				playerController.RpcIncreaseSkillPoints(1);
+				playerController.addSkillPoints(1);
 			}
 		}
 

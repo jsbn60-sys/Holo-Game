@@ -14,21 +14,30 @@ public class CameraFollow : MonoBehaviour
 	public float heightDamping = 2.0f;
 	public float rotationDamping = 3.0f;
 
+	[SerializeField]
+	private bool isMain;
+
 	void LateUpdate()
 	{
 		if (!target) return;
 
-		if (this.tag == "MapCamera")
+		if (!isMain)
 		{
-			Camera(player,false);
+			Camera(player);
 		}
-		else if (this.tag == "MainCamera")
+		else if (isMain)
 		{
-			Camera(target, true);
+			Camera(target);
 		}
 	}
 
-	void Camera(Transform target, bool isMain)
+	public void setupCamera(Transform target, Transform player)
+	{
+		this.target = target;
+		this.player = player;
+	}
+
+	void Camera(Transform target)
 	{
 		float wantedRotationAngle_y = target.eulerAngles.y;
         float wantedHeight = target.position.y + height;
