@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// This class represents an effect which increases the units damage for a certain duration.
-/// </summary>
-public class DamageBoostEffect : DurationEffect
+public class SpeedBoostEffect : DurationEffect
 {
 	[SerializeField]
-	private float dmgBoostAmount;
+	private float speedBoostFactor;
 
 	protected override void execEffect()
 	{
-		target.getAttack().changeDmg(true, dmgBoostAmount);
+		target.changeSpeed(true, speedBoostFactor);
 	}
 
 	protected override void turnOffEffect()
 	{
-		target.getAttack().changeDmg(false, dmgBoostAmount);
+		target.changeSpeed(false, speedBoostFactor);
 	}
 
 	// Start is called before the first frame update
@@ -30,5 +27,5 @@ public class DamageBoostEffect : DurationEffect
     void Update()
     {
 		base.Update();
-	}
+    }
 }

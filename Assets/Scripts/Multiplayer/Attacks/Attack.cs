@@ -31,13 +31,15 @@ public abstract class Attack : NetworkBehaviour
 		}
 	}
 
-	public void increaseDmg(float amount)
+	public void changeDmg(bool increase, float amount)
 	{
-		dmg += amount;
-	}
-
-	public void decreaseDmg(float amount) 
-	{
-		dmg -= amount;
+		if (increase)
+		{
+			dmg += amount;
+		}
+		else
+		{
+			dmg -= amount;
+		}
 	}
 }

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 114813976812493704}
   - component: {fileID: 3928787282390359568}
   - component: {fileID: 1515029061527906763}
+  - component: {fileID: -7972600048710769213}
+  - component: {fileID: -8661272043082706453}
   m_Layer: 0
   m_Name: Speed
   m_TagString: Item
@@ -167,3 +169,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.29, y: 4.33, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7972600048710769213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934164734306498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bab5ec29b3a2642a2d524c50e08b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: -8661272043082706453}
+  spriteRenderer: {fileID: 3928787282390359568}
+--- !u!114 &-8661272043082706453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934164734306498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290c5b43608b0d24ba934a7ce639791c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10
+  speedBoostFactor: 2

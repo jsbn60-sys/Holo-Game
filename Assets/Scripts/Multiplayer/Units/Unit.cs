@@ -156,4 +156,15 @@ public abstract class Unit : NetworkBehaviour
 	{
 		return attack;
 	}
+
+	public void changeSpeed(bool increase, float factor)
+	{
+		if (increase)
+		{
+			this.speed *= factor;
+		} else
+		{
+			this.speed /= factor;
+		}
+	}
 }
