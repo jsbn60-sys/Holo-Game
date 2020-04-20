@@ -29,6 +29,7 @@ public abstract class Effect : NetworkBehaviour {
 
 	protected void Start()
 	{
+		Debug.Log("Was called");
 		effectRunner = startEffect();
 		durationTimer = duration;
 		wasStarted = false;

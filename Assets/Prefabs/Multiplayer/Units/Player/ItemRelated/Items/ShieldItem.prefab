@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7431099304308338927}
   - component: {fileID: 7376718668785668685}
   - component: {fileID: 2332338392738808933}
+  - component: {fileID: 8993573864634082186}
+  - component: {fileID: 9132142636899173163}
   m_Layer: 0
   m_Name: ShieldItem
   m_TagString: Item
@@ -167,3 +169,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8993573864634082186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399802573491800957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bab5ec29b3a2642a2d524c50e08b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 9132142636899173163}
+  spriteRenderer: {fileID: 2332338392738808933}
+--- !u!114 &9132142636899173163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399802573491800957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9169ae83558a0469f8c7caa51486e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0
+  tickRate: 0
+  shieldAmount: 50

@@ -22,7 +22,6 @@ public abstract class Unit : NetworkBehaviour
 	protected float attackRate;
 	protected float speed;
 	protected float jumpForce;
-	protected List<Effect> effects;
 	protected float attackTimer;
 
 	[SerializeField]
@@ -32,7 +31,6 @@ public abstract class Unit : NetworkBehaviour
 
 	protected void Start()
 	{
-		effects = new List<Effect>();
 		attackTimer = attackRate;
 
 		// initializes health & shield
@@ -92,33 +90,15 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	/// <param name="dmg">Damage that is dealt.</param>
 	/// <param name="onHitEffects">Hit effects applied to the player.</param>
-	public void getHit(float dmg, List<Effect> onHitEffects)
+	public void getHit(float dmg)
 	{
 		health -= dmg;
-		effects.AddRange(onHitEffects);
 		if (isDead())
 		{
 			onDeath();
 		}
 		UpdateHealthbarSize();
 		UpdateShieldbarSize();
-	}
-
-	/// <summary>
-	/// Updates effects on the unit.
-	/// </summary>
-	private void handleEffects()
-	{
-		foreach(Effect effect in effects)
-		{
-			if (effect.isActive())
-			{
-				effect.execEffect();
-			} else
-			{
-				effects.Remove(effect);
-			}
-		}
 	}
 
 	/// <summary>
@@ -137,6 +117,12 @@ public abstract class Unit : NetworkBehaviour
 	{
 		health = Mathf.Min(health + healAmount, maxHealth);
 		UpdateHealthbarSize();
+	}
+
+	public void giveShield(float shieldAmount)
+	{
+		shield = Mathf.Min(shield + shieldAmount, maxShield);
+		UpdateShieldbarSize();
 	}
 
 

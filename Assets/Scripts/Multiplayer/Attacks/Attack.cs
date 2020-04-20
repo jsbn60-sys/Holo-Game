@@ -24,10 +24,10 @@ public abstract class Attack : NetworkBehaviour
 	/// <param name="target"></param>
 	public void onHit(Unit target)
 	{
-		foreach(Effect effect in onHitEffects)
+		target.getHit(dmg);
+		foreach (Effect effect in onHitEffects)
 		{
 			effect.startEffect(target);
 		}
-		target.getHit(dmg, onHitEffects);
 	}
 }
