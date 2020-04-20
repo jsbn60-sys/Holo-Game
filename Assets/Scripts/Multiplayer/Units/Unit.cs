@@ -157,6 +157,11 @@ public abstract class Unit : NetworkBehaviour
 		return attack;
 	}
 
+	/// <summary>
+	/// Increases/decreases speed by a factor.
+	/// </summary>
+	/// <param name="increase">should increase</param>
+	/// <param name="factor">increase/decrease factor</param>
 	public void changeSpeed(bool increase, float factor)
 	{
 		if (increase)
@@ -167,4 +172,5 @@ public abstract class Unit : NetworkBehaviour
 			this.speed /= factor;
 		}
 	}
+
 }

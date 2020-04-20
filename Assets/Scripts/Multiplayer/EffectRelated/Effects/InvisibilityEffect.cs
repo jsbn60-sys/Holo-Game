@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Effect which gives the target a speed boost for a duration.
+/// Effect that causes the player to go invisible and lose enemies.
+/// IMPORTANT: CAN ONLY BE USED ON PLAYER UNIT!
 /// </summary>
-public class SpeedBoostEffect : DurationEffect
+public class InvisibilityEffect : DurationEffect
 {
-	[SerializeField]
-	private float speedBoostFactor;
-
 	protected override void execEffect()
 	{
-		target.changeSpeed(true, speedBoostFactor);
+		target.GetComponent<Player>().changeInvisibility(true);
 	}
 
 	protected override void turnOffEffect()
 	{
-		target.changeSpeed(false, speedBoostFactor);
+		target.GetComponent<Player>().changeInvisibility(false);
 	}
 
 	// Start is called before the first frame update

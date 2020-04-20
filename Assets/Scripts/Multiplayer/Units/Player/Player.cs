@@ -522,4 +522,22 @@ public abstract class Player : Unit
 		NPC.NPCManager.Instance.AddTarget(this.transform);
 		GameOverManager.Instance.AddProf(this);
 	}
+
+	/// <summary>
+	/// Toggles player visibility and NPCRegister.
+	/// </summary>
+	/// <param name="turnOn">Should invisibility be turned on</param>
+	public void changeInvisibility(bool turnOn)
+	{
+		if (turnOn)
+		{
+			GetComponent<MeshRenderer>().enabled = false;
+			NPC.NPCManager.Instance.RemoveTarget(this.transform);
+		}
+		else
+		{
+			GetComponent<MeshRenderer>().enabled = true;
+			NPC.NPCManager.Instance.AddTarget(this.transform);
+		}
+	}
 }
