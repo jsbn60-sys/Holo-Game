@@ -45,7 +45,6 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 		if (!isEmpty)
 		{
 			content.activate(player);
-			Destroy(content.getInstance());
 			icon.GetComponent<Image>().sprite = null;
 			isEmpty = true;
 		}

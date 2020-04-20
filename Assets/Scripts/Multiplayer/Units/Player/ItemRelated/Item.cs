@@ -14,9 +14,15 @@ public class Item : MonoBehaviour , Slotable
 	[SerializeField]
 	private SpriteRenderer spriteRenderer;
 
+	private bool hasBeenPickedUp;
+
+	private void Start()
+	{
+		hasBeenPickedUp = false;
+	}
+
 	public void activate(Player player) {
-		effect.startEffect(player);
-	
+		effect.turnOnEffect(player);
 	}
 
 	public Sprite getIcon()
@@ -27,6 +33,17 @@ public class Item : MonoBehaviour , Slotable
 	public GameObject getInstance()
 	{
 		return this.gameObject;
+	}
+
+	public void pickUp()
+	{
+		spriteRenderer.enabled = false;
+		hasBeenPickedUp = true;
+	}
+
+	public bool wasPickedUp()
+	{
+		return hasBeenPickedUp;
 	}
 
 }

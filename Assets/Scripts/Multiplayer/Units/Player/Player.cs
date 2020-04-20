@@ -460,18 +460,17 @@ public abstract class Player : Unit
 	{
 		if (collider.gameObject.tag.Equals("Item"))
 		{
-			
-			if (!itemQuickAccess.GetComponent<ItemQuickAccess>().isFull())
+			Item item = collider.GetComponent<Item>();
+			if (!itemQuickAccess.GetComponent<ItemQuickAccess>().isFull() && !item.wasPickedUp())
 			{
 				//  if the quick access bar is not full, collect ssitem in quickaccessbar
-				itemQuickAccess.GetComponent<ItemQuickAccess>().addContent(collider.GetComponent<Item>());
-				collider.gameObject.SetActive(false);
-				collider.enabled = false;
+				itemQuickAccess.GetComponent<ItemQuickAccess>().addContent(item);
+				item.pickUp();
 			}
 			else if (!inventory.transform.GetChild(0).GetComponent<Inventory>().IsFull())
 			{
 				// collect item in inventory
-				inventory.transform.GetChild(0).GetComponent<Inventory>().AddItem(collider.GetComponent<Item>());
+				inventory.transform.GetChild(0).GetComponent<Inventory>().AddItem(item);
 			}
 			else
 			{

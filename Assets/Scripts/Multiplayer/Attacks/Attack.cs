@@ -27,7 +27,17 @@ public abstract class Attack : NetworkBehaviour
 		target.getHit(dmg);
 		foreach (Effect effect in onHitEffects)
 		{
-			effect.startEffect(target);
+			effect.turnOnEffect(target);
 		}
+	}
+
+	public void increaseDmg(float amount)
+	{
+		dmg += amount;
+	}
+
+	public void decreaseDmg(float amount) 
+	{
+		dmg -= amount;
 	}
 }

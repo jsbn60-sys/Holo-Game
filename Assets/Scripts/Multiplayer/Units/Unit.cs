@@ -92,7 +92,11 @@ public abstract class Unit : NetworkBehaviour
 	/// <param name="onHitEffects">Hit effects applied to the player.</param>
 	public void getHit(float dmg)
 	{
-		health -= dmg;
+		float shieldOverflowDmg = -Mathf.Min(shield-dmg,0);
+
+		shield = Mathf.Max(shield - dmg, 0);
+
+		health -= shieldOverflowDmg;
 		if (isDead())
 		{
 			onDeath();
@@ -119,12 +123,16 @@ public abstract class Unit : NetworkBehaviour
 		UpdateHealthbarSize();
 	}
 
+	/// <summary>
+	/// Adds shield to the player.
+	/// </summary>
+	/// <param name="shieldAmount">Amount of shield</param>
 	public void giveShield(float shieldAmount)
 	{
 		shield = Mathf.Min(shield + shieldAmount, maxShield);
+		Debug.Log("Shield: " + shield);
 		UpdateShieldbarSize();
 	}
-
 
 	/// <summary>
 	/// This function updates the healthBar size.
@@ -142,5 +150,10 @@ public abstract class Unit : NetworkBehaviour
 	private void UpdateShieldbarSize()
 	{
 		shieldBar.sizeDelta = new Vector2(shield, healthBar.sizeDelta.y);
+	}
+
+	public Attack getAttack()
+	{
+		return attack;
 	}
 }
