@@ -16,8 +16,14 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 	[SerializeField]
 	private GameObject tooltip;
 
-	T content;
+	private T content;
 	public bool isEmpty;
+
+
+	public void Start()
+	{
+		isEmpty = true;
+	}
 
 	/// <summary>
 	/// Inserts content into the slot.
@@ -26,10 +32,7 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 	public void insertContent(T content)
 	{
 		this.content = content;
-		if(content is Item)
-		{
-			icon.GetComponent<Image>().sprite = content.getIcon();
-		}
+		icon.GetComponent<Image>().sprite = content.getIcon();
 		isEmpty = false;
 	}
 

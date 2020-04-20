@@ -458,8 +458,8 @@ public abstract class Player : Unit
 	/// <param name="collider"></param>
 	private void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.GetComponent<Item>() != null)
-		{ 
+		if (collider.gameObject.tag.Equals("Item"))
+		{
 			
 			if (!itemQuickAccess.GetComponent<ItemQuickAccess>().isFull())
 			{

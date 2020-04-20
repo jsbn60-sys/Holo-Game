@@ -8,18 +8,20 @@ using UnityEngine;
 /// </summary>
 public class Item : MonoBehaviour , Slotable
 {
-	Effect effect;
+	[SerializeField]
+	private	Effect effect;
 
 	[SerializeField]
-	private Sprite sprite;
+	private SpriteRenderer spriteRenderer;
 
 	public void activate(Player player) {
-
+		effect.startEffect(player);
+	
 	}
 
 	public Sprite getIcon()
 	{
-		return sprite;
+		return spriteRenderer.sprite;
 	}
 
 	public GameObject getInstance()

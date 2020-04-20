@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 4883035801903006}
   - component: {fileID: 54169251756820946}
   - component: {fileID: 114646775206604696}
-  - component: {fileID: 114328827815769592}
   - component: {fileID: 65370055397653436}
-  - component: {fileID: -8579239440260289131}
   - component: {fileID: -1768579327581576126}
   m_Layer: 0
   m_Name: Bomb
@@ -85,28 +83,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114328827815769592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414397509783722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22672e1eb92948d49b2a1ae78bc0c868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!65 &65370055397653436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -120,18 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.16, y: 2.2, z: 0.36065367}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8579239440260289131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414397509783722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fca7c8d5e4c942854fc86c0460c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &-1768579327581576126
 SpriteRenderer:
   m_ObjectHideFlags: 0

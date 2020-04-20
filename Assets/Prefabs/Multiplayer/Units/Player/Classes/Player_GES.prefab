@@ -549,7 +549,7 @@ MonoBehaviour:
   inGameMenu: {fileID: 673231774792730829}
   gameOverMenu: {fileID: 7034035578363499670}
   tutorialMenu: {fileID: 1823479165258937603}
-  inventory: {fileID: 6874767839147065959}
+  inventory: {fileID: 780930079344721257}
   bulletSpawn: {fileID: 1207872790123338}
   gun: {fileID: 1032561047953330}
   playerCamTarget: {fileID: 4018324307430055485}
@@ -672,7 +672,6 @@ GameObject:
   - component: {fileID: 5120665290858173982}
   - component: {fileID: 3979213218548342429}
   - component: {fileID: 3190243519371084004}
-  - component: {fileID: 1496877139612301274}
   m_Layer: 5
   m_Name: 'Name Canvas '
   m_TagString: Untagged
@@ -760,18 +759,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1496877139612301274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6451199188345558346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fca7c8d5e4c942854fc86c0460c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8671543508117508929
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 464634205575496271, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SkillQuickAccess
       objectReference: {fileID: 0}
     - target: {fileID: 1154332906754124143, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
@@ -968,6 +960,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemQuickAccess
+      objectReference: {fileID: 0}
     - target: {fileID: 7560268764775537604, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -1013,16 +1010,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 464634205575496271, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SkillQuickAccess
-      objectReference: {fileID: 0}
-    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: ItemQuickAccess
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14a933af46652374e96a9842e10a61fc, type: 3}
 --- !u!224 &1833969848030471742 stripped
@@ -1049,9 +1036,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6874767839147065959 stripped
+--- !u!1 &780930079344721257 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6205545330241015094, guid: 14a933af46652374e96a9842e10a61fc,
+  m_CorrespondingSourceObject: {fileID: 261483314961969720, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
@@ -1198,9 +1185,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635a4ac759f135a4da2eb35beb009f14, type: 3}
---- !u!224 &671234674140920168 stripped
+--- !u!224 &9106537384816587502 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7746809989510894214, guid: 635a4ac759f135a4da2eb35beb009f14,
+  m_CorrespondingSourceObject: {fileID: 2067835325893843200, guid: 635a4ac759f135a4da2eb35beb009f14,
     type: 3}
   m_PrefabInstance: {fileID: 7120902142132923374}
   m_PrefabAsset: {fileID: 0}
@@ -1210,9 +1197,9 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7120902142132923374}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &9106537384816587502 stripped
+--- !u!224 &671234674140920168 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2067835325893843200, guid: 635a4ac759f135a4da2eb35beb009f14,
+  m_CorrespondingSourceObject: {fileID: 7746809989510894214, guid: 635a4ac759f135a4da2eb35beb009f14,
     type: 3}
   m_PrefabInstance: {fileID: 7120902142132923374}
   m_PrefabAsset: {fileID: 0}

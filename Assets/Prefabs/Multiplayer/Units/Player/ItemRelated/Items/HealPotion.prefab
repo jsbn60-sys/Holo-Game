@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4532889628962670}
   - component: {fileID: 54953237787842054}
   - component: {fileID: 114887335629264534}
-  - component: {fileID: 114560977879175226}
   - component: {fileID: 65530221131543192}
   - component: {fileID: 5109809320717755568}
-  - component: {fileID: 5564003542456632839}
+  - component: {fileID: 465511385731003916}
+  - component: {fileID: -7542303017015279819}
   m_Layer: 0
   m_Name: HealPotion
   m_TagString: Item
@@ -85,28 +85,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114560977879175226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953644214709160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22672e1eb92948d49b2a1ae78bc0c868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!65 &65530221131543192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,7 +146,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5564003542456632839
+--- !u!114 &465511385731003916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,6 +155,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953644214709160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fca7c8d5e4c942854fc86c0460c62, type: 3}
+  m_Script: {fileID: 11500000, guid: 84bab5ec29b3a2642a2d524c50e08b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: -7542303017015279819}
+  spriteRenderer: {fileID: 5109809320717755568}
+--- !u!114 &-7542303017015279819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953644214709160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc83f6dd1e38b7e4f856778c4338be27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0
+  tickRate: 0
+  healAmount: 50

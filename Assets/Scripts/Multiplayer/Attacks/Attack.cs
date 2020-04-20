@@ -26,7 +26,7 @@ public abstract class Attack : NetworkBehaviour
 	{
 		foreach(Effect effect in onHitEffects)
 		{
-			effect.setTarget(target);
+			effect.startEffect(target);
 		}
 		target.getHit(dmg, onHitEffects);
 	}

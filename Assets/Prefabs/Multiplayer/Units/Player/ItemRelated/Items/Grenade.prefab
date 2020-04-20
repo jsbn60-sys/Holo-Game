@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 54584785701034934}
   - component: {fileID: 114020873751115290}
   - component: {fileID: 114055309425298488}
-  - component: {fileID: 4562794084090321550}
   - component: {fileID: 7029861516618692926}
   m_Layer: 0
   m_Name: Grenade
@@ -120,18 +119,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &4562794084090321550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848742620939962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fca7c8d5e4c942854fc86c0460c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7029861516618692926
 SpriteRenderer:
   m_ObjectHideFlags: 0

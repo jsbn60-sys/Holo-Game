@@ -443,7 +443,7 @@ MonoBehaviour:
   inGameMenu: {fileID: 7198282505435579831}
   gameOverMenu: {fileID: 805943538019965420}
   tutorialMenu: {fileID: 8357818703277389945}
-  inventory: {fileID: 3880615907173027613}
+  inventory: {fileID: 6945897194299928595}
   bulletSpawn: {fileID: 1831096841356706}
   gun: {fileID: 1787552059788772}
   playerCamTarget: {fileID: 8899523699844730818}
@@ -722,7 +722,6 @@ GameObject:
   - component: {fileID: 309289359811170659}
   - component: {fileID: 1706567340894145377}
   - component: {fileID: 4167823689773779584}
-  - component: {fileID: 9072586217941775414}
   m_Layer: 5
   m_Name: 'Name Canvas '
   m_TagString: Untagged
@@ -810,18 +809,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &9072586217941775414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7784994575823297742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fca7c8d5e4c942854fc86c0460c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8899523699844730818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +997,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 464634205575496271, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: SkillQuickAccess
+      objectReference: {fileID: 0}
     - target: {fileID: 1154332906754124143, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1115,6 +1107,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemQuickAccess
+      objectReference: {fileID: 0}
     - target: {fileID: 7560268764775537607, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_IsActive
@@ -1165,16 +1162,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 464634205575496271, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: SkillQuickAccess
-      objectReference: {fileID: 0}
-    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: ItemQuickAccess
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14a933af46652374e96a9842e10a61fc, type: 3}
 --- !u!224 &8341003697802799940 stripped
@@ -1201,9 +1188,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7188924789956723243}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3880615907173027613 stripped
+--- !u!1 &6945897194299928595 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6205545330241015094, guid: 14a933af46652374e96a9842e10a61fc,
+  m_CorrespondingSourceObject: {fileID: 261483314961969720, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 7188924789956723243}
   m_PrefabAsset: {fileID: 0}

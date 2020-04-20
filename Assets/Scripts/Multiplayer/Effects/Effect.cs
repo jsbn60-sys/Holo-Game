@@ -11,32 +11,69 @@ using UnityEngine.Networking;
 /// </summary>
 public abstract class Effect : NetworkBehaviour {
 
-	public Effect()
-	{
-		timeAlive = 0f;
-	}
-
 	protected Unit target;
+
+	private bool wasStarted;
 
 	[SerializeField]
 	protected float duration;
 
-	private float timeAlive;
+	[SerializeField]
+	protected float tickRate;
+
+	private float durationTimer;
 
 	public abstract void execEffect();
 
-	public void setTarget(Unit target)
+	private IEnumerator effectRunner;
+
+	protected void Start()
 	{
-		this.target = target;
+		effectRunner = startEffect();
+		durationTimer = duration;
+		wasStarted = false;
 	}
 
-	public virtual void update()
+	public void startEffect(Unit target)
 	{
-		timeAlive += Time.deltaTime;
+		this.target = target;
+		wasStarted = true;
+
+		if (duration == 0f)
+		{
+			execEffect();
+		}
+		else
+		{
+			StartCoroutine(effectRunner);
+		}
+	}
+
+	protected void Update()
+	{
+		if (wasStarted)
+		{
+			durationTimer -= Time.deltaTime;
+
+			if (!isActive())
+			{
+				StopCoroutine(effectRunner);
+				wasStarted = false;
+			}
+		}
 	}
 
 	public bool isActive()
 	{
-		return timeAlive >= duration;
+		return durationTimer > 0;
+	}
+
+	private IEnumerator startEffect()
+	{
+		while (isActive())
+		{
+			execEffect();
+			yield return new WaitForSeconds(tickRate);
+		}
 	}
 }

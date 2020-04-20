@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7431099304308338927}
   - component: {fileID: 7376718668785668685}
   - component: {fileID: 2332338392738808933}
-  - component: {fileID: 3134749802425476818}
   m_Layer: 0
   m_Name: ShieldItem
   m_TagString: Item
@@ -168,15 +167,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3134749802425476818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7399802573491800957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6fca7c8d5e4c942854fc86c0460c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
