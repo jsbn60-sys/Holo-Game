@@ -16,6 +16,7 @@ public abstract class Unit : NetworkBehaviour
 
 	protected float health;
 	protected float shield;
+	protected bool isInvulnerable;
 
 	[SerializeField]
 	protected Attack attack;
@@ -31,6 +32,7 @@ public abstract class Unit : NetworkBehaviour
 
 	protected void Start()
 	{
+		isInvulnerable = false;
 		attackTimer = attackRate;
 
 		// initializes health & shield
@@ -92,6 +94,11 @@ public abstract class Unit : NetworkBehaviour
 	/// <param name="onHitEffects">Hit effects applied to the player.</param>
 	public void getHit(float dmg)
 	{
+		if (isInvulnerable)
+		{
+			dmg = 0f;
+		}
+
 		float shieldOverflowDmg = -Mathf.Min(shield-dmg,0);
 
 		shield = Mathf.Max(shield - dmg, 0);
@@ -171,6 +178,15 @@ public abstract class Unit : NetworkBehaviour
 		{
 			this.speed /= factor;
 		}
+	}
+
+	/// <summary>
+	/// Changes if the unit is invulnerable or not.
+	/// </summary>
+	/// <param name="turnOn">Should unit be invulnerable</param>
+	public void changeInvulnerability(bool turnOn)
+	{
+		isInvulnerable = turnOn;
 	}
 
 }
