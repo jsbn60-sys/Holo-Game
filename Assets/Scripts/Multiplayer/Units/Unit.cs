@@ -164,6 +164,11 @@ public abstract class Unit : NetworkBehaviour
 		return attack;
 	}
 
+	public float getSpeed()
+	{
+		return speed;
+	}
+
 	/// <summary>
 	/// Increases/decreases speed by a factor.
 	/// </summary>

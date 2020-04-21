@@ -112,6 +112,7 @@ namespace NPC
 		override protected void Start()
 		{
 			navMeshAgent = GetComponent<NavMeshAgent>();//Set the navMeshAgent
+			navMeshAgent.speed = GetComponent<Unit>().getSpeed();
 			if (navMeshAgent == null)
 			{
 				Debug.LogError("Missing NavMeshAgent!");
@@ -190,6 +191,22 @@ namespace NPC
 
 		public void againLive() {
 			InitialiseBehavior();
+		}
+
+		/// <summary>
+		/// Stuns or unstuns the NPC.
+		/// </summary>
+		/// <param name="turnOn">Should NPC be stunned</param>
+		public void changeStun(bool turnOn)
+		{
+			if (turnOn)
+			{
+				navMeshAgent.isStopped = true;
+			} else
+			{
+				navMeshAgent.isStopped = false;
+
+			}
 		}
 	}
 }

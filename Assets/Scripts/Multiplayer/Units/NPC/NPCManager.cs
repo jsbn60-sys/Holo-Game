@@ -231,6 +231,21 @@ namespace NPC
 				Debug.LogError("NPCCount is less then zero.This should not happen!");
 			}
 		}
+
+		/// <summary>
+		/// Is used by the globalStunEffect.
+		/// </summary>
+		/// <param name="turnOn">Should all NPCs be stunned</param>
+		public void stunAllNPCs(bool turnOn)
+		{
+			foreach(NPCGroup group in groups)
+			{
+				foreach(NPC npc in group.npcList)
+				{
+					npc.changeStun(turnOn);
+				}
+			}
+		}
 	}
 
 
