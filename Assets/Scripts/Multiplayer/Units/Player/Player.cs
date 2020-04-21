@@ -232,21 +232,21 @@ public abstract class Player : Unit
 	{
 		if (Input.GetKey(KeyCode.Mouse0) && canAttack())
 		{
-			shoot();
+			shootProjectile(attack.GetComponent<Projectile>());
 			base.useAttack();
 		}
 	}
 
+
 	/// <summary>
-	/// Shoots the attack prefab of the player.
+	/// Shoots a projectile from the player.
+	/// This function is public, because it is used by some effects.
 	/// </summary>
-	private void shoot()
+	/// <param name="projectile">Projectile to shoot</param>
+	public void shootProjectile(Projectile projectile)
 	{
-		// instantiate bullet
-		GameObject bullet = Instantiate(attack.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
+		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
 		bullet.GetComponent<Projectile>().setupProjectile(playerCam.transform.forward);
-		
-		// play sound
 	}
 
 	/// <summary>
@@ -540,4 +540,5 @@ public abstract class Player : Unit
 			NPC.NPCManager.Instance.AddTarget(this.transform);
 		}
 	}
+
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8356207748221873381}
   - component: {fileID: 601136312618080313}
-  - component: {fileID: 6753251157846890483}
+  - component: {fileID: -4556958912765953802}
   m_Layer: 11
   m_Name: Punch
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &6753251157846890483
+--- !u!114 &-4556958912765953802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

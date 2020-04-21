@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 114020873751115290}
   - component: {fileID: 114055309425298488}
   - component: {fileID: 7029861516618692926}
+  - component: {fileID: 1115091502660920738}
+  - component: {fileID: -2375803007354559118}
   m_Layer: 0
-  m_Name: Grenade
+  m_Name: GrenadeItem
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,3 +169,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1115091502660920738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848742620939962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bab5ec29b3a2642a2d524c50e08b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: -2375803007354559118}
+  spriteRenderer: {fileID: 7029861516618692926}
+--- !u!114 &-2375803007354559118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848742620939962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionProjectile: {fileID: 8894821723348172534, guid: 9f80d40624112074d9813c8bcb289847,
+    type: 3}

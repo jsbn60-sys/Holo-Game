@@ -850,6 +850,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7560268764775537607, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemQuickAccess
+      objectReference: {fileID: 0}
     - target: {fileID: 464634205575496271, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_Name
@@ -960,31 +975,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_Name
-      value: ItemQuickAccess
-      objectReference: {fileID: 0}
-    - target: {fileID: 7560268764775537607, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1168929115075000927, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1168929115075000927, guid: 14a933af46652374e96a9842e10a61fc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 8.050049
-      objectReference: {fileID: 0}
     - target: {fileID: 7560268764775537605, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_FillCenter
@@ -1049,6 +1039,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168929115075000927, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168929115075000927, guid: 14a933af46652374e96a9842e10a61fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 8.050049
       objectReference: {fileID: 0}
     - target: {fileID: 4661584510098716102, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}

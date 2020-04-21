@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxShield: 100
-  attack: {fileID: 6753251157846890483, guid: eefa2b1597d0eb14fb567cbfb7a52aa6, type: 3}
+  attack: {fileID: -4556958912765953802, guid: eefa2b1597d0eb14fb567cbfb7a52aa6, type: 3}
   healthBar: {fileID: 5349109782408263163}
   shieldBar: {fileID: 8358763953991346683}
 --- !u!1 &1895996316334682

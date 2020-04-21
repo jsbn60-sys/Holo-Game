@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
 /// This class represents any projectile in the game.
 /// </summary>
-[System.Serializable]
-public class Projectile : Attack
+public abstract class Projectile : Attack
 {
 	[SerializeField]
 	private float speed;
@@ -23,20 +23,8 @@ public class Projectile : Attack
 	}
 
 	/// <summary>
-	/// Checks for collision with enemies
+	/// Decides what to do, when the projectile hits a trigger.
 	/// </summary>
-	/// <param name="other">GameObject that was colliding</param>
-	private void OnTriggerEnter(Collider other)
-	{
-		GameObject hit = other.gameObject;
-
-		if (hit.tag.Equals("Enemy"))
-		{
-			onHit(hit.GetComponent<Unit>());
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-	}
+	/// <param name="other">Trigger that was hit</param>
+	protected abstract void OnTriggerEnter(Collider other);
 }
