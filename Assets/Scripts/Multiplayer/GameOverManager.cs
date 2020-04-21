@@ -27,7 +27,7 @@ public class GameOverManager : NetworkBehaviour
 		Fine,
 		BurnedOut
 	}
-	
+
 	private Dictionary<Player, ProfMentalHealth> profs = new Dictionary<Player, ProfMentalHealth>();
 
 	private void OnEnable()
@@ -54,7 +54,7 @@ public class GameOverManager : NetworkBehaviour
 		{if (prof!= null)
 			{
 				prof.revive();
-				
+
 			}
 		}
 	}
