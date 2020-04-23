@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This class represents an effect which throws an explosiveProjectile from the players position.
+/// This class represents an effect which throws an object from the players position.
 /// </summary>
-public class ThrowExplosiveEffect : SingleUseEffect
+public class ThrowObjectEffect : SingleUseEffect
 {
 	[SerializeField]
 	private AOEProjectile explosionProjectile;

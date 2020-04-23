@@ -42,12 +42,12 @@ namespace NPC
 		}
 		public void OnTriggerEnter(Collider other)
 		{
-			
+
 		}
 
 		void OnTriggerExit(Collider other)
 		{
-			
+
 		}
 		public void SetTriggered(bool trigger)
 		{
@@ -112,7 +112,6 @@ namespace NPC
 		override protected void Start()
 		{
 			navMeshAgent = GetComponent<NavMeshAgent>();//Set the navMeshAgent
-			navMeshAgent.speed = GetComponent<Unit>().getSpeed();
 			if (navMeshAgent == null)
 			{
 				Debug.LogError("Missing NavMeshAgent!");
@@ -131,6 +130,7 @@ namespace NPC
 #endif
 		void Update()
 		{
+			navMeshAgent.speed = GetComponent<Unit>().getSpeed();
 			time += Time.deltaTime;
 			if (!IsInGroup())
 			{
@@ -138,7 +138,7 @@ namespace NPC
 				group.AddNPC(this);
 				npcGroup = group;
 			}
-		
+
 		}
 
 		protected override void FixedUpdate()
@@ -161,7 +161,7 @@ namespace NPC
 			}
 		}
 		protected override void InitialiseBehavior()
-		{	
+		{
 			move = new NPCMove(navMeshAgent, GetComponent<VisibleTargets>());
 			attack = new NPCAttack(range, delay, this);
 

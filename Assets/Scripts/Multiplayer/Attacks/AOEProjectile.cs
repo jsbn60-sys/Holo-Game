@@ -21,6 +21,10 @@ public class AOEProjectile : Projectile
 	{
 		Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
 
+		if (hitFX != null)
+		{
+			Instantiate(hitFX, transform.position, Quaternion.identity);
+		}
 		foreach (Collider enemy in inRangeEnemies)
 		{
 			onHit(enemy.GetComponent<Unit>());

@@ -8,8 +8,8 @@ using UnityEngine;
 /// </summary>
 public abstract class Projectile : Attack
 {
-	[SerializeField]
-	private float speed;
+	[SerializeField] protected GameObject hitFX;
+	[SerializeField] private float speed;
 
 	/// <summary>
 	/// Sets up the projectile to fly in the wanted direction

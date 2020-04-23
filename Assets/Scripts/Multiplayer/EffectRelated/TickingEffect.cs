@@ -4,7 +4,10 @@ using UnityEngine;
 
 /// <summary>
 /// This class represents an effect, which is active for a duration and is ticking at a certain rate.
-/// A good example for this is the ShieldOverTimeEffect, which gives shield over a certain duration.
+/// A good example for this is the ShieldOverTimeEffect, which gives shield over a certain duration
+/// at a certain tickRate.
+///
+/// The abstract method execEffect is in this case to be understood as one tick of the effect.
 /// </summary>
 public abstract class TickingEffect : Effect
 {
@@ -28,7 +31,7 @@ public abstract class TickingEffect : Effect
 		tickRate = duration / tickAmount;
 		effectRunner = runEffect();
 		durationTimer = duration;
-		isRunning = false;
+		StartCoroutine(effectRunner);
 	}
 
     // Update is called once per frame
@@ -42,23 +45,12 @@ public abstract class TickingEffect : Effect
 			{
 				StopCoroutine(effectRunner);
 				isRunning = false;
+				Destroy(gameObject);
 			}
 		}
 	}
 
-	/// <summary>
-	/// Turns on the effect and starts the effectRunner.
-	/// </summary>
-	/// <param name="target">Unit to apply effect to</param>
-	public override void turnOnEffect(Unit target)
-	{
-		this.target = target;
-		isRunning = true;
-
-		StartCoroutine(effectRunner);
-	}
-
-	/// <summary>
+    /// <summary>
 	/// Runs the effect and waits for tickRate
 	/// </summary>
 	/// <returns></returns>

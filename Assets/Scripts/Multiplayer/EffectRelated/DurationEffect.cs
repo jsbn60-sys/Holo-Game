@@ -6,6 +6,8 @@ using UnityEngine;
 /// This class represents an effect, which active for a duration and then turns off again.
 /// A good example for this is the DamageBoostEffect, which gives a damageBoost for a certain duration
 /// and turns off after that.
+///
+/// The abstract method execEffect is in this case to be understood as turning on the effect.
 /// </summary>
 public abstract class DurationEffect : Effect
 {
@@ -13,19 +15,6 @@ public abstract class DurationEffect : Effect
 	protected float duration;
 
 	private float durationTimer;
-
-	private bool isRunning;
-
-	/// <summary>
-	/// Sets target and starts the effect.
-	/// </summary>
-	/// <param name="target">Unit to apply effect to</param>
-	public override void turnOnEffect(Unit target)
-	{
-		this.target = target;
-		isRunning = true;
-		execEffect();
-	}
 
 	/// <summary>
 	/// Needs to be implemented to turn the effect off again.
@@ -35,24 +24,21 @@ public abstract class DurationEffect : Effect
 	// Start is called before the first frame update
 	protected void Start()
     {
-		durationTimer = duration;
-		isRunning = false;
-	}
+	    durationTimer = duration;
+	    execEffect();
+    }
 
 	// Update is called once per frame
 	protected void Update()
-    {
-		if (isRunning)
-		{
-			durationTimer -= Time.deltaTime;
+	{
+		durationTimer -= Time.deltaTime;
 
-			if (!isActive())
-			{
-				turnOffEffect();
-				isRunning = false;
-			}
+	    if (!isActive())
+		{
+			turnOffEffect();
+			Destroy(gameObject);
 		}
-	}
+    }
 
 	/// <summary>
 	/// Checks if timer has run out.

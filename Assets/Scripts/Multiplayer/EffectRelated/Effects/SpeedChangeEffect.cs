@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Effect which gives the target a speed boost for a duration.
 /// </summary>
-public class SpeedBoostEffect : DurationEffect
+public class SpeedChangeEffect : DurationEffect
 {
 	[SerializeField]
 	private float speedBoostFactor;
@@ -19,16 +19,4 @@ public class SpeedBoostEffect : DurationEffect
 	{
 		target.changeSpeed(false, speedBoostFactor);
 	}
-
-	// Start is called before the first frame update
-	void Start()
-    {
-		base.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-		base.Update();
-    }
 }

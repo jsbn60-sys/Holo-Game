@@ -30,8 +30,11 @@ public abstract class Unit : NetworkBehaviour
 	[SerializeField]
 	private RectTransform shieldBar;
 
+	private List<Effect> effectsOnUnit;
+
 	protected void Start()
 	{
+		effectsOnUnit = new List<Effect>();
 		isInvulnerable = false;
 		attackTimer = attackRate;
 

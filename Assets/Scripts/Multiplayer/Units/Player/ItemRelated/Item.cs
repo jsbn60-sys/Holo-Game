@@ -22,7 +22,7 @@ public class Item : MonoBehaviour , Slotable
 	}
 
 	public void activate(Player player) {
-		effect.turnOnEffect(player);
+		Effect.attachEffect(effect.gameObject,player);
 	}
 
 	public Sprite getIcon()
