@@ -19,6 +19,11 @@ public class AOEProjectile : Projectile
 	/// <param name="other">Any trigger that was hit</param>
 	protected override void OnTriggerEnter(Collider other)
 	{
+		if (other.tag.Equals("AOEGround"))
+		{
+			return;
+		}
+
 		Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
 
 		if (hitFX != null)

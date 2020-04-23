@@ -7,39 +7,28 @@ using UnityEngine.Networking;
 /// Parent class for all playerClasses. Implements combined functionalities
 /// which are UI, movement and Input.
 /// </summary>
-public abstract class Player : Unit
+public class Player : Unit
 {
-	[SyncVar]
-	public string name;
-	[SerializeField]
-	private GameObject itemQuickAccess;
-	[SerializeField]
-	private GameObject skillQuickAccess;
-	[SerializeField]
-	private GameObject map;
+	[SyncVar] public string name;
+	[SerializeField] private Multiplayer.Lobby.PlayerRole role;
+	[SerializeField] private GameObject itemQuickAccess;
+	[SerializeField] private GameObject skillQuickAccess;
+	[SerializeField] private GameObject map;
 
 	private GameObject chat;
 
-	[SerializeField]
-	private GameObject skillMenu;
-	[SerializeField]
-	private GameObject inGameMenu;
-	[SerializeField]
-	private GameObject gameOverMenu;
-	[SerializeField]
-	private GameObject tutorialMenu;
-	[SerializeField]
-	private GameObject inventory;
+	[SerializeField] private GameObject skillMenu;
+	[SerializeField] private GameObject inGameMenu;
+	[SerializeField] private GameObject gameOverMenu;
+	[SerializeField] private GameObject tutorialMenu;
+	[SerializeField] private GameObject inventory;
 
-	[SerializeField]
-	private GameObject bulletSpawn;
+	[SerializeField] private GameObject bulletSpawn;
 
-	[SerializeField]
-	private GameObject gun;
+	[SerializeField] private GameObject gun;
 
 	// Camera related
-	[SerializeField]
-	private GameObject playerCamTarget;
+	[SerializeField] private GameObject playerCamTarget;
 	private GameObject playerCam;
 	private float horizontal;
 	private float vertical;
@@ -48,10 +37,6 @@ public abstract class Player : Unit
 	private bool isGrounded;
 	private bool isCollidingInAir;
 	private float bonusGravity;
-
-	// temp fix
-	protected int role;
-
 
 	// called at start
     protected void Start()
@@ -84,11 +69,6 @@ public abstract class Player : Unit
 		}
 
 		base.Update();
-	}
-
-	private void updateTimers()
-	{
-		
 	}
 
 	/// <summary>
@@ -257,7 +237,6 @@ public abstract class Player : Unit
 		NPC.NPCManager.Instance.RemoveTarget(this.transform);
 		GameOverManager.Instance.ProfIsBurnedOut(this);
 	}
-
 
 	/// <summary>
 	/// Sets the UI for gameplay.
@@ -503,7 +482,7 @@ public abstract class Player : Unit
 	}
 
 	// temp fix
-	public void setRole(int role)
+	public void setRole(Multiplayer.Lobby.PlayerRole role)
 	{
 		this.role = role;
 	}
@@ -540,5 +519,4 @@ public abstract class Player : Unit
 			NPC.NPCManager.Instance.AddTarget(this.transform);
 		}
 	}
-
 }

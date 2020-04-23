@@ -144,31 +144,31 @@ namespace Multiplayer.Lobby
 			switch (lobbyPlayer.playerRole)
 			{
 				case PlayerRole.MNI:
-					player.setRole(0);
+					player.setRole(PlayerRole.MNI);
 					player.name = lobbyPlayer.playerName;
 					Spawnplayer(0, lp, gp);
 					return false;
 				case PlayerRole.LSE:
-					player.setRole(1);
+					player.setRole(PlayerRole.LSE);
 					Spawnplayer(1, lp, gp);
 					return false;
-				case PlayerRole.Wirtschaft:
-					player.setRole(2);
+				case PlayerRole.WIR:
+					player.setRole(PlayerRole.WIR);
 					Spawnplayer(2, lp, gp);
 					return false;
-				case PlayerRole.Gesundheit:
-					player.setRole(3);
+				case PlayerRole.GES:
+					player.setRole(PlayerRole.GES);
 					Spawnplayer(3, lp, gp);
 					return false;
-				case PlayerRole.Drone:
+				case PlayerRole.DRONE:
 					NetworkServer.Destroy(gp);
-					
+
 					//set perspective of drone
-					players[(int)PlayerRole.Drone].GetComponent<Drone>().usesHoloboard = lobbyPlayer.droneUsesHoloboardPerspective;
-					
+					players[(int)PlayerRole.DRONE].GetComponent<Drone>().usesHoloboard = lobbyPlayer.droneUsesHoloboardPerspective;
+
 					//spawn drone prefab and replace with prof
-					GameObject drone = Instantiate(players[(int)PlayerRole.Drone], Vector3.up * 30, Quaternion.identity);
-					
+					GameObject drone = Instantiate(players[(int)PlayerRole.DRONE], Vector3.up * 30, Quaternion.identity);
+
 					NetworkServer.Spawn(drone);
 					NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, drone, lobbyPlayer.playerControllerId);
 
@@ -184,7 +184,7 @@ namespace Multiplayer.Lobby
 
 		/// <summary>
 		/// method called on Server when a client Disconects
-		/// Destroys the players on the Scenes and changes the Player count 
+		/// Destroys the players on the Scenes and changes the Player count
 		/// </summary>
 		/// <param name="conn"></param>
 		public override void OnServerDisconnect(NetworkConnection conn)
@@ -206,7 +206,7 @@ namespace Multiplayer.Lobby
 				}
 			}
 
-			// Forces the server to shutdown. 
+			// Forces the server to shutdown.
 			/*
 			Shutdown();
 
@@ -220,7 +220,7 @@ namespace Multiplayer.Lobby
 		/// </summary>
 		public void ReturnToLobby(bool isServer)
 		{
-			
+
 			if (isServer) // Player is Server
 			{
 				Debug.Log("is Server");
@@ -283,13 +283,13 @@ namespace Multiplayer.Lobby
 			connectMenu.gameObject.SetActive(false);
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-			
+
 			StopClient();
 
 		}
 
 		public void OnClose()
-		{		
+		{
 			Application.Quit();
 		}
 }

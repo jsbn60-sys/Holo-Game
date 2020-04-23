@@ -11,15 +11,15 @@ GameObject:
   - component: {fileID: 4603531075507990}
   - component: {fileID: 33996217990778226}
   - component: {fileID: 23336029855534100}
-  - component: {fileID: 136259580517038560}
   - component: {fileID: 114400573432917858}
   - component: {fileID: 114918938216501682}
   - component: {fileID: 5593149027722814751}
   - component: {fileID: 8091972472094639724}
   - component: {fileID: 3816754948001804958}
+  - component: {fileID: 4028401215870497305}
   m_Layer: 0
   m_Name: Slowfield
-  m_TagString: Untagged
+  m_TagString: AOEGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,20 +84,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &136259580517038560
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348298825593460}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &114400573432917858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +268,19 @@ MonoBehaviour:
   - {fileID: 7480076119631117651}
   duration: 10
   tickRate: 0.25
+--- !u!135 &4028401215870497305
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348298825593460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
 --- !u!1 &6726329384863437272
 GameObject:
   m_ObjectHideFlags: 0

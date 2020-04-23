@@ -9,10 +9,10 @@ namespace Multiplayer.Lobby
 	public enum PlayerRole
 	{
 		MNI,
-		Wirtschaft,
-		Gesundheit,
+		WIR,
+		GES,
 		LSE,
-		Drone
+		DRONE
 	}
 
 	public class LobbyPlayer : NetworkLobbyPlayer
@@ -137,12 +137,12 @@ namespace Multiplayer.Lobby
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
-				case PlayerRole.Wirtschaft:
+				case PlayerRole.WIR:
 					roleButton.GetComponentInChildren<Text>().text = "Wirtschaft";
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
-				case PlayerRole.Gesundheit:
+				case PlayerRole.GES:
 					roleButton.GetComponentInChildren<Text>().text = "Gesundheit";
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
@@ -152,7 +152,7 @@ namespace Multiplayer.Lobby
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
-				case PlayerRole.Drone:
+				case PlayerRole.DRONE:
 					roleButton.GetComponentInChildren<Text>().text = "Drone";
 					//when drone player, display camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(true);
@@ -162,7 +162,7 @@ namespace Multiplayer.Lobby
 			}
 			if(isLocalPlayer)
 				SendNotReadyToBeginMessage();
-			
+
 			playerRole = newRole;
 		}
 
@@ -217,13 +217,13 @@ namespace Multiplayer.Lobby
 					case (PlayerRole.LSE):
 						isLSETaken = true;
 						break;
-					case (PlayerRole.Gesundheit):
+					case (PlayerRole.GES):
 						isGESTaken = true;
 						break;
-					case (PlayerRole.Wirtschaft):
+					case (PlayerRole.WIR):
 						isWITaken = true;
 						break;
-					case PlayerRole.Drone:
+					case PlayerRole.DRONE:
 						isDroneTaken = true;
 						break;
 				}
@@ -340,33 +340,33 @@ namespace Multiplayer.Lobby
 			switch (playerRole)
 			{
 				case PlayerRole.MNI:
-					if (!isWITaken) playerRole = PlayerRole.Wirtschaft;
-					else if (!isGESTaken) playerRole = PlayerRole.Gesundheit;
+					if (!isWITaken) playerRole = PlayerRole.WIR;
+					else if (!isGESTaken) playerRole = PlayerRole.GES;
 					else if (!isLSETaken) playerRole = PlayerRole.LSE;
-					else if (!isDroneTaken) playerRole = PlayerRole.Drone;
+					else if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					break;
-				case PlayerRole.Wirtschaft:
-					if (!isGESTaken) playerRole = PlayerRole.Gesundheit;
+				case PlayerRole.WIR:
+					if (!isGESTaken) playerRole = PlayerRole.GES;
 					else if (!isLSETaken) playerRole = PlayerRole.LSE;
-					else if (!isDroneTaken) playerRole = PlayerRole.Drone;
+					else if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					else if (!isMNITaken) playerRole = PlayerRole.MNI;
 					break;
-				case PlayerRole.Gesundheit:
+				case PlayerRole.GES:
 					if (!isLSETaken) playerRole = PlayerRole.LSE;
-					else if (!isDroneTaken) playerRole = PlayerRole.Drone;
+					else if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					else if (!isMNITaken) playerRole = PlayerRole.MNI;
-					else if (!isWITaken) playerRole = PlayerRole.Wirtschaft;
+					else if (!isWITaken) playerRole = PlayerRole.WIR;
 					break;
 				case PlayerRole.LSE:
-					if (!isDroneTaken) playerRole = PlayerRole.Drone;
+					if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					else if (!isMNITaken) playerRole = PlayerRole.MNI;
-					else if (!isWITaken) playerRole = PlayerRole.Wirtschaft;
-					else if (!isGESTaken) playerRole = PlayerRole.Gesundheit;
+					else if (!isWITaken) playerRole = PlayerRole.WIR;
+					else if (!isGESTaken) playerRole = PlayerRole.GES;
 					break;
-				case PlayerRole.Drone:
+				case PlayerRole.DRONE:
 					if (!isMNITaken) playerRole = PlayerRole.MNI;
-					else if (!isWITaken) playerRole = PlayerRole.Wirtschaft;
-					else if (!isGESTaken) playerRole = PlayerRole.Gesundheit;
+					else if (!isWITaken) playerRole = PlayerRole.WIR;
+					else if (!isGESTaken) playerRole = PlayerRole.GES;
 					else if (!isLSETaken) playerRole = PlayerRole.LSE;
 					break;
 				default:
@@ -382,7 +382,7 @@ namespace Multiplayer.Lobby
 		{
 			switch (role)
 			{
-				case PlayerRole.Drone:
+				case PlayerRole.DRONE:
 					isDroneTaken = false;
 					break;
 				case PlayerRole.MNI:
@@ -391,10 +391,10 @@ namespace Multiplayer.Lobby
 				case PlayerRole.LSE:
 					isLSETaken = false;
 					break;
-				case PlayerRole.Gesundheit:
+				case PlayerRole.GES:
 					isGESTaken = false;
 					break;
-				case PlayerRole.Wirtschaft:
+				case PlayerRole.WIR:
 					isWITaken = false;
 					break;
 			}
@@ -415,7 +415,7 @@ namespace Multiplayer.Lobby
 
 			// Checks if Requested Role is free, switches to next free otherwise
 			switch (requestedRole){
-				case PlayerRole.Drone:
+				case PlayerRole.DRONE:
 					if (isDroneTaken)
 					{
 						CmdAutoChangeRole();
@@ -436,14 +436,14 @@ namespace Multiplayer.Lobby
 						classFree = false;
 					}
 					break;
-				case PlayerRole.Gesundheit:
+				case PlayerRole.GES:
 					if (isGESTaken)
 					{
 						CmdAutoChangeRole();
 						classFree = false;
 					}
 					break;
-				case PlayerRole.Wirtschaft:
+				case PlayerRole.WIR:
 					if (isWITaken)
 					{
 						CmdAutoChangeRole();
@@ -465,18 +465,18 @@ namespace Multiplayer.Lobby
 			switch (playerRole)
 			{
 				case PlayerRole.MNI:
-					CmdChangeRole(PlayerRole.Wirtschaft);
+					CmdChangeRole(PlayerRole.WIR);
 					break;
-				case PlayerRole.Wirtschaft:
-					CmdChangeRole(PlayerRole.Gesundheit);
+				case PlayerRole.WIR:
+					CmdChangeRole(PlayerRole.GES);
 					break;
-				case PlayerRole.Gesundheit:
+				case PlayerRole.GES:
 					CmdChangeRole(PlayerRole.LSE);
 					break;
 				case PlayerRole.LSE:
-					CmdChangeRole(PlayerRole.Drone);
+					CmdChangeRole(PlayerRole.DRONE);
 					break;
-				case PlayerRole.Drone:
+				case PlayerRole.DRONE:
 					CmdChangeRole(PlayerRole.MNI);
 					break;
 				default:
@@ -489,7 +489,7 @@ namespace Multiplayer.Lobby
 			if(isLocalPlayer)
 				SendReadyToBeginMessage();
 		}
-		
+
 		private void OnHoloboardPerspectiveToggled(bool isEnabled)
 		{
 			droneUsesHoloboardPerspective = isEnabled;

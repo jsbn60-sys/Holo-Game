@@ -30,11 +30,8 @@ public abstract class Unit : NetworkBehaviour
 	[SerializeField]
 	private RectTransform shieldBar;
 
-	private List<Effect> effectsOnUnit;
-
 	protected void Start()
 	{
-		effectsOnUnit = new List<Effect>();
 		isInvulnerable = false;
 		attackTimer = attackRate;
 
@@ -99,7 +96,7 @@ public abstract class Unit : NetworkBehaviour
 	{
 		if (isInvulnerable)
 		{
-			dmg = 0f;
+			return;
 		}
 
 		float shieldOverflowDmg = -Mathf.Min(shield-dmg,0);

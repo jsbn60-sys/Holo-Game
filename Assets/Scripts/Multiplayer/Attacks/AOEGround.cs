@@ -36,6 +36,10 @@ public class AOEGround : Attack
 		{
 			foreach (Unit unit in unitsInside)
 			{
+				if (unit==null || unit.isDead())
+				{
+					unitsInside.Remove(unit);
+				}
 				onHit(unit);
 			}
 			tickTimer = tickRate;

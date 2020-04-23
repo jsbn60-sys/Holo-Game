@@ -18,6 +18,10 @@ public class SingleTargetProjectile : Projectile
 		{
 			onHit(other.GetComponent<Unit>());
 		}
+		else if (other.tag.Equals("AOEGround"))
+		{
+			return;
+		}
 		Destroy(gameObject);
 	}
 }
