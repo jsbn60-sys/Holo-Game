@@ -25,7 +25,7 @@ namespace NPC
 
 		private List<NPCGroup>	groups			= new List<NPCGroup>();
 		private float time;
-		
+
 		void OnEnable()
 		{
 			Instance = this;
@@ -42,14 +42,15 @@ namespace NPC
 
 		}
 
-	
+
 
 		/// <summary>
-		/// Removes a target 
+		/// Removes a target
 		/// </summary>
 		/// <param name="target"></param>
 		public void RemoveTarget(Transform target)
 		{
+			Debug.Log("NAME: " + target.gameObject.name);
 			//if targets doesn't contains target
 			if (!targets.Contains(target))
 			{
@@ -87,7 +88,7 @@ namespace NPC
 				int index = UnityEngine.Random.Range(0, targets.Count - 1);
 				return targets[index];
 			}
-			else 
+			else
 			{
 				//that should not be the case
 			//	Debug.LogWarning("Can't get a target because targets are Empty!");
@@ -144,7 +145,7 @@ namespace NPC
 				int index = UnityEngine.Random.Range(0, spawnPoints.Count);
 				return SpawnNewNPCGroup(npcPrefab, count, spawnPoints[index].localPosition);
 			}
-			else 
+			else
 			{
 				//that should not be the case
 				Debug.LogError("Can't get a spawnpoint because spawnpoints are Empty!");
@@ -192,7 +193,7 @@ namespace NPC
 
 			//You have to warp the player because the navMeshAGent will restet the position.
 			groupNavMeshAgent.Warp(pos);
-			
+
 			for (int i = 0; i < count; i++)
 			{
 				GameObject npcGO = Instantiate(prefab, pos, Quaternion.identity);
@@ -206,14 +207,14 @@ namespace NPC
 					case "EnemyWirtschaft": npc.type = 2; break;
 					case "EnemyGesundheit": npc.type = 3; break;
 				}
-				
+
 				//You have to warp the player because the navMeshAgent will restet the position.
 				npcGroup.AddNPC(npc);
 				navMeshAgent.Warp(pos);
 				if(NetworkServer.active) {
 					NetworkServer.Spawn(npcGO);
 				}
-				
+
 				npcCount++;
 			}
 			return npcGroup;
@@ -222,11 +223,11 @@ namespace NPC
 		private void Npc_NPCDestroyed(object sender, System.EventArgs e)
 		{
 			npcCount--;
-			if(npcCount == 0 && OnAllNPCsDied != null) 
+			if(npcCount == 0 && OnAllNPCsDied != null)
 			{
 				OnAllNPCsDied(this, new EventArgs());
 			}
-			if(npcCount < 0) 
+			if(npcCount < 0)
 			{
 				Debug.LogError("NPCCount is less then zero.This should not happen!");
 			}

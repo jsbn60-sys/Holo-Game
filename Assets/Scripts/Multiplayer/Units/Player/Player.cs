@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 /// <summary>
 /// Parent class for all playerClasses. Implements combined functionalities
@@ -9,11 +10,13 @@ using UnityEngine.Networking;
 /// </summary>
 public class Player : Unit
 {
+
 	[SyncVar] public string name;
 	[SerializeField] private Multiplayer.Lobby.PlayerRole role;
 	[SerializeField] private GameObject itemQuickAccess;
 	[SerializeField] private GameObject skillQuickAccess;
 	[SerializeField] private GameObject map;
+	[SerializeField] private GameObject nameText;
 
 	private GameObject chat;
 
@@ -45,21 +48,21 @@ public class Player : Unit
 		chat = GameObject.Find("Chat");
 		skillMenu.GetComponent<SkillMenu>().setSkillQuickAccess(skillQuickAccess.GetComponent<SkillQuickAccess>());
 		setForGameplay();
+		nameText.GetComponent<Text>().text = name;
 
 		// variables
 		attackRate = 0.2f;
 		jumpForce = 55.0f;
-		speed = 12f;
 		bonusGravity = 60.0f;
 		isGrounded = true;
 
 		base.Start();
 	}
 
-	protected void Update()
+    protected void Update()
 	{
 		//input
-		if (!isDead())
+		if (isLocalPlayer && !isDead())
 		{
 			moveInput();
 			menuInput();
@@ -106,6 +109,7 @@ public class Player : Unit
 		transform.rotation = Quaternion.Euler(0, horizontal, 0);
 		transform.Translate(x, 0, z);
 	}
+
 
 	/// <summary>
 	/// Handles input related to toggling menus ingame.
@@ -212,21 +216,32 @@ public class Player : Unit
 	{
 		if (Input.GetKey(KeyCode.Mouse0) && canAttack())
 		{
-			shootProjectile(attack.GetComponent<Projectile>());
-			base.useAttack();
+			CmdShoot(getForwardDirection());
 		}
 	}
 
+	[Command]
+	private void CmdShoot(Vector3 forward)
+	{
+		RpcShoot(forward);
+	}
+
+	[ClientRpc]
+	private void RpcShoot(Vector3 forward)
+	{
+		shootProjectile(attack.GetComponent<Projectile>(),forward);
+		base.useAttack();
+	}
 
 	/// <summary>
 	/// Shoots a projectile from the player.
 	/// This function is public, because it is used by some effects.
 	/// </summary>
 	/// <param name="projectile">Projectile to shoot</param>
-	public void shootProjectile(Projectile projectile)
+	public void shootProjectile(Projectile projectile, Vector3 forward)
 	{
 		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(playerCam.transform.forward);
+		bullet.GetComponent<Projectile>().setupProjectile(forward);
 	}
 
 	/// <summary>
@@ -236,6 +251,7 @@ public class Player : Unit
 	{
 		NPC.NPCManager.Instance.RemoveTarget(this.transform);
 		GameOverManager.Instance.ProfIsBurnedOut(this);
+		gameObject.SetActive(false);
 	}
 
 	/// <summary>
@@ -387,6 +403,7 @@ public class Player : Unit
 	/// </summary>
 	public override void OnStartLocalPlayer()
 	{
+		Debug.Log("CALLEDONSTARTLOCAL");
 		setupCameras();
 	}
 
@@ -518,5 +535,17 @@ public class Player : Unit
 			GetComponent<MeshRenderer>().enabled = true;
 			NPC.NPCManager.Instance.AddTarget(this.transform);
 		}
+	}
+
+	public void placeObjectInfront(GameObject objectToPlace)
+	{
+		Vector3 spawnPos = transform.position + playerCam.transform.forward * 3f;
+		spawnPos.y = 0f;
+		Instantiate(objectToPlace, spawnPos , Quaternion.identity);
+	}
+
+	public override Vector3 getForwardDirection()
+	{
+		return playerCam.transform.forward;
 	}
 }

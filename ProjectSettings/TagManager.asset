@@ -42,6 +42,7 @@ TagManager:
   - Chat
   - Stuncone
   - Effect
+  - AOEGround
   layers:
   - Default
   - TransparentFX

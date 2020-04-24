@@ -39,4 +39,9 @@ public class Enemy : Unit
 			base.useAttack();
 		}
 	}
+
+	public override Vector3 getForwardDirection()
+	{
+		return transform.forward;
+	}
 }

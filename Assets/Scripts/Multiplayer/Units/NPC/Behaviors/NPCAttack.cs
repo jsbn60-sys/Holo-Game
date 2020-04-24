@@ -47,7 +47,7 @@ namespace NPC
 		public override void Act(Transform npc, Transform target)
 		{
 			Enemy self = npc.GetComponent<Enemy>();
-			Player player = target.GetComponent<Player>();
+			Unit player = target.GetComponent<Unit>();
 
 			if (!player.isDead())
 			{
@@ -55,59 +55,16 @@ namespace NPC
 			} else
 			{
 				NPCManager.Instance.RemoveTarget(player.transform);
-				GameOverManager.Instance.RemoveProf(player);
+				if (player.tag.Equals("Player"))
+				{
+					GameOverManager.Instance.RemoveProf(player.GetComponent<Player>());
+				}
 				GameObject[] npcs = GameObject.FindGameObjectsWithTag("Enemy");
 				foreach (GameObject go in npcs)
 				{
 					go.GetComponent<NPC>().againLive();
 				}
 			}
-
-
-
-			/*
-			if (canAttack)
-			{
-				Unit unit = target.GetComponent<Unit>();
-				List<Effect> onHitEffects = new List<Effect>();
-				//if (!target.GetComponent<PlayerController>().isInvincible)
-				{
-					if (!unit.isDead())
-					{
-						if (npc.transform.GetComponent<NPC>().type == 5)
-						{
-							// kamikaze enemies
-							unit.getHit(, onHitEffects);
-							npc.GetComponent<Health>().TakeDamage(1000);
-						} else if (npc.transform.GetComponent<NPC>().type == 6)
-						{
-							// fire enemies
-							//onHitEffects.ADD
-							//health.Ignite(); // ignite the player to deal DOT
-							canAttack = false;
-							monoInstance.StartCoroutine(ResetAttack());
-						} else
-						{
-							unit.getHit(dmgTable[0, npc.GetComponent<NPC>().type] * mul, onHitEffects);
-							GameObject.FindGameObjectWithTag("MainCamera").transform.Rotate(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0));
-							target.transform.GetComponent<AudioManager>().PlaySound(target.transform.position, 12);
-							canAttack = false;
-							monoInstance.StartCoroutine(ResetAttack());
-
-						}
-					} else
-					{
-						NPCManager.Instance.RemoveTarget(target.transform);
-						GameOverManager.Instance.RemoveProf(target.GetComponent<PlayerController>());
-						GameObject[] npcs = GameObject.FindGameObjectsWithTag("Enemy");
-						foreach (GameObject go in npcs)
-						{
-							go.GetComponent<NPC>().againLive();
-						}
-					}
-				}
-			}
-			*/
 		}
 
 		///<summary>
@@ -115,17 +72,14 @@ namespace NPC
 		///</summary>
 		public override void Reason(Transform npc, Transform target, NPCController controller)
 		{
+			{
+				return;
+			}
 			if (Vector3.Distance(npc.position, target.position) > maxDistance)
 			{
 				controller.SetTransition(Transition.LostTarget);
 			}
 
-		}
-
-		private IEnumerator ResetAttack()
-		{
-			yield return new WaitForSeconds(attackDelay);
-			canAttack = true;
 		}
 	}
 }

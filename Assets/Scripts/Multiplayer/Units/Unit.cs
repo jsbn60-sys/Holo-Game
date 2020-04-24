@@ -21,6 +21,7 @@ public abstract class Unit : NetworkBehaviour
 	[SerializeField]
 	protected Attack attack;
 	protected float attackRate;
+	[SerializeField]
 	protected float speed;
 	protected float jumpForce;
 	protected float attackTimer;
@@ -193,5 +194,12 @@ public abstract class Unit : NetworkBehaviour
 	{
 		isInvulnerable = turnOn;
 	}
+
+	public void placeObjectOnTop(GameObject objectToPlace)
+	{
+		Instantiate(objectToPlace, transform.position, Quaternion.identity);
+	}
+
+	public abstract Vector3 getForwardDirection();
 
 }

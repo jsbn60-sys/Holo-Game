@@ -27,7 +27,8 @@ namespace Multiplayer.Lobby
 		private RectTransform offlineMenu;
 		//[SerializeField]
 		//private RectTransform chat;
-
+		[SerializeField] private Transform[] spawns;
+		private static int spawnCounter = 0;
 		private void Start()
 		{
 			Instance = this;
@@ -122,11 +123,12 @@ namespace Multiplayer.Lobby
 			Player playerController = gp.GetComponent<Player>();
 
 			NetworkServer.Destroy(gp);
-			GameObject p4 = Instantiate(players[x], new Vector3(-51, 0, 37), Quaternion.identity);
+			GameObject p4 = Instantiate(players[x], spawns[spawnCounter].position, Quaternion.identity);
 			p4.name = lobbyPlayer.playerName;
 			p4.GetComponent<Player>().name = lobbyPlayer.playerName;
 			NetworkServer.Spawn(p4);
 			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4, lobbyPlayer.playerControllerId);
+			spawnCounter++;
 		}
 
 		/// <summary>
@@ -145,7 +147,6 @@ namespace Multiplayer.Lobby
 			{
 				case PlayerRole.MNI:
 					player.setRole(PlayerRole.MNI);
-					player.name = lobbyPlayer.playerName;
 					Spawnplayer(0, lp, gp);
 					return false;
 				case PlayerRole.LSE:

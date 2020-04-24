@@ -27,7 +27,6 @@ namespace NPC
 
 		public override void Reason(Transform npc, Transform target, NPCController controller)
 		{
-			if (target == null) return;
 			if (agent.remainingDistance <= minDistance)
 			{
 				controller.SetTransition(Transition.ReachedTarget);

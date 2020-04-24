@@ -180,4 +180,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 50
   onHitEffects: []
+  hitFX: {fileID: 0}
   speed: 10
