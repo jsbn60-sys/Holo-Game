@@ -216,32 +216,46 @@ public class Player : Unit
 	{
 		if (Input.GetKey(KeyCode.Mouse0) && canAttack())
 		{
-			CmdShoot(getForwardDirection());
+			base.useAttack();
+			CmdShoot(playerCam.transform.forward);
 		}
 	}
 
+	/// <summary>
+	/// Shoots a projectile from the player.
+	/// This function is public, because it is used by some effects.
+	/// Projectiles are not spawned on the server with the NetworkServer.Spawn() function,
+	/// because they need to be accurate. Because of this the projectiles are spawned
+	/// through an RPC on every client locally with the Instantiate method.
+	/// The forward direction for the projectile has to be passed from the client,
+	/// because there is no playerCam for an ally (only the playerCam of the localPlayer).
+	/// </summary>
+	/// <param name="projectile">Projectile to shoot</param>
+	/// <param name="forward">Direction to shoot in</param>
+	public void shootProjectile(Projectile projectile, Vector3 forward)
+	{
+		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
+		bullet.GetComponent<Projectile>().setupProjectile(forward);
+	}
+
+	/// <summary>
+	/// Runs on server when a player shot.
+	/// </summary>
+	/// <param name="forward">Direction the player is looking</param>
 	[Command]
 	private void CmdShoot(Vector3 forward)
 	{
 		RpcShoot(forward);
 	}
 
+	/// <summary>
+	/// Runs on all clients when a player shot a projectile.
+	/// </summary>
+	/// <param name="forward">Direction the player is looking</param>
 	[ClientRpc]
 	private void RpcShoot(Vector3 forward)
 	{
 		shootProjectile(attack.GetComponent<Projectile>(),forward);
-		base.useAttack();
-	}
-
-	/// <summary>
-	/// Shoots a projectile from the player.
-	/// This function is public, because it is used by some effects.
-	/// </summary>
-	/// <param name="projectile">Projectile to shoot</param>
-	public void shootProjectile(Projectile projectile, Vector3 forward)
-	{
-		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(forward);
 	}
 
 	/// <summary>
@@ -403,7 +417,6 @@ public class Player : Unit
 	/// </summary>
 	public override void OnStartLocalPlayer()
 	{
-		Debug.Log("CALLEDONSTARTLOCAL");
 		setupCameras();
 	}
 
@@ -461,20 +474,15 @@ public class Player : Unit
 			{
 				//  if the quick access bar is not full, collect ssitem in quickaccessbar
 				itemQuickAccess.GetComponent<ItemQuickAccess>().addContent(item);
-				item.pickUp();
+				CmdPickUpItem(item.gameObject);
 			}
 			else if (!inventory.transform.GetChild(0).GetComponent<Inventory>().IsFull())
 			{
 				// collect item in inventory
 				inventory.transform.GetChild(0).GetComponent<Inventory>().AddItem(item);
+				CmdPickUpItem(item.gameObject);
 			}
-			else
-			{
-				// inventory and quick access bar are full
-				// item is not collected
-				collider.gameObject.SetActive(true);
-				collider.enabled = true;
-			}
+
 		}
 
 	}
@@ -547,5 +555,41 @@ public class Player : Unit
 	public override Vector3 getForwardDirection()
 	{
 		return playerCam.transform.forward;
+	}
+
+	/// <summary>
+	/// Runs command on server when a player used an item.
+	/// </summary>
+	/// <param name="item">Player that used the item</param>
+	[Command]
+	public void CmdItemWasUsed(GameObject item)
+	{
+		RpcItemWasUSed(gameObject,item);
+	}
+
+	/// <summary>
+	/// Sends response to all clients, about which player used
+	/// which item and destroys the item.
+	/// </summary>
+	/// <param name="unit">Player that used an item</param>
+	/// <param name="item">Item that was used</param>
+	[ClientRpc]
+	private void RpcItemWasUSed(GameObject unit, GameObject item)
+	{
+		Effect.attachEffect(item.GetComponent<Item>().getEffect().gameObject,unit.GetComponent<Unit>());
+		Destroy(item);
+	}
+
+
+	[Command]
+	public void CmdPickUpItem(GameObject item)
+	{
+		RpcPickUpItem(item);
+	}
+
+	[ClientRpc]
+	public void RpcPickUpItem(GameObject item)
+	{
+		item.GetComponent<Item>().pickUpItem();
 	}
 }

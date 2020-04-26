@@ -548,5 +548,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6274645903382340792, guid: aaf56c321c699b64ba674822da542a71,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[27]
+      value: 
+      objectReference: {fileID: 7399802573491800957, guid: 3bfe753b65e3008458ec8fe0bdcaaacf,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaf56c321c699b64ba674822da542a71, type: 3}

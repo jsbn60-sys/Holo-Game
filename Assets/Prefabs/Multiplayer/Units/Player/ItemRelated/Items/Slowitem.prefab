@@ -32,8 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_Children:
-  - {fileID: 523590491048754204}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -181,50 +180,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bab5ec29b3a2642a2d524c50e08b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 2677777014109753453}
+  effect: {fileID: 451442595392612127, guid: 848e0346b1bc3fb49819afa2202bc2f8, type: 3}
   spriteRenderer: {fileID: 2923993347366036721}
---- !u!1 &8721129730232133931
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 523590491048754204}
-  - component: {fileID: 2677777014109753453}
-  m_Layer: 0
-  m_Name: Effect
-  m_TagString: Effect
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &523590491048754204
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8721129730232133931}
-  m_LocalRotation: {x: -0, y: 0.11667076, z: -0, w: 0.9931707}
-  m_LocalPosition: {x: 1.7998056, y: -0.764, z: -9.84}
-  m_LocalScale: {x: 0.40000004, y: 0.39999998, z: 0.40000004}
-  m_Children: []
-  m_Father: {fileID: 4130724117895752}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2677777014109753453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8721129730232133931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionProjectile: {fileID: -9013155512586559978, guid: 6c0d140828ec0e440ac30be1b3f30482,
-    type: 3}

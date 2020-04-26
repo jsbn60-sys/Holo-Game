@@ -12,7 +12,7 @@ using UnityEngine.Networking;
 /// because the method attachEffect, will attach a copy of the gameObject to the target
 /// and then enabled it.
 /// </summary>
-public abstract class Effect : MonoBehaviour
+public abstract class Effect : NetworkBehaviour
 {
 	protected Unit target;
 
@@ -35,5 +35,4 @@ public abstract class Effect : MonoBehaviour
 		copiedEffect.target = target;
 		copiedEffect.enabled = true;
 	}
-
 }

@@ -12,6 +12,8 @@ public class ThrowObjectEffect : SingleUseEffect
 
 	protected override void execEffect()
 	{
-		target.GetComponent<Player>().shootProjectile(explosionProjectile.GetComponent<Projectile>(),target.getForwardDirection());
+		target.GetComponent<Player>().shootProjectile(
+			explosionProjectile.GetComponent<Projectile>(),
+			target.getForwardDirection());
 	}
 }

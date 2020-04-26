@@ -33,8 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.28894827, z: 0, w: 0.9573447}
   m_LocalPosition: {x: 1.478, y: -0.382, z: -4.92}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_Children:
-  - {fileID: 2825789451050619307}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -278,50 +277,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bab5ec29b3a2642a2d524c50e08b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 3620139162965038287}
+  effect: {fileID: 995640779026445109, guid: c9ebb6d998c9d8a4184df44b2966ace5, type: 3}
   spriteRenderer: {fileID: -6249146216179136155}
---- !u!1 &3953713442213482703
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2825789451050619307}
-  - component: {fileID: 3620139162965038287}
-  m_Layer: 0
-  m_Name: Effect
-  m_TagString: Effect
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2825789451050619307
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953713442213482703}
-  m_LocalRotation: {x: -0, y: -0.17528082, z: -0, w: 0.9845185}
-  m_LocalPosition: {x: -0.0048156525, y: 0, z: -0.0031983007}
-  m_LocalScale: {x: 0.002, y: 0.0019999999, z: 0.002}
-  m_Children: []
-  m_Father: {fileID: 4234080087479990}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3620139162965038287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953713442213482703}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290c5b43608b0d24ba934a7ce639791c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 10
-  speedBoostFactor: 2.5
