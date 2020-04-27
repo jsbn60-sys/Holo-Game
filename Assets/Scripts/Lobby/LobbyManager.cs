@@ -10,6 +10,7 @@ namespace Multiplayer.Lobby
 	public class LobbyManager : NetworkLobbyManager
 	{
 		public delegate void DisconnectButtonDelegate();
+
 		public DisconnectButtonDelegate disconncetDelegate;
 		public GameObject[] players;
 
@@ -19,16 +20,16 @@ namespace Multiplayer.Lobby
 
 		public Text statusText;
 
-		[SerializeField]
-		private RectTransform connectMenu;
-		[SerializeField]
-		private RectTransform lobbyMenu;
-		[SerializeField]
-		private RectTransform offlineMenu;
+		[SerializeField] private RectTransform connectMenu;
+		[SerializeField] private RectTransform lobbyMenu;
+
+		[SerializeField] private RectTransform offlineMenu;
+
 		//[SerializeField]
 		//private RectTransform chat;
 		[SerializeField] private Transform[] spawns;
 		private static int spawnCounter = 0;
+
 		private void Start()
 		{
 			Instance = this;
@@ -60,7 +61,7 @@ namespace Multiplayer.Lobby
 		/// </summary>
 		public override void OnStartHost()
 		{
-			 base.OnStartHost();
+			base.OnStartHost();
 			disconncetDelegate = StopHostClbk;
 			SetStatusInfo("Hosting");
 
@@ -127,7 +128,8 @@ namespace Multiplayer.Lobby
 			p4.name = lobbyPlayer.playerName;
 			p4.GetComponent<Player>().name = lobbyPlayer.playerName;
 			NetworkServer.Spawn(p4);
-			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4, lobbyPlayer.playerControllerId);
+			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4,
+				lobbyPlayer.playerControllerId);
 			spawnCounter++;
 		}
 
@@ -165,13 +167,16 @@ namespace Multiplayer.Lobby
 					NetworkServer.Destroy(gp);
 
 					//set perspective of drone
-					players[(int)PlayerRole.DRONE].GetComponent<Drone>().usesHoloboard = lobbyPlayer.droneUsesHoloboardPerspective;
+					players[(int) PlayerRole.DRONE].GetComponent<Drone>().usesHoloboard =
+						lobbyPlayer.droneUsesHoloboardPerspective;
 
 					//spawn drone prefab and replace with prof
-					GameObject drone = Instantiate(players[(int)PlayerRole.DRONE], Vector3.up * 30, Quaternion.identity);
+					GameObject drone = Instantiate(players[(int) PlayerRole.DRONE], Vector3.up * 30,
+						Quaternion.identity);
 
 					NetworkServer.Spawn(drone);
-					NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, drone, lobbyPlayer.playerControllerId);
+					NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, drone,
+						lobbyPlayer.playerControllerId);
 
 					//rename spawned drone object to players name
 					drone.name = lobbyPlayer.playerName;
@@ -179,6 +184,7 @@ namespace Multiplayer.Lobby
 					//must return false, otherwise unity still tries to spawn prof, I don't know?
 					return false;
 			}
+
 			//playerController.name = lobbyPlayer.playerName;
 			return true;
 		}
@@ -216,6 +222,7 @@ namespace Multiplayer.Lobby
 			*/
 
 		}
+
 		/// <summary>
 		/// return to MainMenu After GameOver and reset Network/Server
 		/// </summary>
@@ -293,5 +300,29 @@ namespace Multiplayer.Lobby
 		{
 			Application.Quit();
 		}
-}
+
+		/// <summary>
+		/// Gets the index of a RegisteredPrefab.
+		/// Used for informing other clients which prefabs to spawn,
+		/// since Prefabs/GameObjects can't be passed through the network.
+		/// </summary>
+		/// <param name="prefab">Prefab to get index for</param>
+		/// <returns>Index of prefab as RegisteredPrefab</returns>
+		public int getIdxOfPrefab(GameObject prefab)
+		{
+			return spawnPrefabs.FindIndex(prefab.Equals);
+		}
+
+		/// <summary>
+		/// Gets a prefab it's index as RegisteredPrefab.
+		/// Used for informing other clients which prefabs to spawn,
+		/// since Prefabs/GameObjects can't be passed through the network.
+		/// </summary>
+		/// <param name="prefab">Index of the prefab to get</param>
+		/// <returns>RegisteredPrefab at index</returns>
+		public GameObject getPrefabAtIdx(int idx)
+		{
+			return spawnPrefabs[idx];
+		}
+	}
 }

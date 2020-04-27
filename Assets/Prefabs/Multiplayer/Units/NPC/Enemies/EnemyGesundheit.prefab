@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
+  m_SendInterval: 0.05882353
   m_SyncRotationAxis: 4
   m_RotationSyncCompression: 0
   m_SyncSpin: 1
@@ -349,8 +349,10 @@ MonoBehaviour:
   maxHealth: 100
   maxShield: 100
   attack: {fileID: -4556958912765953802, guid: eefa2b1597d0eb14fb567cbfb7a52aa6, type: 3}
+  speed: 0
   healthBar: {fileID: 5349109782408263163}
   shieldBar: {fileID: 8358763953991346683}
+  forwardDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &1895996316334682
 GameObject:
   m_ObjectHideFlags: 0

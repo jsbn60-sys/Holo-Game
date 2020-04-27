@@ -2504,7 +2504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStatusText: {fileID: 727056390}
   waveCountText: {fileID: 1850130116}
-  countdownTimer: 1000
+  countdownTimer: 10
 --- !u!1 &846235637
 GameObject:
   m_ObjectHideFlags: 0

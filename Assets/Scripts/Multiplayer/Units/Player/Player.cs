@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Lobby;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class Player : Unit
 {
 
 	[SyncVar] public string name;
-	[SerializeField] private Multiplayer.Lobby.PlayerRole role;
+	[SerializeField] private PlayerRole role;
 	[SerializeField] private GameObject itemQuickAccess;
 	[SerializeField] private GameObject skillQuickAccess;
 	[SerializeField] private GameObject map;
@@ -69,12 +70,13 @@ public class Player : Unit
 			itemInput();
 			skillInput();
 			shootInput();
+			CmdUpdateForwardDirection(playerCam.transform.forward);
 		}
 
 		base.Update();
 	}
 
-	/// <summary>
+    /// <summary>
 	/// Handles input related to movement and camera.
 	/// </summary>
 	private void moveInput()
@@ -109,7 +111,6 @@ public class Player : Unit
 		transform.rotation = Quaternion.Euler(0, horizontal, 0);
 		transform.Translate(x, 0, z);
 	}
-
 
 	/// <summary>
 	/// Handles input related to toggling menus ingame.
@@ -217,7 +218,7 @@ public class Player : Unit
 		if (Input.GetKey(KeyCode.Mouse0) && canAttack())
 		{
 			base.useAttack();
-			CmdShoot(playerCam.transform.forward);
+			CmdShoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject));
 		}
 	}
 
@@ -227,35 +228,35 @@ public class Player : Unit
 	/// Projectiles are not spawned on the server with the NetworkServer.Spawn() function,
 	/// because they need to be accurate. Because of this the projectiles are spawned
 	/// through an RPC on every client locally with the Instantiate method.
-	/// The forward direction for the projectile has to be passed from the client,
-	/// because there is no playerCam for an ally (only the playerCam of the localPlayer).
+	/// The forward direction for the projectile is accessed through the
+	/// SyncVar forwardDirection.
 	/// </summary>
 	/// <param name="projectile">Projectile to shoot</param>
-	/// <param name="forward">Direction to shoot in</param>
-	public void shootProjectile(Projectile projectile, Vector3 forward)
+	public void shootProjectile(Projectile projectile)
 	{
 		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(forward);
+		bullet.GetComponent<Projectile>().setupProjectile(forwardDirection);
 	}
 
 	/// <summary>
-	/// Runs on server when a player shot.
+	/// Runs on server when a player shot a projectile.
 	/// </summary>
-	/// <param name="forward">Direction the player is looking</param>
+	/// <param name="prefabIdx">Idx of registeredPrefab that was shot</param>
 	[Command]
-	private void CmdShoot(Vector3 forward)
+	public void CmdShoot(int prefabIdx)
 	{
-		RpcShoot(forward);
+		RpcShoot(prefabIdx);
 	}
 
 	/// <summary>
 	/// Runs on all clients when a player shot a projectile.
 	/// </summary>
-	/// <param name="forward">Direction the player is looking</param>
+	/// <param name="prefabIdx">Idx of registeredPrefab that was shot</param>
 	[ClientRpc]
-	private void RpcShoot(Vector3 forward)
+	private void RpcShoot(int prefabIdx)
 	{
-		shootProjectile(attack.GetComponent<Projectile>(),forward);
+		GameObject projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
+		shootProjectile(projectile.GetComponent<Projectile>());
 	}
 
 	/// <summary>
@@ -437,11 +438,27 @@ public class Player : Unit
 	}
 
 	/// <summary>
-	/// updates airCollision and isGrounded variable
+	/// WIP: Keeps the SyncVar forwardDirection
+	/// updated on all clients, for shooting.
+	/// This is a workaround.
 	/// </summary>
-	/// <param name="collision"></param>
+	/// <param name="forward">Forward direction of the playerCam</param>
+	[Command]
+	private void CmdUpdateForwardDirection(Vector3 forward)
+	{
+		forwardDirection = forward;
+	}
+
+	/// <summary>
+	/// Updates airCollision and isGrounded variable.
+	/// </summary>
+	/// <param name="collision">Any collision</param>
 	private void OnCollisionEnter(Collision collision)
 	{
+		if (collision.gameObject.tag.Equals("Player"))
+		{
+
+		}
 		if (collision.gameObject.tag.Equals("Plane"))
 		{
 			isGrounded = true;
@@ -450,9 +467,9 @@ public class Player : Unit
 	}
 
 	/// <summary>
-	/// updates isGrounded variable
+	/// Updates isGrounded variable.
 	/// </summary>
-	/// <param name="collision"></param>
+	/// <param name="collision">Any collision</param>
 	private void OnCollisionExit(Collision collision)
 	{
 		if (collision.gameObject.tag.Equals("Plane"))
@@ -462,12 +479,12 @@ public class Player : Unit
 	}
 
 	/// <summary>
-	/// Handles itemPickUp.
+	/// WIP: Handles itemPickUp.
 	/// </summary>
 	/// <param name="collider"></param>
 	private void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.tag.Equals("Item"))
+		if (isLocalPlayer && collider.gameObject.tag.Equals("Item"))
 		{
 			Item item = collider.GetComponent<Item>();
 			if (!itemQuickAccess.GetComponent<ItemQuickAccess>().isFull() && !item.wasPickedUp())
@@ -487,6 +504,10 @@ public class Player : Unit
 
 	}
 
+	/// <summary>
+	/// Adds skill points to this player.
+	/// </summary>
+	/// <param name="amount">Amount of skill points to add</param>
 	public void addSkillPoints(int amount)
 	{
 		skillMenu.GetComponent<SkillMenu>().addSkillPoints(amount);
@@ -507,16 +528,20 @@ public class Player : Unit
 	}
 
 	// temp fix
-	public void setRole(Multiplayer.Lobby.PlayerRole role)
+	public void setRole(PlayerRole role)
 	{
 		this.role = role;
 	}
 
+	/// <summary>
+	/// Registers Player at Managers.
+	/// </summary>
 	public override void OnStartServer()
 	{
 		RegisterAtManagers();
 		base.OnStartServer();
 	}
+
 
 	/// <summary>
 	/// Registers the player at the NPCManager and GameOverManager.
@@ -545,6 +570,10 @@ public class Player : Unit
 		}
 	}
 
+	/// <summary>
+	///  WIP: Used for Distraction Item
+	/// </summary>
+	/// <param name="objectToPlace"></param>
 	public void placeObjectInfront(GameObject objectToPlace)
 	{
 		Vector3 spawnPos = transform.position + playerCam.transform.forward * 3f;
@@ -552,44 +581,24 @@ public class Player : Unit
 		Instantiate(objectToPlace, spawnPos , Quaternion.identity);
 	}
 
-	public override Vector3 getForwardDirection()
-	{
-		return playerCam.transform.forward;
-	}
-
 	/// <summary>
-	/// Runs command on server when a player used an item.
+	/// Runs on server, when an item was picked up.
 	/// </summary>
-	/// <param name="item">Player that used the item</param>
-	[Command]
-	public void CmdItemWasUsed(GameObject item)
-	{
-		RpcItemWasUSed(gameObject,item);
-	}
-
-	/// <summary>
-	/// Sends response to all clients, about which player used
-	/// which item and destroys the item.
-	/// </summary>
-	/// <param name="unit">Player that used an item</param>
-	/// <param name="item">Item that was used</param>
-	[ClientRpc]
-	private void RpcItemWasUSed(GameObject unit, GameObject item)
-	{
-		Effect.attachEffect(item.GetComponent<Item>().getEffect().gameObject,unit.GetComponent<Unit>());
-		Destroy(item);
-	}
-
-
+	/// <param name="item">Item that was picked up</param>
 	[Command]
 	public void CmdPickUpItem(GameObject item)
 	{
 		RpcPickUpItem(item);
 	}
 
+	/// <summary>
+	/// Runs on all clients, when an item was picked up.
+	/// </summary>
+	/// <param name="item">Item that was picked up</param>
 	[ClientRpc]
 	public void RpcPickUpItem(GameObject item)
 	{
 		item.GetComponent<Item>().pickUpItem();
 	}
+
 }

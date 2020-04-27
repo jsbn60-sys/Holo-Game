@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Leap;
+using Multiplayer.Lobby;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -30,6 +32,9 @@ public abstract class Unit : NetworkBehaviour
 	private RectTransform healthBar;
 	[SerializeField]
 	private RectTransform shieldBar;
+
+	[SyncVar]
+	public Vector3 forwardDirection;
 
 	protected void Start()
 	{
@@ -195,11 +200,52 @@ public abstract class Unit : NetworkBehaviour
 		isInvulnerable = turnOn;
 	}
 
+	/// <summary>
+	/// WIP: Used to drop something on top of the player.
+	/// </summary>
+	/// <param name="objectToPlace">Object that should be placed</param>
 	public void placeObjectOnTop(GameObject objectToPlace)
 	{
 		Instantiate(objectToPlace, transform.position, Quaternion.identity);
 	}
 
-	public abstract Vector3 getForwardDirection();
+	/// <summary>
+	/// Runs on the servers to attach an effect on a player.
+	/// </summary>
+	/// <param name="prefabIdx">Index of RegisteredPrefab of the effect</param>
+	[Command]
+	public void CmdAttachEffect(int prefabIdx)
+	{
+		RpcAttachEffect(prefabIdx);
+	}
 
+	/// <summary>
+	/// Runs on all clients to attach an effect on a player.
+	/// </summary>
+	/// <param name="prefabIdx">Index of RegisteredPrefab of the effect</param>
+	[ClientRpc]
+	public void RpcAttachEffect(int prefabIdx)
+	{
+		GameObject effect = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
+
+		Effect.attachEffect(effect,gameObject.GetComponent<Unit>());
+	}
+
+	/// <summary>
+	/// WIP: Function for attaching an effect to a unit.
+	/// An effect is only attached if the unit is an enemy
+	/// or if it is the localPlayer.
+	/// He sends an RPC to all clients to attach the Effect locally.
+	/// This way there are no duplicates.
+	/// (NetworkServer.Spawn() might be used for this)
+	/// </summary>
+	/// <param name="effect">Effect that should be attached</param>
+	public void attachEffect(Effect effect)
+	{
+		if (!this.tag.Equals("Enemy") && !isLocalPlayer)
+		{
+			return;
+		}
+		CmdAttachEffect(LobbyManager.Instance.getIdxOfPrefab(effect.gameObject));
+	}
 }

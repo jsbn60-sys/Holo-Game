@@ -29,10 +29,17 @@ public abstract class Effect : NetworkBehaviour
 	/// </summary>
 	/// <param name="effect">Effect to copy and attach</param>
 	/// <param name="target">Unit to give effect</param>
-	public static void attachEffect(GameObject effect, Unit target)
+	public static Effect attachEffect(GameObject effect, Unit target)
 	{
 		Effect copiedEffect = Instantiate(effect, target.transform).GetComponent<Effect>();
 		copiedEffect.target = target;
+
+		if (effect.GetComponent<ThrowObjectEffect>() != null)
+		{
+			Debug.Log("THROW OBJECT EFFECT!");
+		}
+
 		copiedEffect.enabled = true;
+		return copiedEffect;
 	}
 }

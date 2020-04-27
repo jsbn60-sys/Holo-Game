@@ -61,6 +61,7 @@ public class AOEGround : Attack
 	{
 		if (other.GetComponent<Unit>() != null)
 		{
+			Debug.Log("UNIT INSIDE: " + other.name);
 			unitsInside.Add(other.GetComponent<Unit>());
 		}
 	}

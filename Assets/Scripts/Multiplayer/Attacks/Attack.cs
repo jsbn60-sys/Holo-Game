@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -25,7 +26,11 @@ public abstract class Attack : NetworkBehaviour
 	public void onHit(Unit target)
 	{
 		target.getHit(dmg);
-		CmdAttackEffect(this.gameObject,target.gameObject);
+
+		foreach (Effect effect in onHitEffects)
+		{
+			target.attachEffect(effect);
+		}
 	}
 
 	public void changeDmg(bool increase, float amount)
@@ -40,23 +45,9 @@ public abstract class Attack : NetworkBehaviour
 		}
 	}
 
-	/// <summary>
-	///
-	/// </summary>
-	/// <param name="attack"></param>
-	/// <param name="target"></param>
-	[Command]
-	public void CmdAttackEffect(GameObject attack, GameObject target)
+	public List<Effect> getOnHitEffects()
 	{
-		RpcAttackEffect(attack,target);
+		return onHitEffects;
 	}
 
-	[ClientRpc]
-	public void RpcAttackEffect(GameObject attack, GameObject target)
-	{
-		foreach (Effect effect in attack.GetComponent<Attack>().onHitEffects)
-		{
-			Effect.attachEffect(effect.gameObject,target.GetComponent<Unit>());
-		}
-	}
 }

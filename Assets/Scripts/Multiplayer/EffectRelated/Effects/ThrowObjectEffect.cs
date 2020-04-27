@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Lobby;
 using UnityEngine;
 
 /// <summary>
@@ -8,12 +9,10 @@ using UnityEngine;
 public class ThrowObjectEffect : SingleUseEffect
 {
 	[SerializeField]
-	private AOEProjectile explosionProjectile;
+	private Projectile explosionProjectile;
 
 	protected override void execEffect()
 	{
-		target.GetComponent<Player>().shootProjectile(
-			explosionProjectile.GetComponent<Projectile>(),
-			target.getForwardDirection());
+		target.GetComponent<Player>().CmdShoot(LobbyManager.Instance.getIdxOfPrefab(explosionProjectile.gameObject));
 	}
 }

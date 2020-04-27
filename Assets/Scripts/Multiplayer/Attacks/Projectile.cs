@@ -11,6 +11,9 @@ public abstract class Projectile : Attack
 {
 	[SerializeField] protected GameObject hitFX;
 	[SerializeField] private float speed;
+	[SerializeField] protected bool triggersOnGround;
+	[SerializeField] protected bool triggersOnEnemy;
+	[SerializeField] protected bool triggersOnWalls;
 
 	/// <summary>
 	/// Sets up the projectile to fly in the wanted direction

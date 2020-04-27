@@ -23,7 +23,7 @@ public class Item : NetworkBehaviour , Slotable
 	}
 
 	public void activate(Player player) {
-		player.CmdItemWasUsed(this.gameObject);
+		player.attachEffect(effect);
 	}
 
 	public Sprite getIcon()
@@ -39,11 +39,6 @@ public class Item : NetworkBehaviour , Slotable
 	public bool wasPickedUp()
 	{
 		return hasBeenPickedUp;
-	}
-
-	public Effect getEffect()
-	{
-		return effect;
 	}
 
 	public void pickUpItem()

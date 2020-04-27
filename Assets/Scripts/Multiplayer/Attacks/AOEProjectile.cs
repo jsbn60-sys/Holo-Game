@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 /// <summary>
 /// This class represents any Projectile that has an area of effect.
@@ -24,15 +25,21 @@ public class AOEProjectile : Projectile
 			return;
 		}
 
-		Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
+		if ((triggersOnEnemy && other.tag.Equals("Enemy"))
+			|| triggersOnWalls && !other.tag.Equals("Plane")
+		    || triggersOnGround && other.tag.Equals("Plane"))
+		{
+			if (hitFX != null)
+			{
+				Instantiate(hitFX, transform.position, Quaternion.identity);
+			}
 
-		if (hitFX != null)
-		{
-			Instantiate(hitFX, transform.position, Quaternion.identity);
-		}
-		foreach (Collider enemy in inRangeEnemies)
-		{
-			onHit(enemy.GetComponent<Unit>());
+			Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
+
+			foreach (Collider enemy in inRangeEnemies)
+			{
+				onHit(enemy.GetComponent<Unit>());
+			}
 		}
 		Destroy(gameObject);
 	}

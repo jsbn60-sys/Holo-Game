@@ -180,7 +180,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 50
   onHitEffects: []
+  hitFX: {fileID: 0}
   speed: 10
+  triggersOnGround: 1
+  triggersOnEnemy: 1
+  triggersOnWalls: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2048

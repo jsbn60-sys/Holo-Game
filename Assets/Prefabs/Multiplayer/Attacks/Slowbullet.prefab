@@ -279,6 +279,9 @@ MonoBehaviour:
   onHitEffects: []
   hitFX: {fileID: 1348298825593460, guid: a11d42cb0aed920489c77156a4f972d5, type: 3}
   speed: 10
+  triggersOnGround: 1
+  triggersOnEnemy: 0
+  triggersOnWalls: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2048

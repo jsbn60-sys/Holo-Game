@@ -40,8 +40,4 @@ public class Enemy : Unit
 		}
 	}
 
-	public override Vector3 getForwardDirection()
-	{
-		return transform.forward;
-	}
 }

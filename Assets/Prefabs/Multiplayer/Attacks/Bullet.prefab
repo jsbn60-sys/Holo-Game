@@ -160,6 +160,9 @@ MonoBehaviour:
   onHitEffects: []
   hitFX: {fileID: 0}
   speed: 10
+  triggersOnGround: 0
+  triggersOnEnemy: 1
+  triggersOnWalls: 0
 --- !u!114 &4039244922547554206
 MonoBehaviour:
   m_ObjectHideFlags: 0
