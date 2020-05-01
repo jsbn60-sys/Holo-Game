@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// This class represents an effect which increases the units damage for a certain duration.
 /// </summary>
-public class DamageBoostEffect : DurationEffect
+public class ChangeDamageTempEffect : DurationEffect
 {
-	[SerializeField]
-	private float dmgBoostAmount;
+
+	[SerializeField] private float dmgChangeAmount;
 
 	protected override void execEffect()
 	{
-		target.getAttack().changeDmg(true, dmgBoostAmount);
+		target.getAttack().changeDmg(dmgChangeAmount);
 	}
 
 	protected override void turnOffEffect()
 	{
-		target.getAttack().changeDmg(false, dmgBoostAmount);
+		target.getAttack().changeDmg(-dmgChangeAmount);
 	}
 }

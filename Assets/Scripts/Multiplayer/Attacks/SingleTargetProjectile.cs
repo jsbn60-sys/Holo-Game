@@ -8,20 +8,13 @@ using UnityEngine;
 /// </summary>
 public class SingleTargetProjectile : Projectile
 {
+
 	/// <summary>
-	/// Hits enemy when colliding.
+	/// Hits an enemy on collision
 	/// </summary>
-	/// <param name="other">Any trigger</param>
-	protected override void OnTriggerEnter(Collider other)
+	/// <param name="hit"></param>
+	protected override void onTriggerHit(Collider hit)
 	{
-		if (other.tag.Equals("Enemy"))
-		{
-			onHit(other.GetComponent<Unit>());
-		}
-		else if (other.tag.Equals("AOEGround"))
-		{
-			return;
-		}
-		Destroy(gameObject);
+		onHit(hit.GetComponent<Unit>());
 	}
 }

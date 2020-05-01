@@ -6,19 +6,21 @@ using UnityEngine.Networking;
 
 /// <summary>
 /// This class represents the SkillMenu.
-/// It provides functionality for adding skillPoints and unlocking skills.
+/// It provides functionality for adding/subtracting skillPoints and unlocking skills.
+/// The method tryUnlockSkill is used by skillButtons to unlock skills.
+/// Skill Ids should be:
 ///
-///	Skill Ids should be:
-//           1
-//        2     3
-//       4 5   6 7
-//        8     9
-//           10
+/// 	1	     2
+///   3  4	   5  6
+///         7
+/// 	  8   9
+///        10
+///
 /// </summary>
 public class SkillMenu : NetworkBehaviour
 {
 	[SerializeField]
-	private SkillButton[] skillButtons;
+	private GameObject[] skillButtons;
 
 	[SerializeField]
 	private Text skillPointsText;
@@ -27,7 +29,6 @@ public class SkillMenu : NetworkBehaviour
 
 	private int skillPoints;
 
-	// Start is called before the first frame update
 	void Start()
 	{
 		skillPoints = 1;
@@ -45,17 +46,13 @@ public class SkillMenu : NetworkBehaviour
 	/// <summary>
 	/// Is called by the skillButtons to unlock skills if possible.
 	/// </summary>
-	/// <param name="id">id of skill to unlock</param>
-	public void tryUnlockSkill(int id)
+	/// <param name="skill">skill to unlock</param>
+	public void tryUnlockSkill(Skill skill)
 	{
-		/* disabled until skills are implemented
-		if (canBeUnlocked(id))
+		if (canBeUnlocked(skill.SkillId))
 		{
-			
+			activateSkill(skill.SkillId);
 		}
-		*/
-
-		activateSkill(id);
 	}
 
 	/// <summary>
@@ -84,19 +81,15 @@ public class SkillMenu : NetworkBehaviour
 	/// <param name="id">Id of skill</param>
 	private void activateSkill(int id)
 	{
-		SkillButton skillButton = skillButtons[id - 1];
+		GameObject skillButton = skillButtons[id - 1];
 
-		skillButton.isUnlocked = true;
-		deactivateButton(id);
+		skillButton.GetComponent<Skill>().IsUnlocked = true;
 		activateNextButtons(id);
 
-		// subtractSkillPoints(skillButton.Skill.cost);
-		// disabled until skills are implemented
-		// if(skillButton.Skill.isActiveSkill)
-		{
-			skillQuickAccess.addContent(skillButton.Skill);
-		}
-	} 
+		subtractSkillPoints(skillButton.GetComponent<Skill>().Cost);
+
+		skillQuickAccess.addContent(skillButton.GetComponent<Skill>());
+	}
 
 	/// <summary>
 	/// Checks if skill can be unlocked.
@@ -106,41 +99,33 @@ public class SkillMenu : NetworkBehaviour
 	private bool canBeUnlocked(int id)
 	{
 		// skill already unlocked or not enough skill Points
-		if (skillButtons[id-1].isUnlocked || (skillButtons[id-1].Skill.cost > skillPoints))
+		if (skillButtons[id-1].GetComponent<Skill>().IsUnlocked || (skillButtons[id-1].GetComponent<Skill>().Cost > skillPoints))
 		{
 			return false;
 		}
 
+		// checks if previous skills are unlocked
 		switch (id)
 		{
-			case 1:
+			case 1: case 2:
 				return true;
-			case 2:
-				return skillButtons[0].isUnlocked;
-			case 3:
-				return skillButtons[0].isUnlocked;
-			case 4:
-				return skillButtons[1].isUnlocked;
-			case 5:
-				return skillButtons[1].isUnlocked;
-			case 6:
-				return skillButtons[2].isUnlocked;
+			case 3:	case 4:
+				return skillButtons[0].GetComponent<Skill>().IsUnlocked;
+			case 5: case 6:
+				return skillButtons[1].GetComponent<Skill>().IsUnlocked;
 			case 7:
-				return skillButtons[2].isUnlocked;
-			case 8:
-				return skillButtons[3].isUnlocked || skillButtons[4].isUnlocked;
-			case 9:
-				return skillButtons[5].isUnlocked || skillButtons[6].isUnlocked;
+				return skillButtons[2].GetComponent<Skill>().IsUnlocked ||
+				       skillButtons[3].GetComponent<Skill>().IsUnlocked ||
+				       skillButtons[4].GetComponent<Skill>().IsUnlocked ||
+				       skillButtons[5].GetComponent<Skill>().IsUnlocked;
+			case 8: case 9:
+				return skillButtons[6].GetComponent<Skill>().IsUnlocked;
 			case 10:
-				return skillButtons[7].isUnlocked || skillButtons[8].isUnlocked;
+				return skillButtons[7].GetComponent<Skill>().IsUnlocked ||
+				       skillButtons[8].GetComponent<Skill>().IsUnlocked;
 			default:
-				throw new System.ArgumentException("SkillId not between 1-10!");
+				throw new System.ArgumentException("Illegal SkillId");
 		}
-	}
-
-	private void deactivateButton(int id)
-	{
-		skillButtons[id - 1].interactable = false;
 	}
 
 	/// <summary>
@@ -152,55 +137,38 @@ public class SkillMenu : NetworkBehaviour
 		switch (id)
 		{
 			case 1:
-				skillButtons[1].interactable = true;
-				skillButtons[2].interactable = true;
+				skillButtons[2].GetComponent<Button>().interactable = true;
+				skillButtons[3].GetComponent<Button>().interactable = true;
 				break;
 			case 2:
-				skillButtons[3].interactable = true;
-				skillButtons[4].interactable = true;
+				skillButtons[4].GetComponent<Button>().interactable = true;
+				skillButtons[5].GetComponent<Button>().interactable = true;
 				break;
-			case 3:
-				skillButtons[5].interactable = true;
-				skillButtons[6].interactable = true;
-				break;
-			case 4:
-				if (!skillButtons[4].isUnlocked)
+			case 3: case 4: case 5: case 6:
+				if (!skillButtons[6].GetComponent<Skill>().IsUnlocked)
 				{
-					skillButtons[7].interactable = true;
-				}
-				break;
-			case 5:
-				if (!skillButtons[3].isUnlocked)
-				{
-					skillButtons[7].interactable = true;
-				}
-				break;
-			case 6:
-				if (!skillButtons[6].isUnlocked)
-				{
-					skillButtons[8].interactable = true;
+					skillButtons[6].GetComponent<Button>().interactable = true;
 				}
 				break;
 			case 7:
-				if (!skillButtons[5].isUnlocked)
+				skillButtons[7].GetComponent<Button>().interactable = true;
+				skillButtons[8].GetComponent<Button>().interactable = true;
+				break;
+			case 8: case 9:
+				if (!skillButtons[9].GetComponent<Skill>().IsUnlocked)
 				{
-					skillButtons[8].interactable = true;
+					skillButtons[9].GetComponent<Button>().interactable = true;
 				}
 				break;
-			case 8:
-				if (!skillButtons[8].isUnlocked)
-				{
-					skillButtons[9].interactable = true;
-				}
-				break;
-			case 9:
-				if (!skillButtons[7].isUnlocked)
-				{
-					skillButtons[9].interactable = true;
-				}
-				break;
-			case 10:
-				break;
+		}
+	}
+
+	public void changeSkillsCooldown(float factor)
+	{
+		foreach (GameObject button in skillButtons)
+		{
+			button.GetComponent<Skill>().changeCooldown(factor);
+
 		}
 	}
 }

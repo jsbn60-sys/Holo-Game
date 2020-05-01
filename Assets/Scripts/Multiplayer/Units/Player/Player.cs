@@ -601,4 +601,9 @@ public class Player : Unit
 		item.GetComponent<Item>().pickUpItem();
 	}
 
+	public void changeSkillsCooldown(float factor)
+	{
+		skillMenu.GetComponent<SkillMenu>().changeSkillsCooldown(factor);
+	}
+
 }

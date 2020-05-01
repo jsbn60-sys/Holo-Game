@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceObjectEffect : SingleUseEffect
+public class PlaceObjectEffect : PermanentEffect
 {
 	[SerializeField] private GameObject objectToPlace;
 	[SerializeField] private bool placeInfrontOfPlayer;

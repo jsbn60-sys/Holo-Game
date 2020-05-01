@@ -17,30 +17,14 @@ public class AOEProjectile : Projectile
 	/// <summary>
 	/// Get all enemies in range and hit them.
 	/// </summary>
-	/// <param name="other">Any trigger that was hit</param>
-	protected override void OnTriggerEnter(Collider other)
+	/// <param name="hit">Any trigger that was hit</param>
+	protected override void onTriggerHit(Collider hit)
 	{
-		if (other.tag.Equals("AOEGround"))
+		Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
+
+		foreach (Collider enemy in inRangeEnemies)
 		{
-			return;
+			onHit(enemy.GetComponent<Unit>());
 		}
-
-		if ((triggersOnEnemy && other.tag.Equals("Enemy"))
-			|| triggersOnWalls && !other.tag.Equals("Plane")
-		    || triggersOnGround && other.tag.Equals("Plane"))
-		{
-			if (hitFX != null)
-			{
-				Instantiate(hitFX, transform.position, Quaternion.identity);
-			}
-
-			Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
-
-			foreach (Collider enemy in inRangeEnemies)
-			{
-				onHit(enemy.GetComponent<Unit>());
-			}
-		}
-		Destroy(gameObject);
 	}
 }

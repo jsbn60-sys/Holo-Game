@@ -92,27 +92,33 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	protected abstract void onDeath();
 
+
 	/// <summary>
-	/// Function for an attack to hit the unit.
-	/// Should only be called by the Attack class.
+	/// Changes the players health.
+	/// This can be damage or healing.
+	/// Is used by the Attack class
+	/// and various health related effects.
 	/// </summary>
-	/// <param name="dmg">Damage that is dealt.</param>
-	/// <param name="onHitEffects">Hit effects applied to the player.</param>
-	public void getHit(float dmg)
+	/// <param name="amount">Amount of health to change</param>
+	public void changeHealth(float amount)
 	{
-		if (isInvulnerable)
+		if (amount >= 0)
 		{
-			return;
+			health = Mathf.Min(health + amount, maxHealth);
 		}
-
-		float shieldOverflowDmg = -Mathf.Min(shield-dmg,0);
-
-		shield = Mathf.Max(shield - dmg, 0);
-
-		health -= shieldOverflowDmg;
-		if (isDead())
+		else if (!isInvulnerable)
 		{
-			onDeath();
+			amount = -amount;
+
+			float shieldOverflowDmg = -Mathf.Min(shield-amount,0);
+
+			shield = Mathf.Max(shield - amount, 0);
+
+			health -= shieldOverflowDmg;
+			if (isDead())
+			{
+				onDeath();
+			}
 		}
 		UpdateHealthbarSize();
 		UpdateShieldbarSize();
@@ -123,17 +129,7 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	public void revive()
 	{
-		heal(maxHealth);
-	}
-
-	/// <summary>
-	/// Heals the player.
-	/// </summary>
-	/// <param name="healAmount">Amount of healing</param>
-	public void heal(float healAmount)
-	{
-		health = Mathf.Min(health + healAmount, maxHealth);
-		UpdateHealthbarSize();
+		changeHealth(maxHealth);
 	}
 
 	/// <summary>
@@ -247,5 +243,14 @@ public abstract class Unit : NetworkBehaviour
 			return;
 		}
 		CmdAttachEffect(LobbyManager.Instance.getIdxOfPrefab(effect.gameObject));
+	}
+
+	/// <summary>
+	/// Changes the attackRate of the unit.
+	/// </summary>
+	/// <param name="amount">Amount to change</param>
+	public void changeAttackRate(float amount)
+	{
+		attackRate += amount;
 	}
 }

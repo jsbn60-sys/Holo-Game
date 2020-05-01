@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// This class represents an effect that heals all players in the game fully.
 /// </summary>
-public class GlobalHealEffect : SingleUseEffect
+public class GlobalHealEffect : PermanentEffect
 {
 	protected override void execEffect()
     {

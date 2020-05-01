@@ -7,18 +7,26 @@ using UnityEngine.Networking;
 /// This class represents a skill.
 /// It implements the Slotable interface so it can be sloted in the SkillQuickAccess.
 /// </summary>
-public abstract class Skill : NetworkBehaviour, Slotable
+public class Skill : NetworkBehaviour, Slotable
 {
-	public int skillId;
-	public Effect effect;
-	public Sprite icon;
-	public int cost;
-	public bool isActiveSkill;
-	public int cooldown;
+	[SerializeField]
+	private int skillId;
+	[SerializeField]
+	private Effect effect;
+	[SerializeField]
+	private Sprite icon;
+	[SerializeField]
+	private int cost;
+	[SerializeField]
+	private bool isActiveSkill;
+	[SerializeField]
+	private float cooldown;
+
+	private bool isUnlocked;
 
 	public void activate(Player player)
 	{
-		
+
 	}
 
 	public Sprite getIcon()
@@ -31,15 +39,30 @@ public abstract class Skill : NetworkBehaviour, Slotable
 		return this.gameObject;
 	}
 
+	public bool IsUnlocked
+	{
+		get => isUnlocked;
+		set => isUnlocked = value;
+	}
+
+	public int Cost => cost;
+
+	public int SkillId => skillId;
+
 	// Start is called before the first frame update
 	void Start()
-    {
-        
-    }
+	{
+		isUnlocked = false;
+	}
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void changeCooldown(float factor)
+    {
+	    cooldown *= factor;
     }
 }

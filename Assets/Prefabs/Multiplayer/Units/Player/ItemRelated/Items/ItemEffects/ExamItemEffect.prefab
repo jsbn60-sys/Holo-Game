@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  dmgBoostAmount: 50
+  dmgChangeAmount: 50
 --- !u!114 &-3596630437591897900
 MonoBehaviour:
   m_ObjectHideFlags: 0

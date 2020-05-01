@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -14,6 +15,14 @@ public abstract class Projectile : Attack
 	[SerializeField] protected bool triggersOnGround;
 	[SerializeField] protected bool triggersOnEnemy;
 	[SerializeField] protected bool triggersOnWalls;
+	[SerializeField] protected int pierceAmount;
+
+	protected int amountOfEnemiesHit;
+
+	private void Start()
+	{
+		amountOfEnemiesHit = 0;
+	}
 
 	/// <summary>
 	/// Sets up the projectile to fly in the wanted direction
@@ -30,5 +39,42 @@ public abstract class Projectile : Attack
 	/// Decides what to do, when the projectile hits a trigger.
 	/// </summary>
 	/// <param name="other">Trigger that was hit</param>
-	protected abstract void OnTriggerEnter(Collider other);
+	protected void OnTriggerEnter(Collider other)
+	{
+		if (other.tag.Equals("AOEGround"))
+		{
+			return;
+		}
+
+		if (triggersOnEnemy && other.tag.Equals("Enemy")
+		    || triggersOnWalls && !other.tag.Equals("Plane")
+		    || triggersOnGround && other.tag.Equals("Plane"))
+		{
+			if (hitFX != null)
+			{
+				Instantiate(hitFX, transform.position, Quaternion.identity);
+			}
+
+			onTriggerHit(other);
+
+			if ( other.tag.Equals("Enemy") && (amountOfEnemiesHit < pierceAmount))
+			{
+				amountOfEnemiesHit++;
+				return;
+			}
+		}
+		Destroy(gameObject);
+	}
+
+
+	protected abstract void onTriggerHit(Collider hit);
+
+	/// <summary>
+	/// Changes the amount of enemies a projectile can pierce.
+	/// </summary>
+	/// <param name="amount">Amount to change pierceAmount</param>
+	public void changePierceAmount(int amount)
+	{
+		pierceAmount += amount;
+	}
 }

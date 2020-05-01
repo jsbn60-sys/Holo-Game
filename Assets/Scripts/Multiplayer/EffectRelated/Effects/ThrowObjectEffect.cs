@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// This class represents an effect which throws an object from the players position.
 /// </summary>
-public class ThrowObjectEffect : SingleUseEffect
+public class ThrowObjectEffect : PermanentEffect
 {
 	[SerializeField]
 	private Projectile explosionProjectile;
