@@ -11126,7 +11126,17 @@ MonoBehaviour:
   - {fileID: 5768841499369602133, guid: c803ce81578003d488dd84cfafae8c0c, type: 3}
   - {fileID: 3397307903467905811, guid: 667a2ad1449788044b2574486de98f60, type: 3}
   - {fileID: 2851552928205255969, guid: d33d226634c7aeb4fb18ec4f2fa2bff5, type: 3}
-  m_CustomConfig: 0
+  - {fileID: 8813783453745518378, guid: c02ef33845462a14ea456b9c0b01df18, type: 3}
+  - {fileID: 771230161147357928, guid: 719819f0d37a77e47a63bafbfe2fdaa1, type: 3}
+  - {fileID: 345917061431995710, guid: 104c20a34244d224b82c4798a4fdb52b, type: 3}
+  - {fileID: 526230328916406166, guid: 5266763e1ba98b1409796646f5f22a3e, type: 3}
+  - {fileID: 8139518374704834068, guid: 4c3a7b350edce634c86182d8f10e0fe4, type: 3}
+  - {fileID: 8492733484207944236, guid: 57bf4883d74bfe549a5fc3e6caf7d52b, type: 3}
+  - {fileID: 463660001845700010, guid: 29091fd55b5b7854b957f93961646216, type: 3}
+  - {fileID: 7245981329175986156, guid: fafb788ab4f206648aa339ed7771529c, type: 3}
+  - {fileID: 6076513576829953233, guid: 152f703663f678c49bf76263d271b35d, type: 3}
+  - {fileID: 3652579295357093353, guid: 940e52eb93a0f2f4fb2b2f124c34801e, type: 3}
+  m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
     m_PacketSize: 1440
@@ -11572,7 +11582,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6169928101459644130}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

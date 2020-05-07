@@ -155,8 +155,8 @@ namespace Multiplayer.Lobby
 					player.setRole(PlayerRole.MNI);
 					Spawnplayer(0, lp, gp);
 					return false;
-				case PlayerRole.LSE:
-					player.setRole(PlayerRole.LSE);
+				case PlayerRole.BAU:
+					player.setRole(PlayerRole.BAU);
 					Spawnplayer(1, lp, gp);
 					return false;
 				case PlayerRole.WIR:

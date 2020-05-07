@@ -7,15 +7,15 @@ using UnityEngine;
 /// </summary>
 public class ChangeAttackRateTempEffect : DurationEffect
 {
-	[SerializeField] private float attackRateChangeAmount;
+	[SerializeField] private float attackRateChangeFactor;
 
 	protected override void execEffect()
     {
-		target.changeAttackRate(attackRateChangeAmount);
+		target.changeAttackRate(attackRateChangeFactor);
     }
 
 	protected override void turnOffEffect()
 	{
-		target.changeAttackRate(-attackRateChangeAmount);
+		target.changeAttackRate(1/attackRateChangeFactor);
 	}
 }

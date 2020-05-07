@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6743561727670148683
+--- !u!1001 &2103014081842609096
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1334398956985376, guid: 4d60f31cef56c174c91f2d70ed816045, type: 3}
       propertyPath: m_Name
-      value: Player_GES
+      value: Player_BAU
       objectReference: {fileID: 0}
     - target: {fileID: 4878817215125366, guid: 4d60f31cef56c174c91f2d70ed816045, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,6 +55,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23014867867699916, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 05dd0c7dbee29de4a9d5d3b9819200c9, type: 2}
     - target: {fileID: 114654673854012506, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_AssetId.i0
@@ -140,26 +145,94 @@ PrefabInstance:
       propertyPath: m_SendInterval
       value: 0.0625
       objectReference: {fileID: 0}
-    - target: {fileID: 114891530375299050, guid: 4d60f31cef56c174c91f2d70ed816045,
-        type: 3}
-      propertyPath: m_InterpolateMovement
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114891530375299050, guid: 4d60f31cef56c174c91f2d70ed816045,
-        type: 3}
-      propertyPath: m_SnapThreshold
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7385777433988125234, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: role
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1833969848030471742, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: doubleUpgradeSkills.Array.data[0]
+      value: 
+      objectReference: {fileID: 2710399113495016485, guid: 2d41bbad736be1f4ba17e95655dde11e,
+        type: 3}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: doubleUpgradeSkills.Array.data[1]
+      value: 
+      objectReference: {fileID: 2131831277563210283, guid: 1cd87c28df24792489c3cf3409b08ec5,
+        type: 3}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: doubleUpgradeSkills.Array.data[2]
+      value: 
+      objectReference: {fileID: 5164447471461593863, guid: 47c890633a871e649a273701d69b2bf2,
+        type: 3}
+    - target: {fileID: 8556904810928730493, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 3612929647949549210, guid: 08a2f5dae8898c945b8890dadee1ea91,
+        type: 3}
+    - target: {fileID: 9019396335382658407, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 3915855143622503575, guid: 9a2e646d2a9187b4cae00e7844b8e390,
+        type: 3}
+    - target: {fileID: 7513795913703883236, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 4302063883994975217, guid: 36d40a14535051a4e8c8330d59865f5b,
+        type: 3}
+    - target: {fileID: 1659926134697592670, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 1906230055044070671, guid: 442e029117b73f649af22f5bc23117a6,
+        type: 3}
+    - target: {fileID: 547837648507967804, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 3769202803001649445, guid: 826a19623ff60be47b7a83500dd12826,
+        type: 3}
+    - target: {fileID: 4775934669723614379, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 8519991799831654438, guid: 8f7c8e556de707a4eaba67afe8a2d5c7,
+        type: 3}
+    - target: {fileID: 4956599715711870618, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 2943643538119739659, guid: 2e795254875314e46b3339cc7e4157df,
+        type: 3}
+    - target: {fileID: 2389354424996040954, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 4737035927886644809, guid: 89d778ce1ce58a142a67377115d1a9bd,
+        type: 3}
+    - target: {fileID: 3306671831614233568, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 8988555600361161146, guid: 358f546af8ddf1541b52ff71295015b6,
+        type: 3}
+    - target: {fileID: 5370992660606415605, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 5597100436803732776, guid: 8490721de71957148aa8e619e8c5db9b,
+        type: 3}
     - target: {fileID: 2157937176792716852, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_AssetId.i0

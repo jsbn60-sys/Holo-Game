@@ -37,6 +37,8 @@ public abstract class Unit : NetworkBehaviour
 	[SyncVar]
 	public Vector3 forwardDirection;
 
+	public float Shield => shield;
+
 	protected void Start()
 	{
 		isInvulnerable = false;
@@ -137,10 +139,9 @@ public abstract class Unit : NetworkBehaviour
 	/// Adds shield to the player.
 	/// </summary>
 	/// <param name="shieldAmount">Amount of shield</param>
-	public void giveShield(float shieldAmount)
+	public void changeShield(float shieldAmount)
 	{
-		shield = Mathf.Min(shield + shieldAmount, maxShield);
-		Debug.Log("Shield: " + shield);
+		shield = Mathf.Clamp(shield + shieldAmount, 0, maxShield);
 		UpdateShieldbarSize();
 	}
 
@@ -256,8 +257,8 @@ public abstract class Unit : NetworkBehaviour
 	/// Changes the attackRate of the unit.
 	/// </summary>
 	/// <param name="amount">Amount to change</param>
-	public void changeAttackRate(float amount)
+	public void changeAttackRate(float factor)
 	{
-		attackRate += amount;
+		attackRate *= factor;
 	}
 }

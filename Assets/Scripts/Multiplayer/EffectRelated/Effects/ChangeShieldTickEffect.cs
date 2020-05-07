@@ -12,7 +12,7 @@ public class ChangeShieldTickEffect : TickingEffect
 
 	protected override void execEffect()
 	{
-		target.giveShield(shieldAmount / tickAmount);
+		target.changeShield(shieldAmount / tickAmount);
 	}
 
 }

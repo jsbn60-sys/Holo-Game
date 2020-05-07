@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b741ba8f79c264dae8ed2a2ac8506e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 4
+  skillId: -1
   effects:
   - {fileID: 537903644512464689, guid: 1ecda96c6a818fa42aff112c40a05da4, type: 3}
   - {fileID: -1698824700958289677, guid: 7faa8a7197e5e2948a034d4ff1c1de88, type: 3}

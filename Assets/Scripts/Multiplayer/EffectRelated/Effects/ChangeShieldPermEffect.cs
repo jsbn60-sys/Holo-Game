@@ -12,6 +12,6 @@ public class ChangeShieldPermEffect : PermanentEffect
 
 	protected override void execEffect()
 	{
-		target.giveShield(shieldAmount);
+		target.changeShield(shieldAmount);
 	}
 }

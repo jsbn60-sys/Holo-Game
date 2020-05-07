@@ -11,7 +11,7 @@ namespace Multiplayer.Lobby
 		MNI,
 		WIR,
 		GES,
-		LSE,
+		BAU,
 		DRONE
 	}
 
@@ -138,17 +138,17 @@ namespace Multiplayer.Lobby
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
 				case PlayerRole.WIR:
-					roleButton.GetComponentInChildren<Text>().text = "Wirtschaft";
+					roleButton.GetComponentInChildren<Text>().text = "WIR";
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
 				case PlayerRole.GES:
-					roleButton.GetComponentInChildren<Text>().text = "Gesundheit";
+					roleButton.GetComponentInChildren<Text>().text = "GES";
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
-				case PlayerRole.LSE:
-					roleButton.GetComponentInChildren<Text>().text = "LSE";
+				case PlayerRole.BAU:
+					roleButton.GetComponentInChildren<Text>().text = "BAU";
 					//when drone player, hide camera perspective option
 					ShowHoloboardPerspectiveToggleSwitch(false);
 					break;
@@ -214,7 +214,7 @@ namespace Multiplayer.Lobby
 					case(PlayerRole.MNI):
 						isMNITaken = true;
 						break;
-					case (PlayerRole.LSE):
+					case (PlayerRole.BAU):
 						isLSETaken = true;
 						break;
 					case (PlayerRole.GES):
@@ -342,22 +342,22 @@ namespace Multiplayer.Lobby
 				case PlayerRole.MNI:
 					if (!isWITaken) playerRole = PlayerRole.WIR;
 					else if (!isGESTaken) playerRole = PlayerRole.GES;
-					else if (!isLSETaken) playerRole = PlayerRole.LSE;
+					else if (!isLSETaken) playerRole = PlayerRole.BAU;
 					else if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					break;
 				case PlayerRole.WIR:
 					if (!isGESTaken) playerRole = PlayerRole.GES;
-					else if (!isLSETaken) playerRole = PlayerRole.LSE;
+					else if (!isLSETaken) playerRole = PlayerRole.BAU;
 					else if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					else if (!isMNITaken) playerRole = PlayerRole.MNI;
 					break;
 				case PlayerRole.GES:
-					if (!isLSETaken) playerRole = PlayerRole.LSE;
+					if (!isLSETaken) playerRole = PlayerRole.BAU;
 					else if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					else if (!isMNITaken) playerRole = PlayerRole.MNI;
 					else if (!isWITaken) playerRole = PlayerRole.WIR;
 					break;
-				case PlayerRole.LSE:
+				case PlayerRole.BAU:
 					if (!isDroneTaken) playerRole = PlayerRole.DRONE;
 					else if (!isMNITaken) playerRole = PlayerRole.MNI;
 					else if (!isWITaken) playerRole = PlayerRole.WIR;
@@ -367,7 +367,7 @@ namespace Multiplayer.Lobby
 					if (!isMNITaken) playerRole = PlayerRole.MNI;
 					else if (!isWITaken) playerRole = PlayerRole.WIR;
 					else if (!isGESTaken) playerRole = PlayerRole.GES;
-					else if (!isLSETaken) playerRole = PlayerRole.LSE;
+					else if (!isLSETaken) playerRole = PlayerRole.BAU;
 					break;
 				default:
 					return;
@@ -388,7 +388,7 @@ namespace Multiplayer.Lobby
 				case PlayerRole.MNI:
 					isMNITaken = false;
 					break;
-				case PlayerRole.LSE:
+				case PlayerRole.BAU:
 					isLSETaken = false;
 					break;
 				case PlayerRole.GES:
@@ -429,7 +429,7 @@ namespace Multiplayer.Lobby
 						classFree = false;
 					}
 					break;
-				case PlayerRole.LSE:
+				case PlayerRole.BAU:
 					if (isLSETaken)
 					{
 						CmdAutoChangeRole();
@@ -471,9 +471,9 @@ namespace Multiplayer.Lobby
 					CmdChangeRole(PlayerRole.GES);
 					break;
 				case PlayerRole.GES:
-					CmdChangeRole(PlayerRole.LSE);
+					CmdChangeRole(PlayerRole.BAU);
 					break;
-				case PlayerRole.LSE:
+				case PlayerRole.BAU:
 					CmdChangeRole(PlayerRole.DRONE);
 					break;
 				case PlayerRole.DRONE:

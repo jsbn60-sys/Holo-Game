@@ -143,17 +143,22 @@ PrefabInstance:
     - target: {fileID: 114891530375299050, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_SendInterval
-      value: 0.1
+      value: 0.0625
       objectReference: {fileID: 0}
     - target: {fileID: 114891530375299050, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_InterpolateMovement
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114891530375299050, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_SnapThreshold
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7385777433988125234, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: role
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1833969848030471742, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}

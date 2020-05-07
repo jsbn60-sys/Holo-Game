@@ -914,9 +914,9 @@ MonoBehaviour:
   - {fileID: 4605870276334019373}
   - {fileID: 4605870276334019373}
   doubleUpgradeSkills:
-  - {fileID: 9062461177462310409, guid: 2d6c03879af6a06499ab857ac54195aa, type: 3}
-  - {fileID: 6956176402051773450, guid: 68fe810376ac90c4191b99475d4637a1, type: 3}
-  - {fileID: 9037031337303765120, guid: 6f646a505a7329d44a2aa9da12a46eb8, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   skillPointsText: {fileID: 6912690917772429219}
 --- !u!1 &2793741427417904559
 GameObject:
