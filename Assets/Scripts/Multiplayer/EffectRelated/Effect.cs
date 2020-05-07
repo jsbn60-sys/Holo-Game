@@ -31,15 +31,15 @@ public abstract class Effect : NetworkBehaviour
 	/// <param name="target">Unit to give effect</param>
 	public static Effect attachEffect(GameObject effect, Unit target)
 	{
+		Debug.Log("Effect to attach: " + effect.name);
 		Effect copiedEffect = Instantiate(effect, target.transform).GetComponent<Effect>();
 		copiedEffect.target = target;
-
-		if (effect.GetComponent<ThrowObjectEffect>() != null)
-		{
-			Debug.Log("THROW OBJECT EFFECT!");
-		}
-
 		copiedEffect.enabled = true;
 		return copiedEffect;
+	}
+
+	public Unit Target
+	{
+		set => target = value;
 	}
 }

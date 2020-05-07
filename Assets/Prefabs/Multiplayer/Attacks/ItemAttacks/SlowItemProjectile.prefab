@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2686767430887422175}
   - component: {fileID: -9013155512586559978}
   m_Layer: 10
-  m_Name: Slowbullet
+  m_Name: SlowItemProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114438178483441172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,12 +276,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
+  critChance: 0
   onHitEffects: []
   hitFX: {fileID: 1348298825593460, guid: a11d42cb0aed920489c77156a4f972d5, type: 3}
   speed: 10
   triggersOnGround: 1
   triggersOnEnemy: 0
   triggersOnWalls: 0
+  pierceAmount: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2048

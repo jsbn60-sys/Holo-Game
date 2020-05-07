@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5567353246269914082}
   - component: {fileID: 4009709606273347342}
   m_Layer: 10
-  m_Name: SelfExplosion
+  m_Name: HomeworkItemProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,12 +132,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 50
+  critChance: 0
   onHitEffects: []
   hitFX: {fileID: 0}
   speed: 100
   triggersOnGround: 1
   triggersOnEnemy: 1
   triggersOnWalls: 1
+  pierceAmount: 0
+  impactForce: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2048

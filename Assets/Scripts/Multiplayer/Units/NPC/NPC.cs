@@ -130,6 +130,7 @@ namespace NPC
 #endif
 		void Update()
 		{
+			// workaround to slow npcs
 			navMeshAgent.speed = GetComponent<Unit>().getSpeed();
 			time += Time.deltaTime;
 			if (!IsInGroup())

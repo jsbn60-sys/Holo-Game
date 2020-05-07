@@ -50,11 +50,6 @@ public abstract class Projectile : Attack
 		    || triggersOnWalls && !other.tag.Equals("Plane")
 		    || triggersOnGround && other.tag.Equals("Plane"))
 		{
-			if (hitFX != null)
-			{
-				Instantiate(hitFX, transform.position, Quaternion.identity);
-			}
-
 			onTriggerHit(other);
 
 			if ( other.tag.Equals("Enemy") && (amountOfEnemiesHit < pierceAmount))
@@ -62,6 +57,10 @@ public abstract class Projectile : Attack
 				amountOfEnemiesHit++;
 				return;
 			}
+		}
+		if (hitFX != null)
+		{
+			Instantiate(hitFX, new Vector3(transform.position.x,0,transform.position.z), Quaternion.identity);
 		}
 		Destroy(gameObject);
 	}

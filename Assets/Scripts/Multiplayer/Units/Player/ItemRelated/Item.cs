@@ -28,6 +28,7 @@ public class Item : NetworkBehaviour , Slotable
 
 	public Sprite getIcon()
 	{
+		Debug.Log("SpriteRenderer: " + spriteRenderer.enabled);
 		return spriteRenderer.sprite;
 	}
 
@@ -45,7 +46,6 @@ public class Item : NetworkBehaviour , Slotable
 	{
 		spriteRenderer.enabled = false;
 		hasBeenPickedUp = true;
-		Debug.Log("TRUE");
 	}
 
 }

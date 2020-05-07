@@ -11,16 +11,14 @@ using UnityEngine.Networking;
 /// <typeparam name="T">Object that is slotted, needs to implement Slotable interface</typeparam>
 public abstract class Slot<T> : MonoBehaviour where T : Slotable
 {
-	[SerializeField]
-	private GameObject icon;
-	[SerializeField]
-	private GameObject tooltip;
+	[SerializeField] private GameObject icon;
+	[SerializeField] private GameObject tooltip;
+	[SerializeField] private bool isReusable;
 
-	private T content;
-	public bool isEmpty;
+	protected T content;
+	private bool isEmpty;
 
-
-	public void Start()
+	public virtual void Start()
 	{
 		isEmpty = true;
 	}
@@ -29,7 +27,7 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 	/// Inserts content into the slot.
 	/// </summary>
 	/// <param name="content">Content to insert.</param>
-	public void insertContent(T content)
+	public virtual void insertContent(T content)
 	{
 		this.content = content;
 		icon.GetComponent<Image>().sprite = content.getIcon();
@@ -40,13 +38,18 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 	/// Uses content in the slot.
 	/// </summary>
 	/// <param name="player">Player that used it.</param>
-	public void useContent(Player player)
+	public virtual void useContent(Player player)
 	{
 		if (!isEmpty)
 		{
 			content.activate(player);
-			icon.GetComponent<Image>().sprite = null;
-			isEmpty = true;
+			if (!isReusable)
+			{
+				icon.GetComponent<Image>().sprite = null;
+				isEmpty = true;
+			}
 		}
 	}
+
+	public bool IsEmpty => isEmpty;
 }

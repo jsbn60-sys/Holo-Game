@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Multiplayer.Lobby;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 /// <summary>
@@ -19,7 +20,7 @@ public class Player : Unit
 	[SerializeField] private GameObject map;
 	[SerializeField] private GameObject nameText;
 
-	private GameObject chat;
+	//private GameObject chat;
 
 	[SerializeField] private GameObject skillMenu;
 	[SerializeField] private GameObject inGameMenu;
@@ -42,13 +43,14 @@ public class Player : Unit
 	private bool isCollidingInAir;
 	private float bonusGravity;
 
+	private bool canAttack;
+
 	// called at start
     protected void Start()
-	{
+    {
+	    //chat = LobbyManager.Instance.Chat;
 		// UI
-		chat = GameObject.Find("Chat");
 		skillMenu.GetComponent<SkillMenu>().setSkillQuickAccess(skillQuickAccess.GetComponent<SkillQuickAccess>());
-		setForGameplay();
 		nameText.GetComponent<Text>().text = name;
 
 		// variables
@@ -57,6 +59,15 @@ public class Player : Unit
 		bonusGravity = 60.0f;
 		isGrounded = true;
 
+		if (!isLocalPlayer)
+		{
+			deactiveAllUI();
+		}
+		else
+		{
+			Debug.Log("PlayerName: " + name);
+			setForGameplay();
+		}
 		base.Start();
 	}
 
@@ -192,21 +203,28 @@ public class Player : Unit
 		// primary Skill used with Right Klick
 		if (Input.GetMouseButtonDown(1) && !isChatSelected())
 		{
-			//skillBar.GetComponent<SkillSlots>().useSkill(0, this);
+			skillQuickAccess.GetComponent<SkillQuickAccess>().useContent(0,this);
 		}
 
 
 		// skill in slot Q
 		if (Input.GetKeyDown(KeyCode.Q) && !isChatSelected())
 		{
-			//skillBar.GetComponent<SkillSlots>().useSkill(1, this);
+			skillQuickAccess.GetComponent<SkillQuickAccess>().useContent(1,this);
 
 		}
 
 		// skill in slot E
 		if (Input.GetKeyDown(KeyCode.E) && !isChatSelected())
 		{
-			//skillBar.GetComponent<SkillSlots>().useSkill(2, this);
+			skillQuickAccess.GetComponent<SkillQuickAccess>().useContent(2,this);
+
+		}
+
+		// skill in slot R
+		if (Input.GetKeyDown(KeyCode.R) && !isChatSelected())
+		{
+			skillQuickAccess.GetComponent<SkillQuickAccess>().useContent(3,this);
 		}
 	}
 
@@ -215,49 +233,37 @@ public class Player : Unit
 	/// </summary>
 	private void shootInput()
 	{
-		if (Input.GetKey(KeyCode.Mouse0) && canAttack())
+		if (Input.GetKey(KeyCode.Mouse0) && readyToAttack() && canAttack)
 		{
 			base.useAttack();
-			CmdShoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject));
+			shoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject));
 		}
 	}
 
 	/// <summary>
-	/// Shoots a projectile from the player.
+	/// Runs on server when a player shot a projectile.
 	/// This function is public, because it is used by some effects.
-	/// Projectiles are not spawned on the server with the NetworkServer.Spawn() function,
-	/// because they need to be accurate. Because of this the projectiles are spawned
-	/// through an RPC on every client locally with the Instantiate method.
 	/// The forward direction for the projectile is accessed through the
 	/// SyncVar forwardDirection.
 	/// </summary>
-	/// <param name="projectile">Projectile to shoot</param>
-	public void shootProjectile(Projectile projectile)
-	{
-		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(forwardDirection);
-	}
-
-	/// <summary>
-	/// Runs on server when a player shot a projectile.
-	/// </summary>
 	/// <param name="prefabIdx">Idx of registeredPrefab that was shot</param>
 	[Command]
-	public void CmdShoot(int prefabIdx)
+	private void CmdShoot(int prefabIdx)
 	{
-		RpcShoot(prefabIdx);
+		Projectile projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx).GetComponent<Projectile>();
+		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
+		bullet.GetComponent<Projectile>().setupProjectile(forwardDirection);
+		NetworkServer.Spawn(bullet);
 	}
 
-	/// <summary>
-	/// Runs on all clients when a player shot a projectile.
-	/// </summary>
-	/// <param name="prefabIdx">Idx of registeredPrefab that was shot</param>
-	[ClientRpc]
-	private void RpcShoot(int prefabIdx)
+	public void shoot(int prefabIdx)
 	{
-		GameObject projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
-		shootProjectile(projectile.GetComponent<Projectile>());
+		if (isLocalPlayer)
+		{
+			CmdShoot(prefabIdx);
+		}
 	}
+
 
 	/// <summary>
 	/// Removes player as NPC target and tells the GameOverManager that the player is dead.
@@ -283,10 +289,11 @@ public class Player : Unit
 		activateUI(itemQuickAccess);
 		activateUI(skillQuickAccess);
 		activateUI(map);
-		activateUI(chat);
+		//activateUI(chat);
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
+		canAttack = true;
 	}
 
 	/// <summary>
@@ -297,7 +304,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		deactivateUI(chat);
+		//deactivateUI(chat);
 		deactivateUI(inGameMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
@@ -307,6 +314,7 @@ public class Player : Unit
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		canAttack = false;
 	}
 
 	/// <summary>
@@ -317,7 +325,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		deactivateUI(chat);
+		//deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
@@ -327,6 +335,7 @@ public class Player : Unit
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		canAttack = false;
 	}
 
 	/// <summary>
@@ -337,13 +346,15 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		deactivateUI(chat);
+		//deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(inGameMenu);
 		deactivateUI(inventory);
 
 		activateUI(tutorialMenu);
+
+		canAttack = false;
 	}
 
 	/// <summary>
@@ -354,7 +365,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		deactivateUI(chat);
+		//deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(inGameMenu);
@@ -364,6 +375,8 @@ public class Player : Unit
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+
+		canAttack = false;
 	}
 
 	/// <summary>
@@ -374,7 +387,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		deactivateUI(chat);
+		//deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(inventory);
 		deactivateUI(inGameMenu);
@@ -384,6 +397,21 @@ public class Player : Unit
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+
+		canAttack = false;
+	}
+
+	private void deactiveAllUI()
+	{
+		deactivateUI(itemQuickAccess);
+		deactivateUI(skillQuickAccess);
+		deactivateUI(map);
+		//deactivateUI(chat);
+		deactivateUI(skillMenu);
+		deactivateUI(inventory);
+		deactivateUI(inGameMenu);
+		deactivateUI(tutorialMenu);
+		deactivateUI(gameOverMenu);
 	}
 
 	/// <summary>
@@ -410,7 +438,8 @@ public class Player : Unit
 	/// <returns>Is chat selected</returns>
 	private bool isChatSelected()
 	{
-		return chat.GetComponent<Multiplayer.Lobby.ChatController>().chatBox.isFocused;
+		//return chat.GetComponent<Multiplayer.Lobby.ChatController>().chatBox.isFocused;
+		return false;
 	}
 
 	/// <summary>
@@ -489,8 +518,11 @@ public class Player : Unit
 			Item item = collider.GetComponent<Item>();
 			if (!itemQuickAccess.GetComponent<ItemQuickAccess>().isFull() && !item.wasPickedUp())
 			{
-				//  if the quick access bar is not full, collect ssitem in quickaccessbar
+				// workaround: pickUpItem is called early local, so the player doesnt pick the item up twice.
+
+				//  if the quick access bar is not full, collect item in quickaccessbar
 				itemQuickAccess.GetComponent<ItemQuickAccess>().addContent(item);
+				item.pickUpItem();
 				CmdPickUpItem(item.gameObject);
 			}
 			else if (!inventory.transform.GetChild(0).GetComponent<Inventory>().IsFull())

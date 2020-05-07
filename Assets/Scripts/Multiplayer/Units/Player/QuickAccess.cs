@@ -22,12 +22,22 @@ public class QuickAccess<S,C> : MonoBehaviour where S : Slot<C> where C : Slotab
 	{
 		for (int i = 0; i < slots.Length; i++)
 		{
-			if (slots[i].isEmpty)
+			if (slots[i].IsEmpty)
 			{
 				slots[i].insertContent(content);
 				return;
 			}
 		}
+	}
+
+	public void addContent(C content, int idx)
+	{
+		if (idx > slots.Length)
+		{
+			throw new System.ArgumentException("Slot Idx too high!");
+		}
+
+		slots[idx].insertContent(content);
 	}
 
 	/// <summary>
@@ -37,7 +47,7 @@ public class QuickAccess<S,C> : MonoBehaviour where S : Slot<C> where C : Slotab
 	/// <param name="player">player that used it</param>
 	public void useContent(int idx, Player player)
 	{
-		if (!slots[idx].isEmpty)
+		if (!slots[idx].IsEmpty)
 		{
 			slots[idx].useContent(player);
 		}
@@ -51,7 +61,7 @@ public class QuickAccess<S,C> : MonoBehaviour where S : Slot<C> where C : Slotab
 	{
 		foreach (S slot in slots)
 		{
-			if (slot.isEmpty)
+			if (slot.IsEmpty)
 			{
 				return false;
 			}

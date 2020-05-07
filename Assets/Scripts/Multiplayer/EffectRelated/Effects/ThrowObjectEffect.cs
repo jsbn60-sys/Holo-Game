@@ -5,6 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// This class represents an effect which throws an object from the players position.
+/// IMPORTANT: THIS EFFECT ONLY WORKS FOR PLAYERS.
 /// </summary>
 public class ThrowObjectEffect : PermanentEffect
 {
@@ -13,6 +14,7 @@ public class ThrowObjectEffect : PermanentEffect
 
 	protected override void execEffect()
 	{
-		target.GetComponent<Player>().CmdShoot(LobbyManager.Instance.getIdxOfPrefab(explosionProjectile.gameObject));
+
+		target.GetComponent<Player>().shoot(LobbyManager.Instance.getIdxOfPrefab(explosionProjectile.gameObject));
 	}
 }

@@ -13,6 +13,7 @@ namespace Multiplayer.Lobby
 
 		public DisconnectButtonDelegate disconncetDelegate;
 		public GameObject[] players;
+		[SerializeField] private GameObject chat;
 
 		public static LobbyManager Instance;
 
@@ -29,6 +30,9 @@ namespace Multiplayer.Lobby
 		//private RectTransform chat;
 		[SerializeField] private Transform[] spawns;
 		private static int spawnCounter = 0;
+
+
+		public GameObject Chat => chat;
 
 		private void Start()
 		{

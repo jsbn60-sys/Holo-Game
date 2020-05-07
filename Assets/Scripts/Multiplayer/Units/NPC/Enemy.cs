@@ -33,7 +33,7 @@ public class Enemy : Unit
 
 	// interface function called by NPCAttack to attack.
 	public void hit(Unit target) {
-		if (canAttack())
+		if (readyToAttack())
 		{
 			attack.onHit(target);
 			base.useAttack();

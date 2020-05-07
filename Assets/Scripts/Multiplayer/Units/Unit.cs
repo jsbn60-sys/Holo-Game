@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Leap;
 using Multiplayer.Lobby;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Networking;
 
 /// <summary>
@@ -72,7 +73,7 @@ public abstract class Unit : NetworkBehaviour
 	/// Returns if player can attack.
 	/// </summary>
 	/// <returns>Can the player attack</returns>
-	protected bool canAttack()
+	protected bool readyToAttack()
 	{
 		return attackTimer <= 0f;
 	}
@@ -238,10 +239,16 @@ public abstract class Unit : NetworkBehaviour
 	/// <param name="effect">Effect that should be attached</param>
 	public void attachEffect(Effect effect)
 	{
-		if (!this.tag.Equals("Enemy") && !isLocalPlayer)
+		// Effects are only attached on enemies on the server
+		if (this.tag.Equals("Enemy") && !isServer)
 		{
 			return;
 		}
+		if (!this.tag.Equals("Enemy") && (!isClient || !isLocalPlayer))
+		{
+			return;
+		}
+
 		CmdAttachEffect(LobbyManager.Instance.getIdxOfPrefab(effect.gameObject));
 	}
 

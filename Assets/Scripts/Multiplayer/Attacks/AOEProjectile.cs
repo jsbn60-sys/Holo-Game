@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 /// </summary>
 public class AOEProjectile : Projectile
 {
+
 	[SerializeField]
 	private LayerMask enemyLayer;
 
