@@ -16,6 +16,14 @@ using UnityEngine.Networking;
 /// 	  8   9
 ///        10
 ///
+/// If skills 3&4, 5&6 or 8&9 have both been skilled they combine into a new skill.
+/// These skills are stored in doubleUpgradeSkills, because they don't have a SkillButton
+/// that they can be stored in. The rule is:
+///
+/// Skill 3&4 => doubleUpgradeSkills[0]
+/// Skill 5&6 => doubleUpgradeSkills[1]
+/// Skill 8&9 => doubleUpgradeSkills[2]
+///
 /// </summary>
 public class SkillMenu : NetworkBehaviour
 {
@@ -57,7 +65,6 @@ public class SkillMenu : NetworkBehaviour
 	{
 		if (canBeUnlocked(skill.SkillId))
 		{
-			Debug.Log("Called");
 			unlockSkill(skill.SkillId);
 		}
 	}
@@ -223,7 +230,7 @@ public class SkillMenu : NetworkBehaviour
 					return skillButtons[id - 1].Skill;
 				}
 			case 8: case 9:
-				if (skillButtons[8].IsUnlocked && skillButtons[9].IsUnlocked)
+				if (skillButtons[7].IsUnlocked && skillButtons[8].IsUnlocked)
 				{
 					return doubleUpgradeSkills[2];
 				}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 /// <summary>
 /// This class represents an effect which changes a units health over time in ticks.
@@ -8,9 +9,9 @@ using UnityEngine;
 /// </summary>
 public class ChangeHealthTickEffect : TickingEffect
 {
-	[SerializeField] private float damageAmount;
+	[SerializeField] private float changeAmount;
 	protected override void execEffect()
     {
-		target.changeHealth(damageAmount/tickAmount);
+		target.changeHealth(changeAmount/tickAmount);
     }
 }

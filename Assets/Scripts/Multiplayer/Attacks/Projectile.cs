@@ -28,9 +28,9 @@ public abstract class Projectile : Attack
 	/// Sets up the projectile to fly in the wanted direction
 	/// </summary>
 	/// <param name="forward">Directon in which the projectile should fly</param>
-	public void setupProjectile(Vector3 forward)
+	public void setupProjectile(Vector3 forward,float throwSpeed)
 	{
-		GetComponent<Rigidbody>().velocity = (forward + new Vector3(0, 0.25f, 0)) * 3 * speed;
+		GetComponent<Rigidbody>().velocity = (forward + new Vector3(0, 0.25f, 0)) * 3 * speed * throwSpeed;
 		transform.Rotate(0, 0, -60f);
 		Destroy(gameObject, 3f);
 	}

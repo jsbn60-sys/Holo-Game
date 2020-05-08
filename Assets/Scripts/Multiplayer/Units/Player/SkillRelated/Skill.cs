@@ -9,10 +9,11 @@ using UnityEngine.Serialization;
 /// This class represents a skill.
 /// It implements the Slotable interface so it can be sloted in the SkillQuickAccess.
 /// </summary>
+
 public class Skill : NetworkBehaviour, Slotable
 {
 	[SerializeField] private int skillId;
-	[SerializeField] private List<Effect> effects;
+	[SerializeField] private Effect[] effects;
 	[SerializeField] private Sprite icon;
 	[SerializeField] private int cost;
 	[SerializeField] private int maxCharges;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /// It adds functionality for containing a skill and unlocking it.
 /// It has a custom editor: SkillButtonEditor.cs
 /// </summary>
+
 public class SkillButton : Button
 {
 	[SerializeField] private Skill skill;

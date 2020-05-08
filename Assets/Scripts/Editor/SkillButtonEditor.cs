@@ -2,6 +2,7 @@
 using UnityEditor.UI;
 using UnityEngine.Rendering;
 
+
 /// <summary>
 /// This custom editor script is a workaround to make
 /// the SerializeField skill of the class SkillButton appear in the editor,
@@ -19,4 +20,5 @@ public class MenuButtonEditor : ButtonEditor
 		DrawDefaultInspector();
 	}
 }
+
 

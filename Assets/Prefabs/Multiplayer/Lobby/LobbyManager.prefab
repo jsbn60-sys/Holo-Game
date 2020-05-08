@@ -11136,6 +11136,9 @@ MonoBehaviour:
   - {fileID: 7245981329175986156, guid: fafb788ab4f206648aa339ed7771529c, type: 3}
   - {fileID: 6076513576829953233, guid: 152f703663f678c49bf76263d271b35d, type: 3}
   - {fileID: 3652579295357093353, guid: 940e52eb93a0f2f4fb2b2f124c34801e, type: 3}
+  - {fileID: 7510841104156204803, guid: 1da7ed9340388c24fb8b374a28fb259e, type: 3}
+  - {fileID: 8471828301429632529, guid: f68089ba180eb2f45a981877c4792c6c, type: 3}
+  - {fileID: 4817486808233830370, guid: 4988191c177897b4b9df56b0db135013, type: 3}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -11210,8 +11213,8 @@ MonoBehaviour:
   players:
   - {fileID: 7855392392730092266, guid: 7c47c0c0f5bd7a749916f2621b807951, type: 3}
   - {fileID: 2102008442969303016, guid: aa20d3909e67c0b41a0c6bf3e4053ea0, type: 3}
-  - {fileID: 6742253720389747307, guid: f369d9380ac16ed48ac1f7fab867d002, type: 3}
   - {fileID: 7585537203954217460, guid: 92d61519431a8384b87b43ae3ed9cc5f, type: 3}
+  - {fileID: 6742253720389747307, guid: f369d9380ac16ed48ac1f7fab867d002, type: 3}
   - {fileID: 1994940458721482, guid: c937692157dce0942b5de327efd31165, type: 3}
   chat: {fileID: 6233812284565977025}
   statusText: {fileID: 6274947387599025518}

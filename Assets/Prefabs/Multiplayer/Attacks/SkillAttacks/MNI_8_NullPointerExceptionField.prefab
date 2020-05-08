@@ -267,7 +267,9 @@ MonoBehaviour:
   onHitEffects:
   - {fileID: 4789265780196577639, guid: c803ce81578003d488dd84cfafae8c0c, type: 3}
   duration: 10
-  tickRate: 1
+  tickRate: 0.5
+  hitsPlayers: 0
+  hitsEnemies: 1
 --- !u!135 &967442404846018718
 SphereCollider:
   m_ObjectHideFlags: 0

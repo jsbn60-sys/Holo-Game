@@ -12,7 +12,12 @@ using UnityEngine;
 /// </summary>
 public abstract class PermanentEffect : Effect
 {
-	public void Start()
+	/// <summary>
+	/// Is called every frame,
+	/// but in this case only once,
+	/// because the effect is executed once and then is destroyed.
+	/// </summary>
+	protected override void updateEffect()
 	{
 		execEffect();
 		Destroy(gameObject);

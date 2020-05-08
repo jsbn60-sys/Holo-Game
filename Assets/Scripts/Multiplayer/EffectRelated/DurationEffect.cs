@@ -16,29 +16,41 @@ public abstract class DurationEffect : Effect
 
 	private float durationTimer;
 
-	/// <summary>
-	/// Needs to be implemented to turn the effect off again.
-	/// </summary>
-	protected abstract void turnOffEffect();
+	private bool isRunning;
 
-	// Start is called before the first frame update
+	 /// <summary>
+	 /// Start is called before the first frame update.
+	 /// </summary>
 	protected void Start()
     {
 	    durationTimer = duration;
-	    execEffect();
+	    isRunning = false;
     }
 
-	// Update is called once per frame
-	protected void Update()
+	 /// <summary>
+	 /// Is updated every frame.
+	 /// execEffect is called once,
+	 /// after that it checks if the timer has run off.
+	 /// </summary>
+	protected override void updateEffect()
 	{
-		durationTimer -= Time.deltaTime;
-
-	    if (!isActive())
+		if (!isRunning)
 		{
-			turnOffEffect();
-			Destroy(gameObject);
+			isRunning = true;
+			execEffect();
 		}
-    }
+		else
+		{
+			durationTimer -= Time.deltaTime;
+
+			if (!isActive())
+			{
+				turnOffEffect();
+				Destroy(gameObject);
+			}
+		}
+
+	}
 
 	/// <summary>
 	/// Checks if timer has run out.
@@ -48,4 +60,9 @@ public abstract class DurationEffect : Effect
 	{
 		return durationTimer > 0f;
 	}
+
+	/// <summary>
+	/// Needs to be implemented to turn the effect off again.
+	/// </summary>
+	protected abstract void turnOffEffect();
 }

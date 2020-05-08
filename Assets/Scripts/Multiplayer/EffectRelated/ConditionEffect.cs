@@ -11,25 +11,35 @@ using UnityEngine;
 /// </summary>
 public abstract class ConditionEffect : Effect
 {
+	private bool isRunning;
+
 	/// <summary>
-	/// Turns on the effect on start.
+	/// Start is called before the first frame update
 	/// </summary>
 	public void Start()
 	{
-		execEffect();
+		isRunning = false;
 	}
 
 	/// <summary>
-	/// Checks if the condition is still met.
+	/// Is updated every frame.
+	/// execEffect is called once,
+	/// after that it checks if the condition is still met.
 	/// </summary>
-	private void Update()
+	protected override void updateEffect()
 	{
-		if (!isActive())
+		if (!isRunning)
+		{
+			isRunning = true;
+			execEffect();
+		}
+		else if (!isActive())
 		{
 			turnOffEffect();
 			Destroy(gameObject);
 		}
 	}
+
 
 	/// <summary>
 	/// Needs to be implemented by subclasses to check if effect condition is still met.

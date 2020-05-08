@@ -11,11 +11,9 @@ using UnityEngine;
 /// </summary>
 public abstract class TickingEffect : Effect
 {
-	[SerializeField]
-	protected float duration;
+	[SerializeField] protected float duration;
 
-	[SerializeField]
-	protected int tickAmount;	// IMPORTANT: tickAmount shouldnt be more than 2x duration or coroutine will be off!
+	[SerializeField] protected int tickAmount; // IMPORTANT: tickAmount shouldnt be more than 2x duration or coroutine will be off!
 
 	protected float tickRate;
 
@@ -25,35 +23,46 @@ public abstract class TickingEffect : Effect
 
 	private bool isRunning;
 
-	// Start is called before the first frame update
+	/// <summary>
+	/// Start is called before the first frame update.
+	/// </summary>
 	protected void Start()
-    {
+	{
 		tickRate = duration / tickAmount;
 		effectRunner = runEffect();
 		durationTimer = duration;
-		StartCoroutine(effectRunner);
+		isRunning = false;
 	}
 
-    // Update is called once per frame
-    protected void Update()
-    {
-		if (isRunning)
+	/// <summary>
+	/// Is called once per frame.
+	/// Starts the effectRunner once
+	/// and checks if it is active after that.
+	/// </summary>
+	protected override void updateEffect()
+	{
+		if (!isRunning)
+		{
+			isRunning = true;
+			StartCoroutine(effectRunner);
+		}
+		else
 		{
 			durationTimer -= Time.deltaTime;
 
-			if(!isActive())
+			if (!isActive())
 			{
 				StopCoroutine(effectRunner);
-				isRunning = false;
 				Destroy(gameObject);
 			}
 		}
 	}
 
-    /// <summary>
+
+	/// <summary>
 	/// Runs the effect and waits for tickRate
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>effectRunner</returns>
 	private IEnumerator runEffect()
 	{
 		while (isActive())

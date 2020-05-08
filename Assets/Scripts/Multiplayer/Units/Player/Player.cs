@@ -15,6 +15,7 @@ public class Player : Unit
 
 	[SyncVar] public string name;
 	[SerializeField] private PlayerRole role;
+	[SerializeField] private float throwStrength;
 	[SerializeField] private GameObject itemQuickAccess;
 	[SerializeField] private GameObject skillQuickAccess;
 	[SerializeField] private GameObject map;
@@ -29,7 +30,6 @@ public class Player : Unit
 	[SerializeField] private GameObject inventory;
 
 	[SerializeField] private GameObject bulletSpawn;
-
 	[SerializeField] private GameObject gun;
 
 	// Camera related
@@ -54,8 +54,6 @@ public class Player : Unit
 		nameText.GetComponent<Text>().text = name;
 
 		// variables
-		attackRate = 0.2f;
-		jumpForce = 55.0f;
 		bonusGravity = 60.0f;
 		isGrounded = true;
 
@@ -252,7 +250,7 @@ public class Player : Unit
 	{
 		Projectile projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx).GetComponent<Projectile>();
 		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(forwardDirection);
+		bullet.GetComponent<Projectile>().setupProjectile(forwardDirection,throwStrength);
 		NetworkServer.Spawn(bullet);
 	}
 
@@ -636,6 +634,11 @@ public class Player : Unit
 	public void changeSkillsCooldown(float factor)
 	{
 		skillMenu.GetComponent<SkillMenu>().changeSkillsCooldown(factor);
+	}
+
+	public void changeThrowSpeed(float factor)
+	{
+
 	}
 
 }

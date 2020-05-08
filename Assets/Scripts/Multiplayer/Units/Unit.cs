@@ -12,30 +12,23 @@ using UnityEngine.Networking;
 /// </summary>
 public abstract class Unit : NetworkBehaviour
 {
-	[SerializeField]
-	protected float maxHealth;
-	[SerializeField]
-	protected float maxShield;
+	[SerializeField] protected float maxHealth;
+	[SerializeField] protected float maxShield;
 
 	protected float health;
 	protected float shield;
 	protected bool isInvulnerable;
 
-	[SerializeField]
-	protected Attack attack;
-	protected float attackRate;
-	[SerializeField]
-	protected float speed;
-	protected float jumpForce;
+	[SerializeField] protected Attack attack;
+	[SerializeField] protected float attackRate;
+	[SerializeField] protected float speed;
+	[SerializeField] protected float jumpForce;
 	protected float attackTimer;
 
-	[SerializeField]
-	private RectTransform healthBar;
-	[SerializeField]
-	private RectTransform shieldBar;
+	[SerializeField] private RectTransform healthBar;
+	[SerializeField] private RectTransform shieldBar;
 
-	[SyncVar]
-	public Vector3 forwardDirection;
+	[SyncVar] public Vector3 forwardDirection;
 
 	public float Shield => shield;
 

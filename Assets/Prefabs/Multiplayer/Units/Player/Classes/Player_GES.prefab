@@ -160,6 +160,89 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skillButtons.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: doubleUpgradeSkills.Array.data[0]
+      value: 
+      objectReference: {fileID: 1017351514971694744, guid: d7035d400ddb8cc48a09f1f1069ec3dd,
+        type: 3}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: doubleUpgradeSkills.Array.data[1]
+      value: 
+      objectReference: {fileID: 6058892953587519022, guid: 505916e9942f4434f860d56e4ffbbae6,
+        type: 3}
+    - target: {fileID: 1837453770356597980, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: doubleUpgradeSkills.Array.data[2]
+      value: 
+      objectReference: {fileID: 4553343595577788614, guid: 54a71fbdf423cf84eb9ffd1724314573,
+        type: 3}
+    - target: {fileID: 8556904810928730493, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 7866726431334724787, guid: a257cb8751bfbc243b13abb6044ea201,
+        type: 3}
+    - target: {fileID: 9019396335382658407, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 2368264077090564244, guid: ab10d140eeeab3e47ac083b44fdae830,
+        type: 3}
+    - target: {fileID: 7513795913703883236, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 5220933401604641620, guid: ec504ce6aba1d694593d8054467a2432,
+        type: 3}
+    - target: {fileID: 1659926134697592670, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 2055115851129608499, guid: ee6445e1d557bc24c817d0cd34919b23,
+        type: 3}
+    - target: {fileID: 547837648507967804, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 3392152401572128425, guid: 263b284c31b85964b946ed7cd3c97603,
+        type: 3}
+    - target: {fileID: 4775934669723614379, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 2982732352170565551, guid: d717f7337d4ffaa4d9e67985340dc20a,
+        type: 3}
+    - target: {fileID: 4956599715711870618, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 2443871042786192471, guid: 7c18854542936984d83dd0afdd3cc0de,
+        type: 3}
+    - target: {fileID: 2389354424996040954, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 6806463586653734253, guid: 351c237cd3c934543b4f5cf098b57689,
+        type: 3}
+    - target: {fileID: 3306671831614233568, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 9219466331390572061, guid: fc5086d283910ca42a5283cd455951ae,
+        type: 3}
+    - target: {fileID: 5370992660606415605, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 7496088978653865861, guid: c357141b3cdc8e6478da74ed6724d511,
+        type: 3}
     - target: {fileID: 2157937176792716852, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_AssetId.i0
