@@ -77,5 +77,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionProjectile: {fileID: 3408621206013973769, guid: 498735e325b54d748a51d30bd1c00968,
+  projectileToThrow: {fileID: 3408621206013973769, guid: 498735e325b54d748a51d30bd1c00968,
     type: 3}

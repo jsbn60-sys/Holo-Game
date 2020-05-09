@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionProjectile: {fileID: 4009709606273347342, guid: 45c25a51d7021bc48adf909d8c2f6909,
+  projectileToThrow: {fileID: 4009709606273347342, guid: 45c25a51d7021bc48adf909d8c2f6909,
     type: 3}
 --- !u!114 &2359648750324242685
 MonoBehaviour:

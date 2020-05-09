@@ -40,6 +40,8 @@ public class SkillMenu : NetworkBehaviour
 	void Start()
 	{
 		skillPoints = 10;
+		skillPointsText.text = "Points: " + skillPoints;
+
 		foreach(SkillButton button in skillButtons)
 		{
 			button.GetComponent<Image>().sprite = button.Skill.getIcon();

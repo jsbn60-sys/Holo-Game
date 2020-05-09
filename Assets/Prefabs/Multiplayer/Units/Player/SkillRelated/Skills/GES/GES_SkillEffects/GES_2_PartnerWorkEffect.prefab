@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6515888355169345113
+--- !u!1 &4489192154346739958
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2607182178627816302}
-  - component: {fileID: 451442595392612127}
-  - component: {fileID: -3305319108035130482}
+  - component: {fileID: 24037518962504346}
+  - component: {fileID: 6601570625652430700}
+  - component: {fileID: 5691262107080952220}
   m_Layer: 0
-  m_Name: SlowItemEffect
-  m_TagString: Effect
+  m_Name: GES_2_PartnerWorkEffect
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2607182178627816302
+--- !u!4 &24037518962504346
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6515888355169345113}
-  m_LocalRotation: {x: -0, y: 0.11667076, z: -0, w: 0.9931707}
-  m_LocalPosition: {x: 1.7998056, y: -0.764, z: -9.84}
-  m_LocalScale: {x: 0.40000004, y: 0.39999998, z: 0.40000004}
+  m_GameObject: {fileID: 4489192154346739958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -92.82264, y: -30.936295, z: -5.6150265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &451442595392612127
+--- !u!114 &6601570625652430700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6515888355169345113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileToThrow: {fileID: -9013155512586559978, guid: 6c0d140828ec0e440ac30be1b3f30482,
-    type: 3}
---- !u!114 &-3305319108035130482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6515888355169345113}
+  m_GameObject: {fileID: 4489192154346739958}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -79,3 +65,17 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &5691262107080952220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489192154346739958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileToThrow: {fileID: 8412029911295095638, guid: 3742a0eba38fa954f8ff88c5ecb8350c,
+    type: 3}

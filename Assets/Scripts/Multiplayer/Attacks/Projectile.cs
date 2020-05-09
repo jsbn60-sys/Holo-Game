@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 public abstract class Projectile : Attack
 {
 	[SerializeField] protected GameObject hitFX;
-	[SerializeField] private float speed;
+	[SerializeField] protected float speed;
 	[SerializeField] protected bool triggersOnGround;
 	[SerializeField] protected bool triggersOnEnemy;
 	[SerializeField] protected bool triggersOnWalls;
@@ -32,7 +32,7 @@ public abstract class Projectile : Attack
 	{
 		GetComponent<Rigidbody>().velocity = (forward + new Vector3(0, 0.25f, 0)) * 3 * speed * throwSpeed;
 		transform.Rotate(0, 0, -60f);
-		Destroy(gameObject, 3f);
+		Destroy(gameObject, 10f);
 	}
 
 	/// <summary>
@@ -41,28 +41,33 @@ public abstract class Projectile : Attack
 	/// <param name="other">Trigger that was hit</param>
 	protected void OnTriggerEnter(Collider other)
 	{
-		if (other.tag.Equals("AOEGround"))
+		// workaround to prevent collision
+		if (other.tag.Equals("AOEGround") || other.tag.Equals("Item"))
 		{
 			return;
 		}
 
-		if (triggersOnEnemy && other.tag.Equals("Enemy")
-		    || triggersOnWalls && !other.tag.Equals("Plane")
-		    || triggersOnGround && other.tag.Equals("Plane"))
+		if (!triggersOnEnemy && other.tag.Equals("Enemy")
+		    || !triggersOnWalls && !(other.tag.Equals("Plane") || other.tag.Equals("Enemy"))
+		    || !triggersOnGround && other.tag.Equals("Plane"))
+		{
+			Destroy(gameObject);
+		}
+		else
 		{
 			onTriggerHit(other);
-
 			if ( other.tag.Equals("Enemy") && (amountOfEnemiesHit < pierceAmount))
+
 			{
 				amountOfEnemiesHit++;
 				return;
 			}
+
+			if (hitFX != null)
+			{
+				Instantiate(hitFX, new Vector3(transform.position.x,0,transform.position.z), Quaternion.identity);
+			}
 		}
-		if (hitFX != null)
-		{
-			Instantiate(hitFX, new Vector3(transform.position.x,0,transform.position.z), Quaternion.identity);
-		}
-		Destroy(gameObject);
 	}
 
 

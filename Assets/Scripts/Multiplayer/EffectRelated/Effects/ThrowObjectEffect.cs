@@ -10,11 +10,11 @@ using UnityEngine;
 public class ThrowObjectEffect : PermanentEffect
 {
 	[SerializeField]
-	private Projectile explosionProjectile;
+	private Projectile projectileToThrow;
 
 	protected override void execEffect()
 	{
 
-		target.GetComponent<Player>().shoot(LobbyManager.Instance.getIdxOfPrefab(explosionProjectile.gameObject));
+		target.GetComponent<Player>().shoot(LobbyManager.Instance.getIdxOfPrefab(projectileToThrow.gameObject));
 	}
 }
