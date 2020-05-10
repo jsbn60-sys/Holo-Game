@@ -11159,6 +11159,9 @@ MonoBehaviour:
   - {fileID: 1566641260766732233, guid: aae55499d05ea244782e3688f149ad21, type: 3}
   - {fileID: 321461231753049622, guid: c66bfbf515c273843a15ba1c56dfc5f1, type: 3}
   - {fileID: 6859786163259214049, guid: 871662cc61fbf9b49b7527957e2a4a00, type: 3}
+  - {fileID: 2351206090674610682, guid: 692ffb54a3c601c419c389ba26496763, type: 3}
+  - {fileID: 8810002593195531035, guid: 196401660506a474b9813e1a3172ca3b, type: 3}
+  - {fileID: 3979198295706394936, guid: 285e9ce83852e9d43bf4718b1ead59ab, type: 3}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -11605,7 +11608,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6169928101459644130}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
