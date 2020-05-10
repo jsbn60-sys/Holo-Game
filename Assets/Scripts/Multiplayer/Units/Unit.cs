@@ -53,7 +53,6 @@ public abstract class Unit : NetworkBehaviour
 		{
 			attackTimer -= Time.deltaTime;
 		}
-
 	}
 
 	/// <summary>

@@ -126,7 +126,7 @@ public class SkillMenu : NetworkBehaviour
 				break;
 			default:
 				throw new System.ArgumentException("Illegal SkillId");
-		}
+		} ;
 	}
 
 	/// <summary>

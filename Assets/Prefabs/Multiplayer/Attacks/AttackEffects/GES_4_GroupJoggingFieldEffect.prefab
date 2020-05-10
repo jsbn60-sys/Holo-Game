@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8396369611815003173
+--- !u!1 &8276870576414037911
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5857936464377896512}
-  - component: {fileID: 2845840525429527335}
-  - component: {fileID: 5220933401604641620}
+  - component: {fileID: 3091925677149778752}
+  - component: {fileID: 1360599202081294887}
+  - component: {fileID: 1651694644784787433}
   m_Layer: 0
-  m_Name: GES_3_GroupTalk
+  m_Name: GES_4_GroupJoggingFieldEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5857936464377896512
+--- !u!4 &3091925677149778752
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396369611815003173}
+  m_GameObject: {fileID: 8276870576414037911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92.82264, y: -30.936295, z: -5.6150265}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2845840525429527335
+--- !u!114 &1360599202081294887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396369611815003173}
+  m_GameObject: {fileID: 8276870576414037911}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -65,22 +65,17 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &5220933401604641620
+--- !u!114 &1651694644784787433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396369611815003173}
+  m_GameObject: {fileID: 8276870576414037911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b741ba8f79c264dae8ed2a2ac8506e, type: 3}
+  m_Script: {fileID: 11500000, guid: 290c5b43608b0d24ba934a7ce639791c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 3
-  effects:
-  - {fileID: 7233934424533747933, guid: 220868e3736de3a4dad3da5b62755339, type: 3}
-  icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
-  cost: 1
-  maxCharges: 1
-  cooldown: 10
+  duration: 1
+  speedBoostFactor: 1.5

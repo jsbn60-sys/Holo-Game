@@ -6,7 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// This class represents any field on the ground that applies effects to units inside.
-/// It hits the units inside in an intervall (tickRate).
+/// It hits the units inside in an interval (tickRate).
 /// IMPORTANT: The duration of any onHitEffect should be equal to the tickRate otherwise
 /// the effect will stack multiple times.
 /// </summary>
@@ -23,14 +23,20 @@ public class Aura : Attack
 
 	private List<Unit> unitsInside;
 
+	/// <summary>
+	/// Start is called before the first frame update.
+	/// </summary>
 	private void Start()
 	{
 		unitsInside = new List<Unit>();
 		durationTimer = duration;
 	}
 
-
-	private void Update()
+	/// <summary>
+	/// Update is called once per frame.
+	/// Updates timers and hits unitsInside.
+	/// </summary>
+	protected void Update()
 	{
 		durationTimer -= Time.deltaTime;
 		tickTimer -= Time.deltaTime;
@@ -60,15 +66,19 @@ public class Aura : Attack
 
 
 	/// <summary>
-	/// Adds any unit entering to the unitInside list.
+	/// Adds unit entering to the unitInside list,
+	/// depending on if the aura hitPlayers or/and hitsEnemies.
 	/// </summary>
 	/// <param name="other">Any collsion</param>
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.GetComponent<Unit>() != null)
 		{
-			Debug.Log("UNIT INSIDE: " + other.name);
-			unitsInside.Add(other.GetComponent<Unit>());
+			if (other.tag.Equals("Player") && hitsPlayers ||
+			    other.tag.Equals("Enemy") && hitsEnemies)
+			{
+				unitsInside.Add(other.GetComponent<Unit>());
+			}
 		}
 	}
 

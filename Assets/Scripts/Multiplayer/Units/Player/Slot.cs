@@ -53,5 +53,5 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 
 	public bool IsEmpty => isEmpty;
 
-	
+
 }

@@ -63,7 +63,6 @@ public class Player : Unit
 		}
 		else
 		{
-			Debug.Log("PlayerName: " + name);
 			setForGameplay();
 		}
 		base.Start();
@@ -606,7 +605,7 @@ public class Player : Unit
 	/// <param name="objectToPlace"></param>
 	public void placeObjectInfront(GameObject objectToPlace)
 	{
-		Vector3 spawnPos = transform.position + playerCam.transform.forward * 3f;
+		Vector3 spawnPos = transform.position + transform.forward * 3f;
 		spawnPos.y = 0f;
 		Instantiate(objectToPlace, spawnPos , Quaternion.identity);
 	}
