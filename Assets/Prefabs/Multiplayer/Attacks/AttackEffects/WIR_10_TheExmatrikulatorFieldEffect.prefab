@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &570021802452858440
+--- !u!1 &6606532253166856402
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7836153459375019991}
-  - component: {fileID: 8694042469490480314}
-  - component: {fileID: 3489299358323708722}
+  - component: {fileID: 5888453753793163445}
+  - component: {fileID: -576193343667412718}
+  - component: {fileID: 8662736202343684414}
   m_Layer: 0
-  m_Name: WIR_10_TheExmatrikulator
+  m_Name: WIR_10_TheExmatrikulatorFieldEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7836153459375019991
+--- !u!4 &5888453753793163445
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570021802452858440}
+  m_GameObject: {fileID: 6606532253166856402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8694042469490480314
+--- !u!114 &-576193343667412718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570021802452858440}
+  m_GameObject: {fileID: 6606532253166856402}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -65,22 +65,17 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &3489299358323708722
+--- !u!114 &8662736202343684414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570021802452858440}
+  m_GameObject: {fileID: 6606532253166856402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b741ba8f79c264dae8ed2a2ac8506e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a631bd65078af64ab7aa27200a46c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 10
-  effects:
-  - {fileID: -2844264521912763778, guid: 596914696c809a04abb4f7f20e0a4486, type: 3}
-  icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
-  cost: 1
-  maxCharges: 1
-  cooldown: 10
+  duration: 1
+  dmgChangeAmount: 10000
