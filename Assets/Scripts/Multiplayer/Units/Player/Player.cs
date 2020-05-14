@@ -232,8 +232,9 @@ public class Player : Unit
 	{
 		if (Input.GetKey(KeyCode.Mouse0) && readyToAttack() && canAttack)
 		{
+			Debug.Log("Normal: " + forwardDirection + " Rotated: " + Quaternion.Euler(0,-90,0) *  forwardDirection);
 			base.useAttack();
-			shoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject));
+			shoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject),0);
 		}
 	}
 
@@ -245,19 +246,25 @@ public class Player : Unit
 	/// </summary>
 	/// <param name="prefabIdx">Idx of registeredPrefab that was shot</param>
 	[Command]
-	private void CmdShoot(int prefabIdx)
+	private void CmdShoot(int prefabIdx,float degree)
 	{
+		Vector3 throwDirection = Quaternion.Euler(0, degree, 0) * forwardDirection;
 		Projectile projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx).GetComponent<Projectile>();
 		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(forwardDirection,throwStrength);
+		bullet.GetComponent<Projectile>().setupProjectile(throwDirection,throwStrength);
 		NetworkServer.Spawn(bullet);
 	}
 
-	public void shoot(int prefabIdx)
+	/// <summary>
+	/// Throws a projectile if this player is the local player.
+	/// </summary>
+	/// <param name="prefabIdx">Idx of registeredPrefab</param>
+	/// <param name="degree">degree from forwardDirection, that the projectile should be shoot</param>
+	public void shoot(int prefabIdx, float degree)
 	{
 		if (isLocalPlayer)
 		{
-			CmdShoot(prefabIdx);
+			CmdShoot(prefabIdx, degree);
 		}
 	}
 

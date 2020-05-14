@@ -15,6 +15,6 @@ public class ThrowObjectEffect : PermanentEffect
 	protected override void execEffect()
 	{
 
-		target.GetComponent<Player>().shoot(LobbyManager.Instance.getIdxOfPrefab(projectileToThrow.gameObject));
+		target.GetComponent<Player>().shoot(LobbyManager.Instance.getIdxOfPrefab(projectileToThrow.gameObject),0);
 	}
 }

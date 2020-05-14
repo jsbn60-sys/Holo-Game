@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1624491040533962359}
   - component: {fileID: 2483071854993261280}
-  - component: {fileID: 8118908360201234215}
+  - component: {fileID: 9094641943763913581}
   m_Layer: 0
-  m_Name: MNI_10_WrathOfTheDean
+  m_Name: MNI_10_WrathOfTheDeanEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &8118908360201234215
+--- !u!114 &9094641943763913581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,8 +74,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2851552928205255969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a631bd65078af64ab7aa27200a46c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b4dd0fec52ae464daa4d29658953bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  dmgChangeAmount: 50
+  tickAmount: 80
+  projectToThrow: {fileID: 8209651251434585767, guid: 39bb981565ba29c4fac281c79f5545d1,
+    type: 3}
+  throwAmount: 9

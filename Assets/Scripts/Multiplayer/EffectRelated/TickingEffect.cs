@@ -17,7 +17,7 @@ public abstract class TickingEffect : Effect
 
 	protected float tickRate;
 
-	private IEnumerator effectRunner;
+	private float tickTimer;
 
 	private float durationTimer;
 
@@ -29,9 +29,9 @@ public abstract class TickingEffect : Effect
 	protected void Start()
 	{
 		tickRate = duration / tickAmount;
-		effectRunner = runEffect();
 		durationTimer = duration;
 		isRunning = false;
+		tickTimer = tickRate;
 	}
 
 	/// <summary>
@@ -44,33 +44,29 @@ public abstract class TickingEffect : Effect
 		if (!isRunning)
 		{
 			isRunning = true;
-			StartCoroutine(effectRunner);
 		}
 		else
 		{
 			durationTimer -= Time.deltaTime;
 
+			if (tickTimer > 0f)
+			{
+				tickTimer -= Time.deltaTime;
+			}
+			else
+			{
+				execEffect();
+				tickTimer = tickRate;
+			}
+
 			if (!isActive())
 			{
-				StopCoroutine(effectRunner);
 				Destroy(gameObject);
 			}
 		}
 	}
 
 
-	/// <summary>
-	/// Runs the effect and waits for tickRate
-	/// </summary>
-	/// <returns>effectRunner</returns>
-	private IEnumerator runEffect()
-	{
-		while (isActive())
-		{
-			execEffect();
-			yield return new WaitForSeconds(tickRate);
-		}
-	}
 
 	/// <summary>
 	/// Checks if timer ran out yet.
