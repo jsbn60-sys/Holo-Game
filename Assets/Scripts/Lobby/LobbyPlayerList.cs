@@ -34,14 +34,12 @@ namespace Multiplayer.Lobby
 				return;
 
 			players.Add(player);
-			WaveCreator.playerCount++;
 			player.transform.SetParent(playerListContentTransform, false);
 		}
 
 		public void RemovePlayer(LobbyPlayer player)
 		{
 			players.Remove(player);
-			WaveCreator.playerCount--;
 		}
 
 		public void ResetList()

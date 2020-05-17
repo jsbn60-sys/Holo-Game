@@ -1,5 +1,4 @@
 /* edited by: SWT-P_WS_2018_Holo */
-using NPC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -108,7 +107,7 @@ public class Drone : NetworkBehaviour, IAircraft
 	}
 
 	/// <summary>
-	/// This is a coroutine, which will register the drone as target for the appropiate camera. 
+	/// This is a coroutine, which will register the drone as target for the appropiate camera.
 	/// </summary>
 	/// <param name="usesHoloboard">Indicates if the holoboard camera shall be used</param>
 	/// <param name="holoboardCamera">The holoboard camera</param>
@@ -217,7 +216,7 @@ public class Drone : NetworkBehaviour, IAircraft
             rb.AddForce(Vector3.up * lift * speed);
         }
 	}
-	
+
 	void IAircraft.Drop(){
 		DroneAccessBar dab = droneAccessBar.GetComponent<DroneAccessBar>();
 		dab.Drop();
@@ -247,14 +246,16 @@ public class Drone : NetworkBehaviour, IAircraft
 		}
 
 		// if the collider is from an NPC
-		if (collider.tag == "Enemy")
+		if (collider.tag == "NPC")
 		{
+			/*
 			// only for standard enemies
 			if (collider.GetComponent<NPC.NPC>().type < 4){
-				collider.gameObject.GetComponent<Renderer>().material = collider.GetComponent<NPC.NPC>().trans; 			
+				collider.gameObject.GetComponent<Renderer>().material = collider.GetComponent<NPC.NPC>().trans;
 				collider.GetComponent<NPC.NPC>().SetTriggered(true);
 				collider.GetComponent<NPC.NPC>().SetTime();
 			}
+			*/
 		}
 	}
 
@@ -264,7 +265,8 @@ public class Drone : NetworkBehaviour, IAircraft
 	/// <param name="collider">The collider that collided with the drone</param>
 	void OnTriggerStay(Collider collider)
 	{
-		if (collider.tag == "Enemy")
+		/*
+		if (collider.tag == "NPC")
 		{
 			if (collider.GetComponent<NPC.NPC>().GetTrigered())
 			{
@@ -281,6 +283,7 @@ public class Drone : NetworkBehaviour, IAircraft
 				}
 			}
 		}
+		*/
 	}
 
 
@@ -290,13 +293,15 @@ public class Drone : NetworkBehaviour, IAircraft
 	/// <param name="collider">The collider that collided with the drone</param>
 	void OnTriggerExit(Collider collider)
 	{
-		if (collider.tag == "Enemy"){
+		/*
+		if (collider.tag == "NPC"){
 			if (collider.GetComponent<NPC.NPC>().type < 4){
 				collider.gameObject.GetComponent<Renderer>().material = collider.GetComponent<NPC.NPC>().normal; ;
 				collider.GetComponent<NPC.NPC>().SetTriggered(false);
 				collider.GetComponent<NPC.NPC>().SetTime();
 			}
 		}
+		*/
 	}
 
 
@@ -373,7 +378,7 @@ public class Drone : NetworkBehaviour, IAircraft
 	{
 		GameObject dockingStation = GameObject.FindGameObjectWithTag("DockingStation");
 		Vector3 spawn = gameObject.transform.position + Vector3.down;
-		switch (dockingStation.GetComponent<DockingStation>().GetLastCraftNumber()) { 
+		switch (dockingStation.GetComponent<DockingStation>().GetLastCraftNumber()) {
 			case "0":
 					// distraction
 					spawnItem = Instantiate(itemPrefabs[0], spawn, Quaternion.identity);
@@ -399,7 +404,7 @@ public class Drone : NetworkBehaviour, IAircraft
 
 			case "4":
 					// orientationLoss
-					spawnItem = Instantiate(itemPrefabs[4], spawn, Quaternion.identity);	
+					spawnItem = Instantiate(itemPrefabs[4], spawn, Quaternion.identity);
 					break;
 
 

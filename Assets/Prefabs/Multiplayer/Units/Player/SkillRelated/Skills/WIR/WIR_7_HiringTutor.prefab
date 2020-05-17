@@ -78,8 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 7
-  effects: []
+  effects:
+  - {fileID: 75184671141910539, guid: 42b1bcc45904d6b4ea5761a63efe9a77, type: 3}
   icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
   cost: 1
   maxCharges: 1
-  cooldown: 10
+  cooldown: 3

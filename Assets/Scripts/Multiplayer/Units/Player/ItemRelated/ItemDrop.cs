@@ -28,16 +28,18 @@ public class ItemDrop : NetworkBehaviour
 			instance = this;
 		}
 	}
-	    
-      
+
+
 public void Start()
 	{
 		itemCount =itemPrefabs.Count;
 	}
 
+	/*
 	/// <summary>
 	/// Spawns an item at the specified location. The chances of items are defined above.
 	/// </summary>
+	[Server]
 	public IEnumerator spawnItem(float x,float y,float z, bool safe)
 	{
 		Vector3 spawnPosition;
@@ -54,7 +56,7 @@ public void Start()
 			}
 
 			float randomItemChance = Random.Range(0f, 1f);
-			
+
 			if (randomItemChance < normalItemChance) //spawn normal item
 			{
 				randomItemNum = Random.Range(0, 7);
@@ -83,9 +85,10 @@ public void Start()
 		}
 		yield return null;
 	}
+	*/
 
 	public IEnumerator spawnDamageBoost(float x, float y, float z)
-	{ 
+	{
 		Vector3 spawnPos = new Vector3(x, y, z);
 		GameObject damageBoostItem=null;
 		foreach (GameObject item in itemPrefabs)
@@ -101,5 +104,5 @@ public void Start()
 		yield return null;
 	}
 }
-	
+
 

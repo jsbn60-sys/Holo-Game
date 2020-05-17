@@ -140,10 +140,15 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114654673854012506, guid: 4d60f31cef56c174c91f2d70ed816045,
+        type: 3}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114891530375299050, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}
       propertyPath: m_SendInterval
-      value: 0.0625
+      value: 0.11111111
       objectReference: {fileID: 0}
     - target: {fileID: 1833969848030471742, guid: 4d60f31cef56c174c91f2d70ed816045,
         type: 3}

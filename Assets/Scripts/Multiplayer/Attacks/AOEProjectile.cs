@@ -10,7 +10,7 @@ public class AOEProjectile : Projectile
 {
 
 	[SerializeField]
-	private LayerMask enemyLayer;
+	private LayerMask npcLayer;
 
 	[SerializeField]
 	private float radius;
@@ -21,11 +21,11 @@ public class AOEProjectile : Projectile
 	/// <param name="hit">Any trigger that was hit</param>
 	protected override void onTriggerHit(Collider hit)
 	{
-		Collider[] inRangeEnemies = Physics.OverlapSphere(transform.position, radius, enemyLayer);
+		Collider[] npcsInRange = Physics.OverlapSphere(transform.position, radius, npcLayer);
 
-		foreach (Collider enemy in inRangeEnemies)
+		foreach (Collider npc in npcsInRange)
 		{
-			onHit(enemy.GetComponent<Unit>());
+			onHit(npc.GetComponent<Unit>());
 		}
 	}
 }

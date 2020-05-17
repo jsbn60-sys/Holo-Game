@@ -12,7 +12,7 @@ using UnityEngine;
 public class BouncingProjectile : Projectile
 {
 	[SerializeField] private int maxBounces;
-	[SerializeField] private LayerMask enemyLayer;
+	[SerializeField] private LayerMask npcLayer;
 
 	private int currBounces;
 
@@ -78,18 +78,18 @@ public class BouncingProjectile : Projectile
 	/// </summary>
     private void updateTarget()
     {
-	    Collider[] enemiesInRange = Physics.OverlapSphere(this.transform.position, 20f, enemyLayer);
+	    Collider[] npcsInRange = Physics.OverlapSphere(this.transform.position, 20f, npcLayer);
 
 	    float minDist = Mathf.Infinity;
-	    foreach (Collider enemy in enemiesInRange)
+	    foreach (Collider npc in npcsInRange)
 	    {
-		    if (!hitEnemies.Contains(enemy))
+		    if (!hitEnemies.Contains(npc))
 		    {
-			    float distToEnemy = Vector3.Distance(this.transform.position, enemy.transform.position);
-			    if (distToEnemy < minDist)
+			    float distToNpc = Vector3.Distance(this.transform.position, npc.transform.position);
+			    if (distToNpc < minDist)
 			    {
-				    closestTarget = enemy.gameObject;
-				    minDist = distToEnemy;
+				    closestTarget = npc.gameObject;
+				    minDist = distToNpc;
 			    }
 		    }
 	    }

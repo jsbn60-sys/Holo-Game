@@ -184,6 +184,6 @@ MonoBehaviour:
   hitFX: {fileID: 0}
   speed: 10
   triggersOnGround: 0
-  triggersOnEnemy: 1
+  triggersOnNpc: 1
   triggersOnWalls: 0
   pierceAmount: 100

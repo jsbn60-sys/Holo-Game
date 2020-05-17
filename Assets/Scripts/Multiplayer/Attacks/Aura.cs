@@ -43,11 +43,12 @@ public class Aura : Attack
 
 		if (tickTimer <= 0f)
 		{
-			foreach (Unit unit in unitsInside)
+			for (int i =  unitsInside.Count -1; i >= 0; i--)
 			{
+				Unit unit = unitsInside[i];
 				if (unit==null || unit.isDead())
 				{
-					unitsInside.Remove(unit);
+					unitsInside.RemoveAt(i);
 				}
 				else
 				{
@@ -75,7 +76,7 @@ public class Aura : Attack
 		if (other.GetComponent<Unit>() != null)
 		{
 			if (other.tag.Equals("Player") && hitsPlayers ||
-			    other.tag.Equals("Enemy") && hitsEnemies)
+			    other.tag.Equals("NPC") && hitsEnemies)
 			{
 				unitsInside.Add(other.GetComponent<Unit>());
 			}

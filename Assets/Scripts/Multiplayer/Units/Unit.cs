@@ -18,6 +18,8 @@ public abstract class Unit : NetworkBehaviour
 	protected float health;
 	protected float shield;
 	protected bool isInvulnerable;
+	protected bool isInvisible;
+	protected bool isStunned;
 
 	[SerializeField] protected Attack attack;
 	[SerializeField] protected float attackRate;
@@ -29,12 +31,15 @@ public abstract class Unit : NetworkBehaviour
 	[SerializeField] private RectTransform shieldBar;
 
 	[SyncVar] public Vector3 forwardDirection;
+	private float speedBeforeStun; //workaround: stores old speed while stunned
 
 	public float Shield => shield;
+	public bool IsInvisible => isInvisible;
 
 	protected void Start()
 	{
 		isInvulnerable = false;
+		isInvisible = false;
 		attackTimer = attackRate;
 
 		// initializes health & shield
@@ -69,7 +74,7 @@ public abstract class Unit : NetworkBehaviour
 	/// <returns>Can the player attack</returns>
 	protected bool readyToAttack()
 	{
-		return attackTimer <= 0f;
+		return attackTimer <= 0f && !isStunned;
 	}
 
 	/// <summary>
@@ -160,11 +165,6 @@ public abstract class Unit : NetworkBehaviour
 		return attack;
 	}
 
-	public float getSpeed()
-	{
-		return speed;
-	}
-
 	/// <summary>
 	/// Increases/decreases speed by a factor.
 	/// </summary>
@@ -188,6 +188,25 @@ public abstract class Unit : NetworkBehaviour
 	public void changeInvulnerability(bool turnOn)
 	{
 		isInvulnerable = turnOn;
+	}
+
+	/// <summary>
+	/// Changes if the unit is stunned or not.
+	/// </summary>
+	/// <param name="turnOn">Should unit be stunned</param>
+	public void changeStunned(bool turnOn)
+	{
+		isStunned = turnOn;
+
+		if (turnOn)
+		{
+			speedBeforeStun = speed;
+			speed = 0f;
+		}
+		else
+		{
+			speed = speedBeforeStun;
+		}
 	}
 
 	/// <summary>
@@ -233,11 +252,11 @@ public abstract class Unit : NetworkBehaviour
 	public void attachEffect(Effect effect)
 	{
 		// Effects are only attached on enemies on the server
-		if (this.tag.Equals("Enemy") && !isServer)
+		if (this.tag.Equals("NPC") && !isServer)
 		{
 			return;
 		}
-		if (!this.tag.Equals("Enemy") && (!isClient || !isLocalPlayer))
+		if (!this.tag.Equals("NPC") && (!isClient || !isLocalPlayer))
 		{
 			return;
 		}
@@ -252,5 +271,24 @@ public abstract class Unit : NetworkBehaviour
 	public void changeAttackRate(float factor)
 	{
 		attackRate *= factor;
+	}
+
+	/// <summary>
+	/// Workaround for dealing damage with attacks, because attack damage is not handled over effects.
+	/// </summary>
+	/// <param name="healthChangeAmount">Amount of health to change</param>
+	[Command]
+	public void CmdChangeHealth(float healthChangeAmount)
+	{
+		RpcChangeHealth(healthChangeAmount);
+	}
+
+	/// <summary>
+	/// Workaround for dealing damage with attacks, because attack damage is not handled over effects.
+	/// </summary>
+	[ClientRpc]
+	public void RpcChangeHealth(float healthChangeAmount)
+	{
+		changeHealth(healthChangeAmount);
 	}
 }

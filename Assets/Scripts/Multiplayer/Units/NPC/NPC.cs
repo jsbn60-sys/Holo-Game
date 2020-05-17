@@ -1,213 +1,138 @@
-/* edited by: SWT-P_WS_2018_Holo */
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Multiplayer;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
 
-namespace NPC
+/// <summary>
+/// This class represents an non-player character
+/// that chases and attacks the players.
+/// NPCs are only handled by the server.
+/// NPCs are spawned in Groups for more information look at NPCGroups class.
+/// </summary>
+public class NPC : Unit
 {
-	[RequireComponent(typeof(NavMeshAgent))]
-	/// <summary>
-	///  Basic NPC.
-	/// </summary>
-	public class NPC : NPCController
+	[SerializeField] private NavMeshAgent agent;
+	[SerializeField] private LayerMask attackableLayer;
+	[SerializeField] private float attackRange;
+	[SerializeField] private float detectionRadius;
+	private Transform currentTarget;
+
+	private NPCGroup group;
+
+	public NPCGroup Group
 	{
-		public event EventHandler OnNPCDestroyed;
-		public NPCGroup npcGroup;
-		public Vector3 groupPos;
-		private NavMeshAgent navMeshAgent;
-		public NPCMove move;
-		private NPCChase chase;
-		private NPCAttack attack;
-		public float range = 2f;
-		public float delay = 1f;
-		public short type;
-		public Sprite sprite;
-		public Material trans; // Material when NPC is focused by drone
-		public Material normal; // standard material
-		private bool isTriggered = false; // if the NPC is focused by drone
-		private float time = 0; // how long NPC is focused by drone
+		set => group = value;
+	}
+
+	/// <summary>
+	/// Update is called once per frame.
+	/// Updates the closest target and checks if the enemy can attack.
+	/// </summary>
+	void Update()
+    {
+	    if (isServer)
+	    {
+		    base.Update();
+
+		    updateCurrTarget();
+		    checkIfCanAttack();
+	    }
+    }
 
 
-		public void SetTime()
+	/// <summary>
+	/// Drops an item on death, removes npc from group and destroys it.
+	/// </summary>
+	protected override void onDeath()
+	{
+		if (isServer)
 		{
-			time = 0;
+			//StartCoroutine(ItemDrop.instance.spawnItem(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z, false));
+			group.removeNpc(this);
+			NetworkServer.Destroy(gameObject);
 		}
-		public float GetTime()
-		{
-			return time;
-		}
-		public void OnTriggerEnter(Collider other)
-		{
+	}
 
-		}
+	/// <summary>
+	/// Checks if the npc can attack and attacks if possible.
+	/// </summary>
+	[Server]
+	public void checkIfCanAttack() {
 
-		void OnTriggerExit(Collider other)
+		if (!agent.pathPending && readyToAttack() && hasValidTarget() && agent.remainingDistance <= attackRange)
 		{
-
+			attack.onHit(currentTarget.GetComponent<Unit>());
+			base.useAttack();
 		}
-		public void SetTriggered(bool trigger)
-		{
-			isTriggered = trigger;
-		}
-		public bool GetTrigered()
-		{
-			return isTriggered;
-		}
+	}
 
-		/// <summary>
-		/// Sets or updates the target
-		/// </summary>
-		/// <param name="target">The target point to navigate to</param>
-		public void SetGroupPos(Vector3 pos)
-		{
-			this.groupPos = pos;
+	/// <summary>
+	/// Updates the current target,
+	/// by looking at all targets that are in range.
+	/// If there is at least one target in range,
+	/// that is a dummy, it is prioritised over all
+	/// non-dummy targets. Other dummy targets in range are still
+	/// compared so the closest target dummy is found.
+	/// Targets that are invisible are skipped.
+	/// If there was no target found the npc stops working.
+	/// </summary>
+	[Server]
+	private void updateCurrTarget()
+	{
+		Collider[] targetsInRange = Physics.OverlapSphere(this.transform.position, detectionRadius, attackableLayer);
 
-		}
+		bool isClosestTargetDummy = false;
+		bool isCurrentTargetDummy;
+		float shortestDist = Mathf.Infinity;
+		Transform closestTarget = null;
 
-		/// <summary>
-		/// Sets or updates the NPCGroup
-		/// </summary>
-		/// <param name="group"></param>
-		public void SetNPCGroup(NPCGroup group)
+		foreach (Collider targetInRange in targetsInRange)
 		{
-			if (npcGroup != null)
+			if (targetInRange.GetComponent<Unit>().IsInvisible)
 			{
-				npcGroup.RemoveNPC(this);//Remove NPC from previous group
+				continue;
 			}
-			npcGroup = group;
 
-		}
+			isCurrentTargetDummy = targetInRange.tag.Equals("Dummy");
+			Transform target = targetInRange.transform;
+			float dist = Vector3.Distance(this.transform.position, target.position);
 
-		/// <summary>
-		/// Returns if the NPC is in a group
-		/// </summary>
-		public bool IsInGroup()
-		{
-			if (npcGroup != null)
+			if (dist < shortestDist && (!isClosestTargetDummy || isCurrentTargetDummy))
 			{
-				return true;
-			}
-			else
-			{
-				return false;
+				if (isCurrentTargetDummy)
+				{
+					isClosestTargetDummy = true;
+				}
+				shortestDist = dist;
+				closestTarget = target;
 			}
 		}
 
-		/// <summary>
-		/// Remove the NPC from his group
-		/// </summary>
-		public void RemoveNPCFromGroup()
+		if (closestTarget != null)
 		{
-			if (npcGroup != null)
-			{
-				npcGroup.RemoveNPC(this);
-				npcGroup = null;
-			}
+			currentTarget = closestTarget;
+			agent.isStopped = false;
+			agent.speed = speed;
+			agent.SetDestination(currentTarget.position);
 		}
-
-		override protected void Start()
+		else
 		{
-			navMeshAgent = GetComponent<NavMeshAgent>();//Set the navMeshAgent
-			if (navMeshAgent == null)
-			{
-				Debug.LogError("Missing NavMeshAgent!");
-			}
-			base.Start();
+			agent.isStopped = true;
 		}
-#if UNITY_EDITOR
-		/// <summary>
-		///  Draws the target in the editor.
-		/// </summary>
-		protected virtual void OnDrawGizmosSelected()
-		{
-			UnityEditor.Handles.color = Color.green;
-			UnityEditor.Handles.DrawSolidDisc(groupPos, transform.up, 1);
-		}
-#endif
-		void Update()
-		{
-			// workaround to slow npcs
-			navMeshAgent.speed = GetComponent<Unit>().getSpeed();
-			time += Time.deltaTime;
-			if (!IsInGroup())
-			{
-				NPCGroup group = NPCManager.Instance.SpawnNewNPCGroup(null, 0, transform.position);
-				group.AddNPC(this);
-				npcGroup = group;
-			}
+	}
 
-		}
-
-		protected override void FixedUpdate()
-		{
-			base.FixedUpdate();
-
-			SetGroupPos(npcGroup.GetGroupPositionForNPC(this));
-			move.SetTarget(groupPos);
-
-		}
-		protected virtual void OnDestroy()
-		{
-			if (npcGroup != null)
-			{
-				npcGroup.RemoveNPC(this);
-			}
-			if (OnNPCDestroyed != null)
-			{
-				OnNPCDestroyed(this, new EventArgs());
-			}
-		}
-		protected override void InitialiseBehavior()
-		{
-			move = new NPCMove(navMeshAgent, GetComponent<VisibleTargets>());
-			attack = new NPCAttack(range, delay, this);
-
-			if(type == 4){
-				// higher distance for bigEnemy
-				chase = new NPCChase(4, navMeshAgent, GetComponent<VisibleTargets>());
-			}
-			else if(type == 6){
-				// higher distance for fireEnemy
-				chase = new NPCChase(3, navMeshAgent, GetComponent<VisibleTargets>());
-			}
-			else{
-				chase = new NPCChase(1, navMeshAgent, GetComponent<VisibleTargets>());
-			}
-
-			move.AddTransition(Transition.SawTarget, chase);
-			chase.AddTransition(Transition.LostTarget, move);
-			chase.AddTransition(Transition.ReachedTarget, attack);
-			attack.AddTransition(Transition.LostTarget, chase);
-
-			AddBehavior(move);
-			AddBehavior(chase);
-			AddBehavior(attack);
-
-			currentBehavior = move;
-		}
-
-		public void againLive() {
-			InitialiseBehavior();
-		}
-
-		/// <summary>
-		/// Stuns or unstuns the NPC.
-		/// </summary>
-		/// <param name="turnOn">Should NPC be stunned</param>
-		public void changeStun(bool turnOn)
-		{
-			if (turnOn)
-			{
-				navMeshAgent.isStopped = true;
-			} else
-			{
-				navMeshAgent.isStopped = false;
-
-			}
-		}
+	/// <summary>
+	/// Checks if the current target is valid.
+	/// It has to be a player or dummy,
+	/// visible, not dead and not null.
+	/// </summary>
+	/// <returns>Is the target valid</returns>
+	private bool hasValidTarget()
+	{
+		return currentTarget != null &&
+		       (currentTarget.tag.Equals("Player") || currentTarget.tag.Equals("Dummy")) &&
+		       !currentTarget.GetComponent<Unit>().IsInvisible &&
+		       !currentTarget.GetComponent<Unit>().isDead();
 	}
 }

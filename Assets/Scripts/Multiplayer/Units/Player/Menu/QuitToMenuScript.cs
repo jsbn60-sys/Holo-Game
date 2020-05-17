@@ -19,6 +19,7 @@ public class QuitToMenuScript : MonoBehaviour
 		LobbyManager.Instance.StopClientClbk();
 	}
 
+	/*
 	public void ReturnToLobbyIngame()
 	{
 		Debug.Log("Player is Server?: " + localPlayer.isServer + " PlayerCount: " + WaveCreator.Instance.ReturnPlayerCount());
@@ -39,5 +40,5 @@ public class QuitToMenuScript : MonoBehaviour
 			LobbyManager.Instance.ReturnToLobby(localPlayer.isServer);
 		}
 	}
-
+	*/
 }

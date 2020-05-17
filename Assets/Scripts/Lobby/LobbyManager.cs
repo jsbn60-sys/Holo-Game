@@ -204,7 +204,6 @@ namespace Multiplayer.Lobby
 
 			// Removes the player game object from the world.
 			NetworkServer.DestroyPlayersForConnection(conn);
-			WaveCreator.Instance.ReducePlayerCount();
 
 
 			// Changes the remaining Players Status to not ready and frees all classes to be Picked
@@ -245,12 +244,10 @@ namespace Multiplayer.Lobby
 
 
 				StopHostClbk();
-				WaveCreator.Instance.SetPlayerCountToZero();
 
 			}
 			else // Player is Client
 			{
-				WaveCreator.Instance.SetPlayerCountToZero();
 				StopClientClbk();
 			}
 
@@ -288,8 +285,6 @@ namespace Multiplayer.Lobby
 		/// <param name="conn"></param>
 		public override void OnClientDisconnect(NetworkConnection conn)
 		{
-			WaveCreator.Instance.SetPlayerCountToZero();
-
 			offlineMenu.gameObject.SetActive(true);
 			lobbyMenu.gameObject.SetActive(false);
 			connectMenu.gameObject.SetActive(false);

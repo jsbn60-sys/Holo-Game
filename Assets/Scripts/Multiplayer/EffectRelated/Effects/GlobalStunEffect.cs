@@ -10,12 +10,13 @@ public class GlobalStunEffect : DurationEffect
 {
 	protected override void execEffect()
 	{
-		NPC.NPCManager.Instance.stunAllNPCs(true);
+		NPCController.Instance.changeAllStunned(true);
 	}
 
 	protected override void turnOffEffect()
 	{
-		NPC.NPCManager.Instance.stunAllNPCs(false);
+		NPCController.Instance.changeAllStunned(false);
+
 	}
 
 }

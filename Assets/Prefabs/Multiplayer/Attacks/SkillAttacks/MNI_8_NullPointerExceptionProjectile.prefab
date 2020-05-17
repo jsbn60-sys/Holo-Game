@@ -184,6 +184,6 @@ MonoBehaviour:
   hitFX: {fileID: 967442404846020717, guid: 5697ed66109b9b64b901cddbb6fa3295, type: 3}
   speed: 10
   triggersOnGround: 0
-  triggersOnEnemy: 1
+  triggersOnNpc: 1
   triggersOnWalls: 0
   pierceAmount: 100

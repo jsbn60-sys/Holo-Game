@@ -13,7 +13,7 @@ public abstract class Projectile : Attack
 	[SerializeField] protected GameObject hitFX;
 	[SerializeField] protected float speed;
 	[SerializeField] protected bool triggersOnGround;
-	[SerializeField] protected bool triggersOnEnemy;
+	[SerializeField] protected bool triggersOnNpc;
 	[SerializeField] protected bool triggersOnWalls;
 	[SerializeField] protected int pierceAmount;
 
@@ -47,25 +47,25 @@ public abstract class Projectile : Attack
 			return;
 		}
 
-		if (!triggersOnEnemy && other.tag.Equals("Enemy")
-		    || !triggersOnWalls && !(other.tag.Equals("Plane") || other.tag.Equals("Enemy"))
+		if (!triggersOnNpc && other.tag.Equals("NPC")
+		    || !triggersOnWalls && !(other.tag.Equals("Plane") || other.tag.Equals("NPC"))
 		    || !triggersOnGround && other.tag.Equals("Plane"))
 		{
+			spawnHitFx();
 			Destroy(gameObject);
 		}
 		else
 		{
 			onTriggerHit(other);
-			if ( other.tag.Equals("Enemy") && (amountOfEnemiesHit < pierceAmount))
-
+			if ( other.tag.Equals("NPC") && (amountOfEnemiesHit < pierceAmount))
 			{
 				amountOfEnemiesHit++;
-				return;
-			}
 
-			if (hitFX != null)
-			{
-				Instantiate(hitFX, new Vector3(transform.position.x,0,transform.position.z), Quaternion.identity);
+				if (amountOfEnemiesHit >= pierceAmount)
+				{
+					spawnHitFx();
+					Destroy(gameObject);
+				}
 			}
 		}
 	}
@@ -80,5 +80,17 @@ public abstract class Projectile : Attack
 	public void changePierceAmount(int amount)
 	{
 		pierceAmount += amount;
+	}
+
+	/// <summary>
+	/// Spawns HitFx if the projectile has one.
+	/// </summary>
+	private void spawnHitFx()
+	{
+		if (hitFX != null)
+		{
+			GameObject fx = Instantiate(hitFX, new Vector3(transform.position.x,0,transform.position.z), Quaternion.identity);
+			NetworkServer.Spawn(fx);
+		}
 	}
 }

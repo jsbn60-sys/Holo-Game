@@ -28,7 +28,6 @@ public class Item : NetworkBehaviour , Slotable
 
 	public Sprite getIcon()
 	{
-		Debug.Log("SpriteRenderer: " + spriteRenderer.enabled);
 		return spriteRenderer.sprite;
 	}
 

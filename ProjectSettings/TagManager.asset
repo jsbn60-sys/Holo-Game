@@ -8,7 +8,6 @@ TagManager:
   - DroneHoloboardCamera
   - Inventory
   - QuickAccessBar
-  - Enemy
   - DroneAccessBar
   - Ascend
   - A10
@@ -43,6 +42,7 @@ TagManager:
   - Stuncone
   - Effect
   - AOEGround
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -232,7 +232,6 @@ public class Player : Unit
 	{
 		if (Input.GetKey(KeyCode.Mouse0) && readyToAttack() && canAttack)
 		{
-			Debug.Log("Normal: " + forwardDirection + " Rotated: " + Quaternion.Euler(0,-90,0) *  forwardDirection);
 			base.useAttack();
 			shoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject),0);
 		}
@@ -274,7 +273,6 @@ public class Player : Unit
 	/// </summary>
 	protected override void onDeath()
 	{
-		NPC.NPCManager.Instance.RemoveTarget(this.transform);
 		GameOverManager.Instance.ProfIsBurnedOut(this);
 		gameObject.SetActive(false);
 	}
@@ -584,7 +582,6 @@ public class Player : Unit
 	/// </summary>
 	private void RegisterAtManagers()
 	{
-		NPC.NPCManager.Instance.AddTarget(this.transform);
 		GameOverManager.Instance.AddProf(this);
 	}
 
@@ -597,24 +594,31 @@ public class Player : Unit
 		if (turnOn)
 		{
 			GetComponent<MeshRenderer>().enabled = false;
-			NPC.NPCManager.Instance.RemoveTarget(this.transform);
+			isInvisible = true;
 		}
 		else
 		{
 			GetComponent<MeshRenderer>().enabled = true;
-			NPC.NPCManager.Instance.AddTarget(this.transform);
+			isInvisible = false;
 		}
 	}
 
 	/// <summary>
-	///  WIP: Used for Distraction Item
+	/// WIP: Used for spawning gameobject infront of player.
+	/// Is not spawned with NetworkServer.Spawn(), because
+	/// effects are executed locally and this would cause
+	/// duplicates.
 	/// </summary>
 	/// <param name="objectToPlace"></param>
 	public void placeObjectInfront(GameObject objectToPlace)
 	{
 		Vector3 spawnPos = transform.position + transform.forward * 3f;
 		spawnPos.y = 0f;
-		Instantiate(objectToPlace, spawnPos , Quaternion.identity);
+		GameObject spawnedObject = Instantiate(objectToPlace, spawnPos , Quaternion.identity);
+		if (objectToPlace.tag.Equals("Dummy"))
+		{
+			//NetworkServer.SpawnWithClientAuthority(spawnedObject, this.gameObject);
+		}
 	}
 
 	/// <summary>

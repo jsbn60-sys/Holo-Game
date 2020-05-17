@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6144155073116815963}
   - component: {fileID: 3432309851125388983}
   m_Layer: 10
-  m_Name: MNI_1_ProjectProjectile
+  m_Name: MNI_2_ProjectProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,10 +184,10 @@ MonoBehaviour:
   hitFX: {fileID: 0}
   speed: 10
   triggersOnGround: 1
-  triggersOnEnemy: 1
+  triggersOnNpc: 1
   triggersOnWalls: 1
   pierceAmount: 0
-  enemyLayer:
+  npcLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   radius: 10

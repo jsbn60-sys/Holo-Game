@@ -25,7 +25,7 @@ public abstract class Attack : NetworkBehaviour
 	private AudioClip sound;
 
 	/// <summary>
-	/// interface function for hitting the target with an attack.
+	/// Function for hitting the target with an attack.
 	/// Applies effect and deals damage with crit chance.
 	/// </summary>
 	/// <param name="target">Target to hit</param>
@@ -38,7 +38,7 @@ public abstract class Attack : NetworkBehaviour
 			dmgToDeal *= 2;
 		}
 
-		target.changeHealth(dmgToDeal);
+		target.CmdChangeHealth(dmgToDeal);
 		foreach (Effect effect in onHitEffects)
 		{
 			target.attachEffect(effect);

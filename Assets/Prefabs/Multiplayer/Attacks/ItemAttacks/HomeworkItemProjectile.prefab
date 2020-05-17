@@ -137,11 +137,10 @@ MonoBehaviour:
   hitFX: {fileID: 0}
   speed: 100
   triggersOnGround: 1
-  triggersOnEnemy: 1
+  triggersOnNpc: 1
   triggersOnWalls: 1
   pierceAmount: 0
-  impactForce: 10
-  enemyLayer:
+  npcLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   radius: 20
