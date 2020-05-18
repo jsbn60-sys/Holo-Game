@@ -213,9 +213,11 @@ public abstract class Unit : NetworkBehaviour
 	/// WIP: Used to drop something on top of the player.
 	/// </summary>
 	/// <param name="objectToPlace">Object that should be placed</param>
-	public void placeObjectOnTop(GameObject objectToPlace)
+	[Command]
+	public void CmdPlaceObjectOnTop(int prefabIdx)
 	{
-		Instantiate(objectToPlace, transform.position, Quaternion.identity);
+		Instantiate(LobbyManager.Instance.getPrefabAtIdx(prefabIdx), transform.position, Quaternion.identity);
+
 	}
 
 	/// <summary>
@@ -256,12 +258,27 @@ public abstract class Unit : NetworkBehaviour
 		{
 			return;
 		}
-		if (!this.tag.Equals("NPC") && (!isClient || !isLocalPlayer))
+		if (!this.tag.Equals("Dummy") && !this.tag.Equals("NPC") && (!isClient || !isLocalPlayer))
 		{
+			Debug.Log("DUMMY FAIL");
 			return;
 		}
 
-		CmdAttachEffect(LobbyManager.Instance.getIdxOfPrefab(effect.gameObject));
+		/*
+		 * Workaround:
+		 * PlaceObjectsEffects spawn objects on the server.
+		 * But because effects are executed locally on each user
+		 * the object would be spawned multiple times.
+		 * This is way they are only executed locally.
+		 */
+		if (effect.GetComponent<PlaceObjectEffect>() == null)
+		{
+			CmdAttachEffect(LobbyManager.Instance.getIdxOfPrefab(effect.gameObject));
+		}
+		else
+		{
+			Effect.attachEffect(effect.gameObject,this);
+		}
 	}
 
 	/// <summary>

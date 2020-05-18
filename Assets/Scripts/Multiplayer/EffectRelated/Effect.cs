@@ -36,6 +36,7 @@ public abstract class Effect : NetworkBehaviour
 	/// </summary>
 	protected abstract void updateEffect();
 
+
 	/// <summary>
 	/// This method attaches effects to a unit
 	/// by making a copy of a given effect.
@@ -49,6 +50,8 @@ public abstract class Effect : NetworkBehaviour
 		copiedEffect.wasActivated = true;
 	}
 
+
+	private bool setupTarget;
 	/// <summary>
 	/// Update is called once per frame.
 	/// Calls updateEffect after the effect was activated.
@@ -60,4 +63,5 @@ public abstract class Effect : NetworkBehaviour
 			updateEffect();
 		}
 	}
+
 }

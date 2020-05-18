@@ -21,5 +21,6 @@ public abstract class PermanentEffect : Effect
 	{
 		execEffect();
 		Destroy(gameObject);
+
 	}
 }

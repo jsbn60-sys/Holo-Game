@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Lobby;
 using UnityEngine;
 
 public class PlaceObjectEffect : PermanentEffect
@@ -10,11 +11,11 @@ public class PlaceObjectEffect : PermanentEffect
     {
 	    if (placeInfrontOfPlayer)
 	    {
-		    target.GetComponent<Player>().placeObjectInfront(objectToPlace);
+		    target.GetComponent<Player>().CmdPlaceObjectInfront(LobbyManager.Instance.getIdxOfPrefab(objectToPlace));
 	    }
 	    else
 	    {
-		    target.placeObjectOnTop(objectToPlace);
+		    target.GetComponent<Player>().CmdPlaceObjectOnTop(LobbyManager.Instance.getIdxOfPrefab(objectToPlace));
 	    }
     }
 }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5748828368456850575}
   - component: {fileID: 5678609220492280927}
-  - component: {fileID: 555241513477752230}
   m_Layer: 0
   m_Name: NPCSpawns
   m_TagString: Untagged
@@ -55,18 +54,6 @@ MonoBehaviour:
   - {fileID: 555241512234456001}
   - {fileID: 555241512916560809}
   - {fileID: 555241512916560790}
---- !u!114 &555241513477752230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555241513477752231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ff6573ce69217d4ca359d20a2613338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &739324369858911745
 GameObject:
   m_ObjectHideFlags: 0

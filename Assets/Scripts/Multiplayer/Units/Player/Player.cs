@@ -610,14 +610,19 @@ public class Player : Unit
 	/// duplicates.
 	/// </summary>
 	/// <param name="objectToPlace"></param>
-	public void placeObjectInfront(GameObject objectToPlace)
+	[Command]
+	public void CmdPlaceObjectInfront(int prefabIdx)
 	{
 		Vector3 spawnPos = transform.position + transform.forward * 3f;
 		spawnPos.y = 0f;
-		GameObject spawnedObject = Instantiate(objectToPlace, spawnPos , Quaternion.identity);
-		if (objectToPlace.tag.Equals("Dummy"))
+		GameObject spawnedObject = Instantiate(LobbyManager.Instance.getPrefabAtIdx(prefabIdx), spawnPos , Quaternion.identity);
+		if (spawnedObject.tag.Equals("Dummy"))
 		{
-			//NetworkServer.SpawnWithClientAuthority(spawnedObject, this.gameObject);
+			NetworkServer.SpawnWithClientAuthority(spawnedObject, gameObject);
+		}
+		else
+		{
+			NetworkServer.Spawn(spawnedObject);
 		}
 	}
 
