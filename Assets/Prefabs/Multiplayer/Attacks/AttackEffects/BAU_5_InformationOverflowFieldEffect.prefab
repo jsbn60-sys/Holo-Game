@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8139518374704834068
+--- !u!1 &1673934267993047653
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 429632883058858104}
-  - component: {fileID: 7576441261435358553}
-  - component: {fileID: 1585980075462708381}
+  - component: {fileID: 5270524330393546341}
+  - component: {fileID: 8237024705037969685}
+  - component: {fileID: 3594101565156137483}
   m_Layer: 0
-  m_Name: BAU_5_InformationOverflowEffect
+  m_Name: BAU_5_InformationOverflowFieldEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &429632883058858104
+--- !u!4 &5270524330393546341
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139518374704834068}
+  m_GameObject: {fileID: 1673934267993047653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92.82264, y: -30.936295, z: -5.6150265}
+  m_LocalPosition: {x: -344, y: 0, z: -290.4284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7576441261435358553
+--- !u!114 &8237024705037969685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139518374704834068}
+  m_GameObject: {fileID: 1673934267993047653}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -65,18 +65,16 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &1585980075462708381
+--- !u!114 &3594101565156137483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139518374704834068}
+  m_GameObject: {fileID: 1673934267993047653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0dfc48519eead45a39fee7b4a14ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: d25d2ab331fed6c47806b3345b24baec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPlace: {fileID: 2052078426647896394, guid: 33fe7af02e93c114cb3c05fb9b678b4e,
-    type: 3}
-  placeInfrontOfPlayer: 1
+  healthChangeAmount: 2

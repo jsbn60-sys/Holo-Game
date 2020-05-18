@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7926935913176639807}
   - component: {fileID: -4997850897597304993}
+  - component: {fileID: 8918839785994240434}
   m_Layer: 0
   m_Name: BAU_2_ExamRelevantEffect
   m_TagString: Untagged
@@ -64,3 +65,18 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &8918839785994240434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771230161147357928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0dfc48519eead45a39fee7b4a14ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPlace: {fileID: 4385996295280972404, guid: 2d9f84ccca9b5274999d711a00df836d,
+    type: 3}
+  placeInfrontOfPlayer: 1
