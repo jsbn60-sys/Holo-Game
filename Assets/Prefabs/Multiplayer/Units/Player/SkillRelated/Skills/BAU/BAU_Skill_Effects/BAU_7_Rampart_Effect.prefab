@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6367860826193713458
+--- !u!1 &463660001845700010
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 836803364022552323}
-  - component: {fileID: 8820829418469202089}
-  - component: {fileID: 8988555600361161146}
+  - component: {fileID: 4225541174109145926}
+  - component: {fileID: 2774689627936170059}
+  - component: {fileID: 1253437457721398783}
   m_Layer: 0
-  m_Name: BAU_9_Reserves
+  m_Name: BAU_7_RampartEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &836803364022552323
+--- !u!4 &4225541174109145926
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6367860826193713458}
+  m_GameObject: {fileID: 463660001845700010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -92.82264, y: -30.936295, z: -5.6150265}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8820829418469202089
+--- !u!114 &2774689627936170059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6367860826193713458}
+  m_GameObject: {fileID: 463660001845700010}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -65,22 +65,18 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &8988555600361161146
+--- !u!114 &1253437457721398783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6367860826193713458}
+  m_GameObject: {fileID: 463660001845700010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b741ba8f79c264dae8ed2a2ac8506e, type: 3}
+  m_Script: {fileID: 11500000, guid: bd0dfc48519eead45a39fee7b4a14ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 9
-  effects:
-  - {fileID: -5139583679835017315, guid: 152f703663f678c49bf76263d271b35d, type: 3}
-  icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
-  cost: 1
-  maxCharges: 1
-  cooldown: 10
+  objectToPlace: {fileID: 1834344660809432411, guid: c03c5ba863534bc40bfe74eb93a705ea,
+    type: 3}
+  placeInfrontOfPlayer: 1

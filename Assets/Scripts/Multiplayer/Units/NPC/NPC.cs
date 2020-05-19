@@ -27,7 +27,7 @@ public class NPC : Unit
 
 	/// <summary>
 	/// Update is called once per frame.
-	/// Updates the closest target and checks if the enemy can attack.
+	/// Updates the closest target and checks if the npc can attack.
 	/// </summary>
 	void Update()
     {

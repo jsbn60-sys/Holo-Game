@@ -49,6 +49,7 @@ public class NPCGroup : NetworkBehaviour
 		NPCController.Instance.reduceNpcCount();
 		if (npcs.Count == 0)
 		{
+			NPCController.Instance.removeAliveGroup(this);
 			Destroy(this.gameObject);
 		}
 	}
@@ -70,7 +71,7 @@ public class NPCGroup : NetworkBehaviour
 	/// should be spawned.
 	/// </summary>
 	[System.Serializable]
-	private class SpawnInfo
+	private struct SpawnInfo
 	{
 		[SerializeField] private GameObject npcPrefab;
 		[SerializeField] private int spawnAmount;

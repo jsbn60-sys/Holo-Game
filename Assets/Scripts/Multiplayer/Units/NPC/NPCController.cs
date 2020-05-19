@@ -25,7 +25,7 @@ public class NPCController : NetworkBehaviour
 	private int npcCount;
 	private int currWaveIdx;
 	private bool allNpcsAreDead;
-	private Wave currWave;
+	private List<NPCGroup> currAliveGroups;
 
 	/// <summary>
 	/// Sets singleton instance.
@@ -40,6 +40,7 @@ public class NPCController : NetworkBehaviour
 	/// </summary>
 	private void Start()
 	{
+		currAliveGroups = new List<NPCGroup>();
 		countdownTimer = countdown;
 		allNpcsAreDead = true;
 		currWaveIdx = 0;
@@ -65,7 +66,8 @@ public class NPCController : NetworkBehaviour
 				countdownText.text = "";
 				waveCountText.text = (currWaveIdx + 1) + ". Semester";
 				countdownTimer = countdown;
-				spawnWave(); }
+				spawnWave();
+			}
 		}
 	}
 
@@ -83,9 +85,19 @@ public class NPCController : NetworkBehaviour
 				spawnPosContainer.SpawnPositions[i].position, Quaternion.identity);
 			NetworkServer.Spawn(npcGroup.gameObject);
 			npcGroup.spawnGroup();
+			currAliveGroups.Add(npcGroup);
 		}
 
 		currWaveIdx++;
+	}
+
+	/// <summary>
+	/// Removes a npc group from the alive groups.
+	/// </summary>
+	/// <param name="npcGroup">group to remove</param>
+	public void removeAliveGroup(NPCGroup npcGroup)
+	{
+		currAliveGroups.Remove(npcGroup);
 	}
 
 	/// <summary>
@@ -119,7 +131,7 @@ public class NPCController : NetworkBehaviour
 	/// <param name="turnOn">Should it stun</param>
 	public void changeAllStunned(bool turnOn)
 	{
-		foreach (NPCGroup npcGroup in currWave.NpcGroups)
+		foreach (NPCGroup npcGroup in currAliveGroups)
 		{
 			npcGroup.stunGroup(turnOn);
 		}
@@ -131,7 +143,7 @@ public class NPCController : NetworkBehaviour
 	/// (Using a 2d-array of npcgroup won't show correctly)
 	/// </summary>
 	[System.Serializable]
-	private class Wave
+	private struct Wave
 	{
 		[SerializeField] private NPCGroup[] npcGroups;
 		public NPCGroup[] NpcGroups => npcGroups;

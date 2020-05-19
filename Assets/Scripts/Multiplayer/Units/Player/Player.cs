@@ -615,7 +615,7 @@ public class Player : Unit
 	{
 		Vector3 spawnPos = transform.position + transform.forward * 3f;
 		spawnPos.y = 0f;
-		GameObject spawnedObject = Instantiate(LobbyManager.Instance.getPrefabAtIdx(prefabIdx), spawnPos , Quaternion.identity);
+		GameObject spawnedObject = Instantiate(LobbyManager.Instance.getPrefabAtIdx(prefabIdx), spawnPos , this.transform.rotation);
 		if (spawnedObject.tag.Equals("Dummy"))
 		{
 			NetworkServer.SpawnWithClientAuthority(spawnedObject, gameObject);

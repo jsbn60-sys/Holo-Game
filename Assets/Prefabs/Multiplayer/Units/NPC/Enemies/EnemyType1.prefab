@@ -571,6 +571,7 @@ GameObject:
   - component: {fileID: 7905445311449886411}
   - component: {fileID: 8053092137149651899}
   - component: {fileID: 3655262547568891793}
+  - component: {fileID: -3370476050527333191}
   m_Layer: 11
   m_Name: EnemyType1
   m_TagString: NPC
@@ -775,3 +776,17 @@ MonoBehaviour:
     m_Bits: 256
   attackRange: 3
   detectionRadius: 100
+--- !u!136 &-3370476050527333191
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000099978867427209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
