@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
 	[SerializeField] private SpawnInfo[] spawnInfos;
 
 	[SerializeField] private bool spawnOnlyOnDestruction;
+	[SerializeField] private bool rotateWithOrigin;
 
     /// <summary>
     /// Start is called before the first frame update.
@@ -47,8 +48,17 @@ public class Spawner : MonoBehaviour
     {
 	    foreach (SpawnInfo spawnInfo in spawnInfos)
 	    {
+		    Quaternion spawnRotation;
+		    if (rotateWithOrigin)
+		    {
+			    spawnRotation = transform.rotation;
+		    }
+		    else
+		    {
+			    spawnRotation = Quaternion.identity;
+		    }
 		    Vector3 spawnPos = transform.position + spawnInfo.SpawnPos.RotatedBy(transform.rotation);
-		    GameObject objectCopy = Instantiate(spawnInfo.ObjectToSpawn, spawnPos, transform.rotation);
+		    GameObject objectCopy = Instantiate(spawnInfo.ObjectToSpawn, spawnPos, spawnRotation);
 		    NetworkServer.Spawn(objectCopy.gameObject);
 	    }
     }

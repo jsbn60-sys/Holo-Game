@@ -10,7 +10,6 @@ using UnityEngine.Networking;
 /// </summary>
 public abstract class Projectile : Attack
 {
-	[SerializeField] protected GameObject hitFX;
 	[SerializeField] protected float speed;
 	[SerializeField] protected bool triggersOnGround;
 	[SerializeField] protected bool triggersOnNpc;
@@ -51,7 +50,6 @@ public abstract class Projectile : Attack
 		    || !triggersOnWalls && !(other.tag.Equals("Plane") || other.tag.Equals("NPC"))
 		    || !triggersOnGround && other.tag.Equals("Plane"))
 		{
-			spawnHitFx();
 			Destroy(gameObject);
 		}
 		else
@@ -63,7 +61,6 @@ public abstract class Projectile : Attack
 
 				if (amountOfEnemiesHit >= pierceAmount)
 				{
-					spawnHitFx();
 					Destroy(gameObject);
 				}
 			}
@@ -82,15 +79,4 @@ public abstract class Projectile : Attack
 		pierceAmount += amount;
 	}
 
-	/// <summary>
-	/// Spawns HitFx if the projectile has one.
-	/// </summary>
-	private void spawnHitFx()
-	{
-		if (hitFX != null)
-		{
-			GameObject fx = Instantiate(hitFX, new Vector3(transform.position.x,0,transform.position.z), Quaternion.identity);
-			NetworkServer.Spawn(fx);
-		}
-	}
 }

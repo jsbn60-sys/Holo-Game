@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 920055473640384159}
   - component: {fileID: 920055473640384223}
   - component: {fileID: 920055473640384245}
-  - component: {fileID: 920055473640386664}
+  - component: {fileID: 1476333065449111619}
   m_Layer: 0
-  m_Name: BAU_5_InformationOverflowField
+  m_Name: BAU_5_InformationOverflow_Aura
   m_TagString: AOEGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
---- !u!114 &920055473640386664
+--- !u!114 &1476333065449111619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 920055473640386218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00619c360acffe3439d4072ec19b1ef3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f3514d6b147bce468350317ec078417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
@@ -280,6 +280,6 @@ MonoBehaviour:
   onHitEffects:
   - {fileID: 3594101565156137483, guid: 7cd2da83820605541a7cf687c8122fe7, type: 3}
   duration: 10
-  tickRate: 0.5
+  tickRate: 0.25
   hitsPlayers: 0
   hitsEnemies: 1

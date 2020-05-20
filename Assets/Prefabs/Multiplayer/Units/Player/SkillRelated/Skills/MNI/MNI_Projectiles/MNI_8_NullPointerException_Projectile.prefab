@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 7709752817531110503}
   - component: {fileID: 7709752817531110502}
   - component: {fileID: 1277212972300760147}
+  - component: {fileID: 4056962981907101212}
   m_Layer: 10
-  m_Name: MNI_8_NullPointerExceptionProjectile
+  m_Name: MNI_8_NullPointerException_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,9 +182,27 @@ MonoBehaviour:
   dmg: 0
   critChance: 0
   onHitEffects: []
-  hitFX: {fileID: 967442404846020717, guid: 5697ed66109b9b64b901cddbb6fa3295, type: 3}
+  hitFX: {fileID: 0}
   speed: 10
   triggersOnGround: 0
   triggersOnNpc: 1
   triggersOnWalls: 0
   pierceAmount: 100
+--- !u!114 &4056962981907101212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709752817531116782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321b1839cd4cf9745ac5aa8c2d7bc914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInfos:
+  - objectToSpawn: {fileID: 967442404846020717, guid: 5697ed66109b9b64b901cddbb6fa3295,
+      type: 3}
+    spawnPos: {x: 0, y: 1, z: 0}
+  spawnOnlyOnDestruction: 1
+  rotateWithOrigin: 0

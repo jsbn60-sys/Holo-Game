@@ -17,8 +17,9 @@ GameObject:
   - component: {fileID: 114438178483441172}
   - component: {fileID: 2686767430887422175}
   - component: {fileID: -9013155512586559978}
+  - component: {fileID: -5285877474512396231}
   m_Layer: 10
-  m_Name: SlowItemProjectile
+  m_Name: Item_Slow_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,13 +279,31 @@ MonoBehaviour:
   dmg: 0
   critChance: 0
   onHitEffects: []
-  hitFX: {fileID: 1348298825593460, guid: a11d42cb0aed920489c77156a4f972d5, type: 3}
+  hitFX: {fileID: 0}
   speed: 10
-  triggersOnGround: 1
+  triggersOnGround: 0
   triggersOnNpc: 0
-  triggersOnWalls: 1
+  triggersOnWalls: 0
   pierceAmount: 0
   npcLayer:
     serializedVersion: 2
     m_Bits: 0
   radius: 0
+--- !u!114 &-5285877474512396231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896931107535402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321b1839cd4cf9745ac5aa8c2d7bc914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInfos:
+  - objectToSpawn: {fileID: 1348298825593460, guid: a11d42cb0aed920489c77156a4f972d5,
+      type: 3}
+    spawnPos: {x: 0, y: 1, z: 0}
+  spawnOnlyOnDestruction: 1
+  rotateWithOrigin: 0

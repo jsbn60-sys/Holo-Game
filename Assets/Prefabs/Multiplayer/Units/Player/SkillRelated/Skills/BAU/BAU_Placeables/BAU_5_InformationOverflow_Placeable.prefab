@@ -119,8 +119,9 @@ GameObject:
   - component: {fileID: 2052078426647887942}
   - component: {fileID: 2052078426647902992}
   - component: {fileID: 2052078426647901910}
+  - component: {fileID: 865806755753851498}
   m_Layer: 8
-  m_Name: BAU_5_InformationOverflowDummy
+  m_Name: BAU_5_InformationOverflow_Placeable
   m_TagString: Dummy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +248,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &2052078426647902310
 MonoBehaviour:
@@ -439,8 +440,25 @@ MonoBehaviour:
   healthBar: {fileID: 2052078426647900820}
   shieldBar: {fileID: 2052078426647900195}
   forwardDirection: {x: 0, y: 0, z: 0}
-  attachAuraEffect: {fileID: 8510592786293355651, guid: 2ab0f814e4110bf4ab44a920210f0295,
-    type: 3}
+  attachAuraEffect: {fileID: 0}
+--- !u!114 &865806755753851498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052078426647896394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321b1839cd4cf9745ac5aa8c2d7bc914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInfos:
+  - objectToSpawn: {fileID: 920055473640386218, guid: 7678b1670e41f044c891c1d65985ba0d,
+      type: 3}
+    spawnPos: {x: 0, y: 0, z: 0}
+  spawnOnlyOnDestruction: 0
+  rotateWithOrigin: 0
 --- !u!1 &2052078426647896526
 GameObject:
   m_ObjectHideFlags: 0

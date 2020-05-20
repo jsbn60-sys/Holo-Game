@@ -171,3 +171,5 @@ MonoBehaviour:
   - objectToSpawn: {fileID: 1953644214709160, guid: 9e4dca39587dc1d449ea309ff4f7e804,
       type: 3}
     spawnPos: {x: -2, y: 0, z: -1}
+  spawnOnlyOnDestruction: 0
+  rotateWithOrigin: 1

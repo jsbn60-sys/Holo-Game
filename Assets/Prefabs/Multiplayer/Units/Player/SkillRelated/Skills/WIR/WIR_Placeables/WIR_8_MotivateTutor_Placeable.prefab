@@ -454,8 +454,9 @@ GameObject:
   - component: {fileID: 1119851716016846973}
   - component: {fileID: 1119851716016848285}
   - component: {fileID: 1119851716016845098}
+  - component: {fileID: 2064415916883955102}
   m_Layer: 8
-  m_Name: WIR_8_MotivateTutorDummy
+  m_Name: WIR_8_MotivateTutor_Placeable
   m_TagString: Dummy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,8 +781,25 @@ MonoBehaviour:
   healthBar: {fileID: 1119851716016846202}
   shieldBar: {fileID: 1119851716016842979}
   forwardDirection: {x: 0, y: 0, z: 0}
-  attachAuraEffect: {fileID: 1131241399434751390, guid: b9c5d03591ba2c14081f0438ec79ea3d,
-    type: 3}
+  attachAuraEffect: {fileID: 0}
+--- !u!114 &2064415916883955102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119851716016842264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321b1839cd4cf9745ac5aa8c2d7bc914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInfos:
+  - objectToSpawn: {fileID: 5777742199137249374, guid: 289a576d32ca7c14cbc2c0ed775db3c2,
+      type: 3}
+    spawnPos: {x: 0, y: 0, z: 0}
+  spawnOnlyOnDestruction: 0
+  rotateWithOrigin: 0
 --- !u!1 &1119851716016842266
 GameObject:
   m_ObjectHideFlags: 0

@@ -166,3 +166,4 @@ MonoBehaviour:
       type: 3}
     spawnPos: {x: 0, y: -0.75, z: 3}
   spawnOnlyOnDestruction: 0
+  rotateWithOrigin: 1

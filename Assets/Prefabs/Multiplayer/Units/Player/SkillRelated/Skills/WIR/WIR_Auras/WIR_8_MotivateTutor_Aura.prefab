@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 5777742199137247339}
   - component: {fileID: 5777742199137247275}
   - component: {fileID: 5777742199137247233}
-  - component: {fileID: 5777742199137253020}
+  - component: {fileID: 2826041671691226425}
   m_Layer: 0
-  m_Name: WIR_8_MotivateTutorField
+  m_Name: WIR_8_MotivateTutor_Aura
   m_TagString: AOEGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
---- !u!114 &5777742199137253020
+--- !u!114 &2826041671691226425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5777742199137249374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00619c360acffe3439d4072ec19b1ef3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f3514d6b147bce468350317ec078417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
