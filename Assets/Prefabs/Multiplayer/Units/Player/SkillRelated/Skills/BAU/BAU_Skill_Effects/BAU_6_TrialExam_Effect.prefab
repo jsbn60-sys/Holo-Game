@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 429106068044204386}
   - component: {fileID: 1402323137317506022}
+  - component: {fileID: 1524387588294526275}
   m_Layer: 0
-  m_Name: BAU_6_TrialExamEffect
+  m_Name: BAU_6_TrialExam_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,3 +65,17 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &1524387588294526275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492733484207944236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileToThrow: {fileID: 5931563476819434242, guid: bb5914113017c4149a4751257dab9600,
+    type: 3}
