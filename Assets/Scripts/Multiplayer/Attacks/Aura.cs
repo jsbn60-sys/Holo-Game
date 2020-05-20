@@ -21,12 +21,12 @@ public class Aura : Attack
 	private float durationTimer;
 	private float tickTimer;
 
-	private List<Unit> unitsInside;
+	protected List<Unit> unitsInside;
 
 	/// <summary>
 	/// Start is called before the first frame update.
 	/// </summary>
-	private void Start()
+	protected void Start()
 	{
 		unitsInside = new List<Unit>();
 		durationTimer = duration;
@@ -43,18 +43,7 @@ public class Aura : Attack
 
 		if (tickTimer <= 0f)
 		{
-			for (int i =  unitsInside.Count -1; i >= 0; i--)
-			{
-				Unit unit = unitsInside[i];
-				if (unit==null || unit.isDead())
-				{
-					unitsInside.RemoveAt(i);
-				}
-				else
-				{
-					onHit(unit);
-				}
-			}
+			tickHit();
 			tickTimer = tickRate;
 		}
 
@@ -62,9 +51,23 @@ public class Aura : Attack
 		{
 			Destroy(gameObject);
 		}
-
 	}
 
+	protected virtual void tickHit()
+	{
+		for (int i =  unitsInside.Count -1; i >= 0; i--)
+		{
+			Unit unit = unitsInside[i];
+			if (unit==null || unit.isDead())
+			{
+				unitsInside.RemoveAt(i);
+			}
+			else
+			{
+				onHit(unit);
+			}
+		}
+	}
 
 	/// <summary>
 	/// Adds unit entering to the unitInside list,

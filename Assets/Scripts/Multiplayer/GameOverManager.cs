@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
@@ -33,6 +34,11 @@ public class GameOverManager : NetworkBehaviour
 	private void OnEnable()
 	{
 		Instance = this;
+	}
+
+	public Player[] getAllPlayers()
+	{
+		return profs.Keys.ToArray();
 	}
 
 	public void AddProf(Player player)
