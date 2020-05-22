@@ -51,6 +51,21 @@ public class GameOverManager : NetworkBehaviour
 		profs.Remove(player);
 	}
 
+	public void changeHealthAllPlayers(float amount)
+	{
+		foreach (Player player in profs.Keys.ToArray())
+		{
+			player.changeHealth(amount);
+		}
+	}
+
+	public void changeShieldAllPlayers(float amount)
+	{
+		foreach (Player player in profs.Keys.ToArray())
+		{
+			player.changeShield(amount);
+		}
+	}
 	/// <summary>
 	/// Recovers all registered Professor-Players
 	/// </summary>

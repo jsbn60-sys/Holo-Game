@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5844931878332405595
+--- !u!1 &5243663057584489795
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7547195332244982752}
-  - component: {fileID: 5125372540188805723}
-  - component: {fileID: 9219466331390572061}
+  - component: {fileID: 7898165791756678262}
+  - component: {fileID: 8295807642064585243}
+  - component: {fileID: 3808772802743694399}
   m_Layer: 0
-  m_Name: GES_9_StressPreventiva
+  m_Name: GES_8&9_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7547195332244982752
+--- !u!4 &7898165791756678262
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844931878332405595}
+  m_GameObject: {fileID: 5243663057584489795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92.82264, y: -30.936295, z: -5.6150265}
+  m_LocalPosition: {x: -0.51933336, y: 0.24690533, z: 5.4967504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5125372540188805723
+--- !u!114 &8295807642064585243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844931878332405595}
+  m_GameObject: {fileID: 5243663057584489795}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -65,22 +65,18 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &9219466331390572061
+--- !u!114 &3808772802743694399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844931878332405595}
+  m_GameObject: {fileID: 5243663057584489795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b741ba8f79c264dae8ed2a2ac8506e, type: 3}
+  m_Script: {fileID: 11500000, guid: bd0dfc48519eead45a39fee7b4a14ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 9
-  effects:
-  - {fileID: 5331716227594573416, guid: 807a7ef6fc1496a46b2952e61b35ae36, type: 3}
-  icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
-  cost: 1
-  maxCharges: 1
-  cooldown: 10
+  objectToPlace: {fileID: 4785879637747165273, guid: 67fa874be0afa7a4f99a099b0a5a135b,
+    type: 3}
+  placeInfrontOfPlayer: 1

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1967044159549409267}
   - component: {fileID: 1967044159549409208}
   - component: {fileID: 1967044159549409092}
-  - component: {fileID: 3878663755560976954}
+  - component: {fileID: -1506621997847718757}
   m_Layer: 0
   m_Name: GES_8_Adhesive_Aura
   m_TagString: AOEGround
@@ -263,7 +263,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
---- !u!114 &3878663755560976954
+--- !u!114 &-1506621997847718757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,17 +272,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1967044159549411255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b2f712c6c60f0478fd4e6b4133460f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f3514d6b147bce468350317ec078417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
   critChance: 0
   onHitEffects:
-  - {fileID: 1258320116336182530, guid: e4f7dc652f580e146b8dc8ff70ef08be, type: 3}
+  - {fileID: -4430792457035640636, guid: e4f7dc652f580e146b8dc8ff70ef08be, type: 3}
+  - {fileID: 3365208880609793817, guid: 734f008b8867539468a244f3853a84a2, type: 3}
   - {fileID: 7545580159713860078, guid: cc27b7dedbcd234439d492186defcd7f, type: 3}
   duration: 10
   tickRate: 1
   hitsPlayers: 0
   hitsEnemies: 1
-  onlyPlayerEffects:
-  - {fileID: 8692472371693790809, guid: 734f008b8867539468a244f3853a84a2, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2801793067875392108}
   - component: {fileID: 6887384390452729334}
-  - component: {fileID: 1258320116336182530}
+  - component: {fileID: -4430792457035640636}
   m_Layer: 0
   m_Name: GES_7_MolekulTransfer_Aura_Effect_1
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &1258320116336182530
+--- !u!114 &-4430792457035640636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
