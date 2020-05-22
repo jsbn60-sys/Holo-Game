@@ -78,7 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: -1
-  effects: []
+  effects:
+  - {fileID: 1689764436700760974, guid: 951644da8d3d74447ad2dc2978396946, type: 3}
   icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
   cost: 1
   maxCharges: 1

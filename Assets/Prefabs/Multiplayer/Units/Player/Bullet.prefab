@@ -159,11 +159,7 @@ MonoBehaviour:
   dmg: 50
   critChance: 0
   onHitEffects: []
-  hitFX: {fileID: 0}
   speed: 10
-  triggersOnGround: 0
-  triggersOnNpc: 1
-  triggersOnWalls: 0
   pierceAmount: 0
 --- !u!114 &4039244922547554206
 MonoBehaviour:

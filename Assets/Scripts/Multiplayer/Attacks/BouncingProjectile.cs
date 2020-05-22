@@ -50,6 +50,16 @@ public class BouncingProjectile : Projectile
     }
 
 	/// <summary>
+	/// BouncingProjectiles will only hit NPCs.
+	/// </summary>
+	/// <param name="hit">Collider that was hit</param>
+	/// <returns>Was the collider a valid target</returns>
+	protected override bool hitValidTarget(Collider hit)
+	{
+		return hit.tag.Equals("NPC");
+	}
+
+	/// <summary>
 	/// Hits the target and looks for the next target.
 	/// Is called by parent class, when a trigger was hit.
 	/// If the projectile has reached maxBounces it is destroyed.

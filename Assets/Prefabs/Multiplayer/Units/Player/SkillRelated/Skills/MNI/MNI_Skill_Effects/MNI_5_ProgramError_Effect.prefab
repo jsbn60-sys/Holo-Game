@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9202983636719258232}
   - component: {fileID: 3611726583131420551}
-  - component: {fileID: 9127133696587817355}
+  - component: {fileID: 4369413636123914421}
   m_Layer: 0
-  m_Name: MNI_5_ProgramErrorEffect
+  m_Name: MNI_5_ProgramError_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &9127133696587817355
+--- !u!114 &4369413636123914421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 410788639475064296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a631bd65078af64ab7aa27200a46c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: c525e0811a0441d4ea2e69517c77f860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0
-  dmgChangeAmount: 0
+  projectileToThrow: {fileID: 3362888628279800237, guid: 4791342aa9e823a4698541133846c23b,
+    type: 3}

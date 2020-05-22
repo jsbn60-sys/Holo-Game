@@ -11,17 +11,6 @@ using UnityEngine.Networking;
 public abstract class Projectile : Attack
 {
 	[SerializeField] protected float speed;
-	[SerializeField] protected bool triggersOnGround;
-	[SerializeField] protected bool triggersOnNpc;
-	[SerializeField] protected bool triggersOnWalls;
-	[SerializeField] protected int pierceAmount;
-
-	protected int amountOfEnemiesHit;
-
-	private void Start()
-	{
-		amountOfEnemiesHit = 0;
-	}
 
 	/// <summary>
 	/// Sets up the projectile to fly in the wanted direction
@@ -46,36 +35,17 @@ public abstract class Projectile : Attack
 			return;
 		}
 
-		if (!triggersOnNpc && other.tag.Equals("NPC")
-		    || !triggersOnWalls && !(other.tag.Equals("Plane") || other.tag.Equals("NPC"))
-		    || !triggersOnGround && other.tag.Equals("Plane"))
+		if (hitValidTarget(other))
 		{
-			Destroy(gameObject);
+			onTriggerHit(other);
 		}
 		else
 		{
-			onTriggerHit(other);
-			if ( other.tag.Equals("NPC") && (amountOfEnemiesHit < pierceAmount))
-			{
-				amountOfEnemiesHit++;
-
-				if (amountOfEnemiesHit >= pierceAmount)
-				{
-					Destroy(gameObject);
-				}
-			}
+			Destroy(this.gameObject);
 		}
 	}
 
 
+	protected abstract bool hitValidTarget(Collider hit);
 	protected abstract void onTriggerHit(Collider hit);
-
-	/// <summary>
-	/// Changes the amount of enemies a projectile can pierce.
-	/// </summary>
-	/// <param name="amount">Amount to change pierceAmount</param>
-	public void changePierceAmount(int amount)
-	{
-		pierceAmount += amount;
-	}
 }
