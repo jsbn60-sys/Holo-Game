@@ -290,6 +290,22 @@ public abstract class Unit : NetworkBehaviour
 		attackRate *= factor;
 	}
 
+
+	/// <summary>
+	/// Causes an explosion force to all nearby
+	/// targets on the explosion layer.
+	/// </summary>
+	/// <param name="explosionForce">Strength of the explosion</param>
+	/// <param name="explosionLayer">Layer of the explosion</param>
+	public void explode(float explosionForce, LayerMask explosionLayer)
+	{
+		Collider[] npcsInRange = Physics.OverlapSphere(transform.position, 10, explosionLayer);
+		foreach (Collider npc in npcsInRange)
+		{
+			npc.GetComponent<Rigidbody>().AddExplosionForce(explosionForce,this.transform.position,10,0,ForceMode.Impulse);
+		}
+	}
+
 	/// <summary>
 	/// Workaround for dealing damage with attacks, because attack damage is not handled over effects.
 	/// </summary>
@@ -308,4 +324,6 @@ public abstract class Unit : NetworkBehaviour
 	{
 		changeHealth(healthChangeAmount);
 	}
+
+
 }

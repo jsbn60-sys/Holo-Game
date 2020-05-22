@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1097155628773921004}
   - component: {fileID: 5910506133779465907}
+  - component: {fileID: -558275465646601812}
   m_Layer: 0
-  m_Name: BAU_4_ScoldEffect
+  m_Name: BAU_4_Scold_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,3 +65,19 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &-558275465646601812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526230328916406166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c72596ebdfa3045b40b39fbcadade4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  explosionForce: 25
