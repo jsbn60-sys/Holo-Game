@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 3928787282390359568}
   - component: {fileID: 1515029061527906763}
   - component: {fileID: -7972600048710769213}
+  - component: {fileID: 7414718583012649544}
   m_Layer: 0
-  m_Name: SpeedBoostItem
+  m_Name: Item_SpeedBoost
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,3 +183,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 789930267343535619, guid: a85970d466c9623429dcfa1c2c565264, type: 3}
   spriteRenderer: {fileID: 3928787282390359568}
+--- !u!114 &7414718583012649544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934164734306498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

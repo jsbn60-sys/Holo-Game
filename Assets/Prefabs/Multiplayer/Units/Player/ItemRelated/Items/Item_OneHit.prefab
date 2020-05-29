@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 114463245416612298}
   - component: {fileID: 114949369679112372}
   - component: {fileID: 9174558732890972304}
+  - component: {fileID: 8798483436867718218}
   m_Layer: 0
-  m_Name: OneHit
+  m_Name: Item_OneHit
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,6 +264,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8798483436867718218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409185014614330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1216305820399882538
 GameObject:
   m_ObjectHideFlags: 0

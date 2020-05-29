@@ -181,9 +181,7 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	public void UpdateHealthbarSize()
 	{
-		healthBar.sizeDelta = new Vector2(health, healthBar.sizeDelta.y);
-		RectTransform redHealthTransform = healthBar.GetComponentInParent<RectTransform>().parent.GetComponent<RectTransform>();
-		redHealthTransform.sizeDelta = new Vector2(maxHealth, redHealthTransform.sizeDelta.y);
+		healthBar.sizeDelta = new Vector2((health/maxHealth)*100, healthBar.sizeDelta.y);
 	}
 
 	/// <summary>
@@ -191,7 +189,7 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	private void UpdateShieldbarSize()
 	{
-		shieldBar.sizeDelta = new Vector2(shield, healthBar.sizeDelta.y);
+		shieldBar.sizeDelta = new Vector2((shield/maxShield)*100, healthBar.sizeDelta.y);
 	}
 
 	public Attack getAttack()

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 199232120730931800}
   - component: {fileID: 114303035795934598}
   - component: {fileID: 405250579823476590}
+  - component: {fileID: -57924931581335467}
   m_Layer: 0
-  m_Name: Confetti
+  m_Name: Item_Confetti
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4955,3 +4956,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-57924931581335467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912513288333134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

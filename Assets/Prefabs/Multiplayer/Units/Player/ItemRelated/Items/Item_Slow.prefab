@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 2923993347366036721}
   - component: {fileID: 7884057558336404922}
   - component: {fileID: -6616654255511462588}
+  - component: {fileID: -7654089643392056391}
   m_Layer: 0
-  m_Name: Slowitem
+  m_Name: Item_Slow
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,3 +183,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 451442595392612127, guid: 848e0346b1bc3fb49819afa2202bc2f8, type: 3}
   spriteRenderer: {fileID: 2923993347366036721}
+--- !u!114 &-7654089643392056391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934164734306498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

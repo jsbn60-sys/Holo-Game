@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 65530221131543192}
   - component: {fileID: 5109809320717755568}
   - component: {fileID: 465511385731003916}
+  - component: {fileID: -1040328559336451215}
   m_Layer: 0
-  m_Name: CoffeeItem
+  m_Name: Item_Coffee
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,3 +160,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 5522925086049366389, guid: 633e6220e6f172c4bb9d16c28d2be8f9, type: 3}
   spriteRenderer: {fileID: 5109809320717755568}
+--- !u!114 &-1040328559336451215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953644214709160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

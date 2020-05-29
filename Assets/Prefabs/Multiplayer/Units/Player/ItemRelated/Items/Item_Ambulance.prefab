@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 4265176460380801913}
   - component: {fileID: -7789951177326184108}
   - component: {fileID: -9223040263178247651}
+  - component: {fileID: 3776800793414245564}
   m_Layer: 0
-  m_Name: AmbulanceItem
+  m_Name: Item_Ambulance
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,3 +280,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 3099764002456457682, guid: fb17c259e422ff641b26ecb3a6fb6507, type: 3}
   spriteRenderer: {fileID: -7789951177326184108}
+--- !u!114 &3776800793414245564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904539764621290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

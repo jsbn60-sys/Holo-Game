@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 5956254857579259896}
   - component: {fileID: 7695480103417771606}
   - component: {fileID: 2623863897520555631}
+  - component: {fileID: -3525404731513091395}
   m_Layer: 0
-  m_Name: Party
+  m_Name: Item_Party
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,5 +227,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44263c7d3d640c64486548290f98bdd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3525404731513091395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6171076283351914919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

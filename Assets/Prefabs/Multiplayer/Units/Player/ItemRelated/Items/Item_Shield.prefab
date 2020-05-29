@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 7376718668785668685}
   - component: {fileID: 2332338392738808933}
   - component: {fileID: 3932714758593564794}
+  - component: {fileID: -6608980276694799165}
   m_Layer: 0
-  m_Name: ShieldItem
+  m_Name: Item_Shield
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,3 +183,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 509148908428230838, guid: cd44ec5fff395514bbb6332e098bb54a, type: 3}
   spriteRenderer: {fileID: 2332338392738808933}
+--- !u!114 &-6608980276694799165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399802573491800957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 5170587855360703633}
   - component: {fileID: 5592238853215017386}
   - component: {fileID: 3440229514386858224}
+  - component: {fileID: -165736441700050200}
   m_Layer: 0
-  m_Name: Distraction
+  m_Name: Item_Distraction
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,3 +280,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 0}
   spriteRenderer: {fileID: 5592238853215017386}
+--- !u!114 &-165736441700050200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409099448371170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

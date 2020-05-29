@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 7360917947262589805}
   - component: {fileID: -6249146216179136155}
   - component: {fileID: 1736662466651173237}
+  - component: {fileID: -1009696233135593987}
   m_Layer: 0
-  m_Name: CarItem
+  m_Name: Item_Car
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,3 +280,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 995640779026445109, guid: c9ebb6d998c9d8a4184df44b2966ace5, type: 3}
   spriteRenderer: {fileID: -6249146216179136155}
+--- !u!114 &-1009696233135593987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610531212487488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173a041bcd534de4e95842c7182a6424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
