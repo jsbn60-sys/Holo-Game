@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8629423427148900735
+--- !u!1 &5306460466610456113
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5823047196754040305}
-  - component: {fileID: 2419619125475925146}
-  - component: {fileID: 5597100436803732776}
+  - component: {fileID: 1119065064922043240}
+  - component: {fileID: 3884502709467406056}
+  - component: {fileID: 3630184910973341372}
   m_Layer: 0
-  m_Name: BAU_10_BulwarkOfTheUni
+  m_Name: BAU_10_BulwarkOfTheUni_Effect_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5823047196754040305
+--- !u!4 &1119065064922043240
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8629423427148900735}
+  m_GameObject: {fileID: 5306460466610456113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -92.82264, y: -30.936295, z: -5.6150265}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2419619125475925146
+--- !u!114 &3884502709467406056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8629423427148900735}
+  m_GameObject: {fileID: 5306460466610456113}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
@@ -65,25 +65,17 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &5597100436803732776
+--- !u!114 &3630184910973341372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8629423427148900735}
+  m_GameObject: {fileID: 5306460466610456113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b741ba8f79c264dae8ed2a2ac8506e, type: 3}
+  m_Script: {fileID: 11500000, guid: 290c5b43608b0d24ba934a7ce639791c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 10
-  effects:
-  - {fileID: -3714091532467007823, guid: 940e52eb93a0f2f4fb2b2f124c34801e, type: 3}
-  - {fileID: 3630184910973341372, guid: 7c5fc248bebdb104992aca5fd6dcc8d3, type: 3}
-  - {fileID: 8903426469264749773, guid: a28b3563fb5c47643a16ca1ba5d61186, type: 3}
-  - {fileID: 2526622226042809711, guid: 621a1da737faa094ea98f7c9ce532697, type: 3}
-  icon: {fileID: 21300000, guid: 9ae6ba5806e7d554a9efd7cf24450d50, type: 3}
-  cost: 1
-  maxCharges: 1
-  cooldown: 10
+  duration: 10
+  speedBoostFactor: 2

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Leap;
@@ -25,6 +26,8 @@ public abstract class Unit : NetworkBehaviour
 	[SerializeField] protected float attackRate;
 	[SerializeField] protected float speed;
 	[SerializeField] protected float jumpForce;
+	[SerializeField] protected float pushForce;
+	[SerializeField] protected float onTouchDmg;
 	protected float attackTimer;
 
 	[SerializeField] private RectTransform healthBar;
@@ -87,10 +90,17 @@ public abstract class Unit : NetworkBehaviour
 	}
 
 	/// <summary>
-	/// Determines what happens on death
-	/// has to be implemented by subclasses.
+	/// Determines what happens on death.
+	/// Has to be implemented by subclasses.
 	/// </summary>
 	protected abstract void onDeath();
+
+	/// <summary>
+	/// Determines if the unit has hit a target it can push.
+	/// </summary>
+	/// <param name="target">Target that was hit</param>
+	/// <returns>Can this unit push this target</returns>
+	protected abstract bool canPushTarget(Unit target);
 
 
 	/// <summary>
@@ -122,6 +132,30 @@ public abstract class Unit : NetworkBehaviour
 		}
 		UpdateHealthbarSize();
 		UpdateShieldbarSize();
+	}
+
+	/// <summary>
+	/// Checks if collison is a unit and if it is a pushable target.
+	/// If pushForce > 0f -> push
+	/// If onTouchDmg > 0f -> dealDamage
+	/// </summary>
+	/// <param name="other">Target that collided</param>
+	protected void OnCollisionEnter(Collision other)
+	{
+
+		if (other.gameObject.GetComponent<Unit>() != null
+		    && canPushTarget(other.gameObject.GetComponent<Unit>()))
+		{
+			if (pushForce > 0f)
+			{
+				Vector3 pushDirection = (other.gameObject.transform.position - this.transform.position).normalized;
+				other.gameObject.GetComponent<Rigidbody>().AddForce(pushDirection * pushForce);
+			}
+			if (Math.Abs(onTouchDmg) > 0f)
+			{
+				other.gameObject.GetComponent<Unit>().CmdChangeHealth(onTouchDmg);
+			}
+		}
 	}
 
 	/// <summary>
@@ -262,7 +296,6 @@ public abstract class Unit : NetworkBehaviour
 		}
 		if (!this.tag.Equals("Dummy") && !this.tag.Equals("NPC") && (!isClient || !isLocalPlayer))
 		{
-			Debug.Log("DUMMY FAIL");
 			return;
 		}
 
@@ -327,6 +360,11 @@ public abstract class Unit : NetworkBehaviour
 		changeHealth(healthChangeAmount);
 	}
 
+	/// <summary>
+	/// Spawns a given amount of rotating projectiles around the player.
+	/// </summary>
+	/// <param name="prefabIdx">Idx of rotating projectile prefab</param>
+	/// <param name="amount">Amount of projectiles to spawn</param>
 	[Command]
 	public void CmdSpawnRotatingProjectile(int prefabIdx, int amount)
 	{
@@ -335,7 +373,8 @@ public abstract class Unit : NetworkBehaviour
 
 		for (int i = 0; i < amount; i++)
 		{
-			Vector3 spawnPos = this.transform.position + (Quaternion.Euler(0,degreeBetweenProjectiles * i,0) * this.transform.forward * 2);
+			Vector3 spawnPos = this.transform.position + Quaternion.Euler(0, degreeBetweenProjectiles * i, 0)
+			                   * this.transform.forward * 2;
 
 			GameObject projectileCopy = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
 			projectileCopy.GetComponent<RotatingProjectile>().Target = this.transform;
@@ -343,4 +382,21 @@ public abstract class Unit : NetworkBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Changes the pushforce of this unit by a given amount.
+	/// </summary>
+	/// <param name="amount">Amount to change pushforce by</param>
+	public void changePushForce(float amount)
+	{
+		pushForce += amount;
+	}
+
+	/// <summary>
+	/// Changes the onTouchDmg of this unit by a given amount.
+	/// </summary>
+	/// <param name="amount">Amount to change onTouchDmg by</param>
+	public void changeOnTouchDmg(float amount)
+	{
+		onTouchDmg += amount;
+	}
 }

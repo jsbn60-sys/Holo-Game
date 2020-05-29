@@ -31,8 +31,6 @@ namespace Multiplayer.Lobby
 		[SerializeField] private Transform[] spawns;
 		private static int spawnCounter = 0;
 
-		private GameObject[] playerObjects;
-
 		private GameObject localPlayerObject;
 
 		public GameObject LocalPlayerObject
@@ -40,8 +38,6 @@ namespace Multiplayer.Lobby
 			get => localPlayerObject;
 			set => localPlayerObject = value;
 		}
-
-		public GameObject[] PlayerObjects => playerObjects;
 
 		public GameObject Chat => chat;
 
@@ -135,11 +131,6 @@ namespace Multiplayer.Lobby
 			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4,
 				lobbyPlayer.playerControllerId);
 			spawnCounter++;
-		}
-
-		public void updatePlayerObjects()
-		{
-			playerObjects = GameObject.FindGameObjectsWithTag("Player");
 		}
 
 		/// <summary>

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8400184822226931888}
   - component: {fileID: 5691497197037968688}
+  - component: {fileID: -3714091532467007823}
   m_Layer: 0
-  m_Name: BAU_10_BulwarkOfTheUni
+  m_Name: BAU_10_BulwarkOfTheUni_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,3 +65,16 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &-3714091532467007823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652579295357093353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576af4cfffb5daf4c8c996d90ab9bf44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10

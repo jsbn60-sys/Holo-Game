@@ -135,4 +135,14 @@ public class NPC : Unit
 		       !currentTarget.GetComponent<Unit>().IsInvisible &&
 		       !currentTarget.GetComponent<Unit>().isDead();
 	}
+
+	/// <summary>
+	/// NPCs can only push players.
+	/// </summary>
+	/// <param name="target">Target that collided</param>
+	/// <returns>If the target was a player</returns>
+	protected override bool canPushTarget(Unit target)
+	{
+		return target.tag.Equals("Player");
+	}
 }

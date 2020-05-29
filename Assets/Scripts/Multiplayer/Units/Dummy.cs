@@ -14,4 +14,14 @@ public class Dummy : Unit
     {
 	    Destroy(gameObject);
     }
+
+	/// <summary>
+	/// Dummies can't push anyone.
+	/// </summary>
+	/// <param name="target">Target that collided</param>
+	/// <returns>Always false</returns>
+	protected override bool canPushTarget(Unit target)
+	{
+		return false;
+	}
 }

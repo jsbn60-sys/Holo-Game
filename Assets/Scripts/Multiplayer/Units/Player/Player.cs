@@ -482,15 +482,22 @@ public class Player : Unit
 	}
 
 	/// <summary>
+	/// Players can only push NPCs.
+	/// </summary>
+	/// <param name="target">Target that collided</param>
+	/// <returns>If the target was an npc</returns>
+	protected override bool canPushTarget(Unit target)
+	{
+		return target.tag.Equals("NPC");
+	}
+
+	/// <summary>
 	/// Updates airCollision and isGrounded variable.
 	/// </summary>
 	/// <param name="collision">Any collision</param>
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag.Equals("Player"))
-		{
-
-		}
+		base.OnCollisionEnter(collision);
 		if (collision.gameObject.tag.Equals("Plane"))
 		{
 			isGrounded = true;
@@ -522,8 +529,7 @@ public class Player : Unit
 			if (!itemQuickAccess.GetComponent<ItemQuickAccess>().isFull() && !item.wasPickedUp())
 			{
 				// workaround: pickUpItem is called early local, so the player doesnt pick the item up twice.
-
-				//  if the quick access bar is not full, collect item in quickaccessbar
+				// if the quick access bar is not full, collect item in quickaccessbar
 				itemQuickAccess.GetComponent<ItemQuickAccess>().addContent(item);
 				item.pickUpItem();
 				CmdPickUpItem(item.gameObject);
@@ -534,9 +540,7 @@ public class Player : Unit
 				inventory.transform.GetChild(0).GetComponent<Inventory>().AddItem(item);
 				CmdPickUpItem(item.gameObject);
 			}
-
 		}
-
 	}
 
 	/// <summary>
