@@ -31,6 +31,17 @@ namespace Multiplayer.Lobby
 		[SerializeField] private Transform[] spawns;
 		private static int spawnCounter = 0;
 
+		private GameObject[] playerObjects;
+
+		private GameObject localPlayerObject;
+
+		public GameObject LocalPlayerObject
+		{
+			get => localPlayerObject;
+			set => localPlayerObject = value;
+		}
+
+		public GameObject[] PlayerObjects => playerObjects;
 
 		public GameObject Chat => chat;
 
@@ -112,17 +123,6 @@ namespace Multiplayer.Lobby
 
 		public void Spawnplayer(int x, GameObject lp, GameObject gp)
 		{
-			/* old version with PlayerController
-			LobbyPlayer lobbyPlayer = lp.GetComponent<LobbyPlayer>();
-			PlayerController playerController = gp.GetComponent<PlayerController>();
-
-			NetworkServer.Destroy(gp);
-			GameObject p4 = Instantiate(players[x], new Vector3(-51, 0, 37), Quaternion.identity);
-			p4.name = lobbyPlayer.playerName;
-			p4.GetComponent<PlayerController>().playerName = lobbyPlayer.playerName;
-			NetworkServer.Spawn(p4);
-			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4, lobbyPlayer.playerControllerId);
-			*/
 
 			LobbyPlayer lobbyPlayer = lp.GetComponent<LobbyPlayer>();
 			Player playerController = gp.GetComponent<Player>();
@@ -135,6 +135,11 @@ namespace Multiplayer.Lobby
 			NetworkServer.ReplacePlayerForConnection(lobbyPlayer.connectionToClient, p4,
 				lobbyPlayer.playerControllerId);
 			spawnCounter++;
+		}
+
+		public void updatePlayerObjects()
+		{
+			playerObjects = GameObject.FindGameObjectsWithTag("Player");
 		}
 
 		/// <summary>

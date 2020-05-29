@@ -450,6 +450,7 @@ public class Player : Unit
 	public override void OnStartLocalPlayer()
 	{
 		setupCameras();
+		LobbyManager.Instance.LocalPlayerObject = this.gameObject;
 	}
 
 	/// <summary>

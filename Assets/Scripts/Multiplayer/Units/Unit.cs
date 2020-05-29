@@ -216,7 +216,9 @@ public abstract class Unit : NetworkBehaviour
 	[Command]
 	public void CmdPlaceObjectOnTop(int prefabIdx)
 	{
-		Instantiate(LobbyManager.Instance.getPrefabAtIdx(prefabIdx), transform.position, Quaternion.identity);
+		GameObject objectPrefab = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
+		GameObject objectCopy = Instantiate(objectPrefab, this.transform.position, Quaternion.identity);
+		NetworkServer.Spawn(objectCopy);
 
 	}
 
@@ -325,5 +327,20 @@ public abstract class Unit : NetworkBehaviour
 		changeHealth(healthChangeAmount);
 	}
 
+	[Command]
+	public void CmdSpawnRotatingProjectile(int prefabIdx, int amount)
+	{
+		GameObject projectilePrefab = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
+		float degreeBetweenProjectiles = 360f / amount;
+
+		for (int i = 0; i < amount; i++)
+		{
+			Vector3 spawnPos = this.transform.position + (Quaternion.Euler(0,degreeBetweenProjectiles * i,0) * this.transform.forward * 2);
+
+			GameObject projectileCopy = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+			projectileCopy.GetComponent<RotatingProjectile>().Target = this.transform;
+			NetworkServer.Spawn(projectileCopy);
+		}
+	}
 
 }
