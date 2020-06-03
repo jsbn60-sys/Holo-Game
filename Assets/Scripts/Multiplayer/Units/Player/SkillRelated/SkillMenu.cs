@@ -107,6 +107,13 @@ public class SkillMenu : NetworkBehaviour
 		insertSkill(id);
 	}
 
+	/// <summary>
+	/// Inserts skill into intended slot.
+	/// Checks if a double upgrade has been unlocked,
+	/// in this case the id of the double upgrade is irrelevant.
+	/// </summary>
+	/// <param name="id">Id of skill to insert</param>
+	/// <exception cref="ArgumentException">If skill id is not legal</exception>
 	private void insertSkill(int id)
 	{
 		Skill skill = checkForDoubleUpgrade(id);
@@ -200,15 +207,13 @@ public class SkillMenu : NetworkBehaviour
 		}
 	}
 
-	public void changeSkillsCooldown(float factor)
-	{
-		foreach (SkillButton button in skillButtons)
-		{
-			button.GetComponent<Skill>().changeCooldown(factor);
-
-		}
-	}
-
+	/// <summary>
+	/// Returns skill for skill id and
+	/// Checks if a double upgrade has been unlocked.
+	/// </summary>
+	/// <param name="id">Id of skill to get</param>
+	/// <returns>Skill to unlock</returns>
+	/// <exception cref="ArgumentException">If skill id is not legal</exception>
 	private Skill checkForDoubleUpgrade(int id)
 	{
 		switch (id)

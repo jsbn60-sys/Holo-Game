@@ -16,7 +16,6 @@ namespace Multiplayer.Lobby
 
 		public DisconnectButtonDelegate disconncetDelegate;
 		public GameObject[] players;
-		[SerializeField] private GameObject chat;
 
 		public static LobbyManager Instance;
 
@@ -29,8 +28,6 @@ namespace Multiplayer.Lobby
 
 		[SerializeField] private RectTransform offlineMenu;
 
-		//[SerializeField]
-		//private RectTransform chat;
 		[SerializeField] private Transform[] spawns;
 		private static int spawnCounter = 0;
 
@@ -42,7 +39,6 @@ namespace Multiplayer.Lobby
 			set => localPlayerObject = value;
 		}
 
-		public GameObject Chat => chat;
 
 		private void Start()
 		{
@@ -81,7 +77,6 @@ namespace Multiplayer.Lobby
 			SetStatusInfo("Hosting");
 
 			connectMenu.gameObject.SetActive(false);
-			//chat.gameObject.SetActive(true);
 		}
 
 		/// <summary>
@@ -91,7 +86,6 @@ namespace Multiplayer.Lobby
 		public override void OnLobbyServerDisconnect(NetworkConnection conn)
 		{
 			connectMenu.gameObject.SetActive(false);
-			//chat.gameObject.SetActive(false);
 		}
 
 		public override void OnClientConnect(NetworkConnection conn)
@@ -99,7 +93,6 @@ namespace Multiplayer.Lobby
 			base.OnClientConnect(conn);
 			//hide main menu
 			connectMenu.gameObject.SetActive(false);
-			//chat.gameObject.SetActive(true);
 
 			if (NetworkServer.active) return;
 

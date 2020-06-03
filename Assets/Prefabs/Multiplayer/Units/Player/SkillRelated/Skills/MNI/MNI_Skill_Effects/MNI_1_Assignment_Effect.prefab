@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8376377566944451163}
   - component: {fileID: 7394051612181587661}
-  - component: {fileID: 537903644512464689}
+  - component: {fileID: 7145334570702205030}
   m_Layer: 0
-  m_Name: MNI_1_Assignment
+  m_Name: MNI_1_Assignment_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &537903644512464689
+--- !u!114 &7145334570702205030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4774471786922784885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a631bd65078af64ab7aa27200a46c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 70bf132e309054d4ba9e1b99572b1b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10

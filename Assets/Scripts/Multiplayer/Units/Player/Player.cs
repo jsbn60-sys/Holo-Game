@@ -14,14 +14,12 @@ public class Player : Unit
 {
 
 	[SyncVar] public string name;
-	[SerializeField] private float throwStrength;
+	[SerializeField] private float throwSpeed;
 	[SerializeField] private GameObject itemQuickAccess;
 	[SerializeField] private GameObject skillQuickAccess;
 	[SerializeField] private GameObject map;
 	[SerializeField] private GameObject nameText;
-
-	//private GameObject chat;
-
+	[SerializeField] private GameObject chat;
 	[SerializeField] private GameObject helpIcon;
 	[SerializeField] private GameObject skillMenu;
 	[SerializeField] private GameObject inGameMenu;
@@ -76,11 +74,15 @@ public class Player : Unit
 		{
 			if (!isDead())
 			{
-				moveInput();
-				menuInput();
-				itemInput();
-				skillInput();
-				shootInput();
+				if(!isChatSelected())
+				{
+					moveInput();
+					menuInput();
+					itemInput();
+					skillInput();
+					shootInput();
+				}
+				chatInput();
 				CmdUpdateForwardDirection(playerCam.transform.forward);
 			}
 			else
@@ -91,6 +93,17 @@ public class Player : Unit
 
 		base.Update();
 	}
+
+    /// <summary>
+    /// Handles input related to the chat.
+    /// </summary>
+    private void chatInput()
+    {
+	    if (Input.GetKeyDown(KeyCode.Return) || (isChatSelected() && Input.GetKeyDown(KeyCode.Escape)))
+	    {
+		    chat.GetComponent<Chat>().toggleInput();
+	    }
+    }
 
     /// <summary>
 	/// Handles input related to movement and camera.
@@ -258,7 +271,7 @@ public class Player : Unit
 		Vector3 throwDirection = Quaternion.Euler(0, degree, 0) * forwardDirection;
 		Projectile projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx).GetComponent<Projectile>();
 		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
-		bullet.GetComponent<Projectile>().setupProjectile(throwDirection,throwStrength);
+		bullet.GetComponent<Projectile>().setupProjectile(throwDirection,throwSpeed);
 		NetworkServer.Spawn(bullet);
 	}
 
@@ -337,21 +350,28 @@ public class Player : Unit
 		changeInvisibility(true);
 	}
 
+	/// <summary>
+	/// Updates all clients that the game is over.
+	/// </summary>
 	[Command]
 	private void CmdGameOver()
 	{
 		RpcGameOver();
 	}
 
+	/// <summary>
+	/// Updates all clients that the game is over.
+	/// </summary>
 	[ClientRpc]
 	private void RpcGameOver()
 	{
 		LobbyManager.Instance.LocalPlayerObject.GetComponent<Player>().activateGameOverScreen();
 	}
+
 	/// <summary>
 	/// Sets the UI for gameplay.
 	/// </summary>
-	private void setForGameplay()
+	public void setForGameplay()
 	{
 		deactivateUI(inGameMenu);
 		deactivateUI(skillMenu);
@@ -365,7 +385,7 @@ public class Player : Unit
 		activateUI(itemQuickAccess);
 		activateUI(skillQuickAccess);
 		activateUI(map);
-		//activateUI(chat);
+		activateUI(chat);
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -380,7 +400,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(inGameMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
@@ -403,7 +423,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
@@ -426,7 +446,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(inGameMenu);
@@ -447,7 +467,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(gameOverMenu);
 		deactivateUI(inGameMenu);
@@ -471,7 +491,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(inventory);
 		deactivateUI(inGameMenu);
@@ -492,7 +512,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(inventory);
 		deactivateUI(inGameMenu);
@@ -514,7 +534,7 @@ public class Player : Unit
 		deactivateUI(itemQuickAccess);
 		deactivateUI(skillQuickAccess);
 		deactivateUI(map);
-		//deactivateUI(chat);
+		deactivateUI(chat);
 		deactivateUI(skillMenu);
 		deactivateUI(inventory);
 		deactivateUI(inGameMenu);
@@ -548,12 +568,11 @@ public class Player : Unit
 	/// <returns>Is chat selected</returns>
 	private bool isChatSelected()
 	{
-		//return chat.GetComponent<Multiplayer.Lobby.ChatController>().chatBox.isFocused;
-		return false;
+		return chat.GetComponent<Chat>().ChatIsSelected;
 	}
 
 	/// <summary>
-	/// Called when the local player object has been set up
+	/// Called when the local player object has been set up.
 	/// </summary>
 	public override void OnStartLocalPlayer()
 	{
@@ -661,14 +680,6 @@ public class Player : Unit
 		skillMenu.GetComponent<SkillMenu>().addSkillPoints(amount);
 	}
 
-	// temp fix for resumeScript
-	public void CmdCloseMenu()
-	{
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-		deactivateUI(inGameMenu);
-	}
-
 	/// <summary>
 	/// Toggles player visibility and NPCRegister.
 	/// </summary>
@@ -730,16 +741,21 @@ public class Player : Unit
 		item.GetComponent<Item>().pickUpItem();
 	}
 
-	public void changeSkillsCooldown(float factor)
-	{
-		skillMenu.GetComponent<SkillMenu>().changeSkillsCooldown(factor);
-	}
-
+	/// <summary>
+	/// Changes the speed at which projectiles are thrown.
+	/// </summary>
+	/// <param name="factor">Factor by which throw speed is changed</param>
 	public void changeThrowSpeed(float factor)
 	{
-
+		throwSpeed *= factor;
 	}
 
+	/// <summary>
+	/// Spawns an object on the network.
+	/// </summary>
+	/// <param name="prefabIdx">Idx of prefab to spawn</param>
+	/// <param name="spawnPos">Position at which to spawn object</param>
+	/// <param name="spawnRotation">Rotation of the object</param>
 	[Command]
 	public void CmdSpawn(int prefabIdx, Vector3 spawnPos, Quaternion spawnRotation)
 	{
@@ -748,4 +764,26 @@ public class Player : Unit
 		NetworkServer.Spawn(objectCopy);
 	}
 
+	/// <summary>
+	/// Sends a text message to all clients.
+	/// </summary>
+	/// <param name="sender">Player that send the message</param>
+	/// <param name="message">Message that was send</param>
+	[Command]
+	public void CmdSendTextMessage(string sender, string message)
+	{
+		RpcSendTextMessage(sender,message);
+	}
+
+	/// <summary>
+	/// Sends a message to all clients.
+	/// Updates the chat of the local player.
+	/// </summary>
+	/// <param name="sender">Player that send the message</param>
+	/// <param name="message">Message that was send</param>
+	[ClientRpc]
+	public void RpcSendTextMessage(string sender, string message)
+	{
+		LobbyManager.Instance.LocalPlayerObject.GetComponent<Player>().chat.GetComponent<Chat>().postMessage(sender, message);
+	}
 }

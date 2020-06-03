@@ -1,6 +1,7 @@
 /* author: SWT-P_WS_2018_Holo */
 using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Lobby;
 using UnityEngine;
 
 
@@ -14,13 +15,6 @@ public class ResumeScript : MonoBehaviour {
 
 	public void Resume()
 	{
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-		foreach (GameObject go in players)
-		{
-			go.GetComponent<Player>().CmdCloseMenu();
-		//	menu.SetActive(false);
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Locked;
-		}
+		LobbyManager.Instance.LocalPlayerObject.GetComponent<Player>().setForGameplay();
 	}
 }

@@ -49,13 +49,7 @@ namespace Multiplayer.Lobby
 
 		private void Start()
 		{
-			chatObject = GameObject.Find("Chat");
 			ChangeButtonStatusAndCheckDroneStatus();
-		}
-
-		private void Update()
-		{
-			chatObject.GetComponent<Multiplayer.Lobby.ChatController>().HandleChatSelection();
 		}
 
 		public override void OnClientEnterLobby()
