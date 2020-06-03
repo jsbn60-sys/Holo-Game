@@ -3066,6 +3066,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2008741107506972800, guid: 127a009fb2a29ea449ce691c6567133a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2008741107506972801, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3134,7 +3139,7 @@ PrefabInstance:
     - target: {fileID: 2008741107506972801, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 190.35376
       objectReference: {fileID: 0}
     - target: {fileID: 2008741107506972801, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
@@ -3154,12 +3159,12 @@ PrefabInstance:
     - target: {fileID: 2008741107506972801, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2008741107506972801, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2008741107506972801, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
@@ -3174,12 +3179,12 @@ PrefabInstance:
     - target: {fileID: 2008741106365510795, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2008741106365510795, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2008741106365510795, guid: 127a009fb2a29ea449ce691c6567133a,
         type: 3}
