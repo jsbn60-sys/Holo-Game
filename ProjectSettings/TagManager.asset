@@ -43,6 +43,7 @@ TagManager:
   - Effect
   - AOEGround
   - NPC
+  - LobbyPlayer
   layers:
   - Default
   - TransparentFX

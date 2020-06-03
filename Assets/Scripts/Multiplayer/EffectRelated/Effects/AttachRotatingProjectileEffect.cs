@@ -12,8 +12,6 @@ public class AttachRotatingProjectileEffect : PermanentEffect
 	[SerializeField] private int amount;
  	protected override void execEffect()
 	{
-		target.CmdSpawnRotatingProjectile(
-			LobbyManager.Instance.getIdxOfPrefab(rotatingProjectilePrefab.gameObject),
-			amount);
+		target.spawnRotatingProjectiles(rotatingProjectilePrefab.gameObject,amount);
 	}
 }

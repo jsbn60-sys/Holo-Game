@@ -1,7 +1,10 @@
 /* edited by: SWT-P_SS_2019_Holo */
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Types;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -66,6 +69,7 @@ namespace Multiplayer.Lobby
 		}
 
 
+
 		/// <summary>
 		/// This hook is invoked when a host is started.\n
 		/// StartHost has multiple signatures, but they all cause this hook to be called.
@@ -121,7 +125,6 @@ namespace Multiplayer.Lobby
 		{
 
 			LobbyPlayer lobbyPlayer = lp.GetComponent<LobbyPlayer>();
-			Player playerController = gp.GetComponent<Player>();
 
 			NetworkServer.Destroy(gp);
 			GameObject p4 = Instantiate(players[x], spawns[spawnCounter].position, Quaternion.identity);
@@ -132,6 +135,7 @@ namespace Multiplayer.Lobby
 				lobbyPlayer.playerControllerId);
 			spawnCounter++;
 		}
+
 
 		/// <summary>
 		/// This is called on the server when it is told that a client has finished switching from the lobby scene to a game player scene.
@@ -148,19 +152,15 @@ namespace Multiplayer.Lobby
 			switch (lobbyPlayer.playerRole)
 			{
 				case PlayerRole.MNI:
-					player.setRole(PlayerRole.MNI);
 					Spawnplayer(0, lp, gp);
 					return false;
 				case PlayerRole.BAU:
-					player.setRole(PlayerRole.BAU);
 					Spawnplayer(1, lp, gp);
 					return false;
 				case PlayerRole.WIR:
-					player.setRole(PlayerRole.WIR);
 					Spawnplayer(2, lp, gp);
 					return false;
 				case PlayerRole.GES:
-					player.setRole(PlayerRole.GES);
 					Spawnplayer(3, lp, gp);
 					return false;
 				case PlayerRole.DRONE:

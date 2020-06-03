@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Leap.Unity;
+using Multiplayer.Lobby;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -24,7 +25,7 @@ public class Spawner : MonoBehaviour
     {
 	    if (!spawnOnlyOnDestruction)
 	    {
-			SpawnObjects();
+		    SpawnObjects();
 	    }
     }
 
@@ -42,7 +43,8 @@ public class Spawner : MonoBehaviour
 
 
     /// <summary>
-    /// Spawns the objects on the network.
+    /// Spawns the object locally,
+    /// because this class is only used by objects that are spawned by effects, which are executed locally.
     /// </summary>
     private void SpawnObjects()
     {
@@ -58,8 +60,16 @@ public class Spawner : MonoBehaviour
 			    spawnRotation = Quaternion.identity;
 		    }
 		    Vector3 spawnPos = transform.position + spawnInfo.SpawnPos.RotatedBy(transform.rotation);
-		    GameObject objectCopy = Instantiate(spawnInfo.ObjectToSpawn, spawnPos, spawnRotation);
-		    NetworkServer.Spawn(objectCopy.gameObject);
+
+		    Player localPlayer = LobbyManager.Instance.LocalPlayerObject.GetComponent<Player>();
+
+		    if (localPlayer.isServer)
+		    {
+			    localPlayer.GetComponent<Player>().CmdSpawn(
+				    LobbyManager.Instance.getIdxOfPrefab(spawnInfo.ObjectToSpawn),
+				    spawnPos,
+				    spawnRotation);
+		    }
 	    }
     }
 

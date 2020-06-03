@@ -351,6 +351,7 @@ public abstract class Unit : NetworkBehaviour
 
 	/// <summary>
 	/// Workaround for dealing damage with attacks, because attack damage is not handled over effects.
+    /// <param name="healthChangeAmount">Amount of health to change</param>
 	/// </summary>
 	[ClientRpc]
 	public void RpcChangeHealth(float healthChangeAmount)
@@ -359,24 +360,41 @@ public abstract class Unit : NetworkBehaviour
 	}
 
 	/// <summary>
+	/// Tells all clients that this players shield changed.
+	/// </summary>
+	/// <param name="shieldChangeAmount">Amnount of shield to change</param>
+	[Command]
+	public void CmdGiveShield(float shieldChangeAmount)
+	{
+		RpcGiveShield(shieldChangeAmount);
+	}
+
+	/// <summary>
+	/// Tells all clients that this players shield changed.
+	/// </summary>
+	/// <param name="shieldChangeAmount">Amnount of shield to change</param>
+	[ClientRpc]
+	public void RpcGiveShield(float shieldChangeAmount)
+	{
+		changeShield(shieldChangeAmount);
+	}
+
+	/// <summary>
 	/// Spawns a given amount of rotating projectiles around the player.
 	/// </summary>
-	/// <param name="prefabIdx">Idx of rotating projectile prefab</param>
+	/// <param name="prefabIdx">Rotating projectile prefab</param>
 	/// <param name="amount">Amount of projectiles to spawn</param>
-	[Command]
-	public void CmdSpawnRotatingProjectile(int prefabIdx, int amount)
+	public void spawnRotatingProjectiles(GameObject projectilePrefab, int amount)
 	{
-		GameObject projectilePrefab = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
 		float degreeBetweenProjectiles = 360f / amount;
 
 		for (int i = 0; i < amount; i++)
 		{
 			Vector3 spawnPos = this.transform.position + Quaternion.Euler(0, degreeBetweenProjectiles * i, 0)
-			                   * this.transform.forward * 2;
+				* this.transform.forward * 2;
 
 			GameObject projectileCopy = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
 			projectileCopy.GetComponent<RotatingProjectile>().Target = this.transform;
-			NetworkServer.Spawn(projectileCopy);
 		}
 	}
 

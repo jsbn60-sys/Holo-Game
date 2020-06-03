@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1370986665996723720}
-  - component: {fileID: 3099764002456457682}
   - component: {fileID: 5921431272985655187}
+  - component: {fileID: -6423104539021510488}
   m_Layer: 0
-  m_Name: AmbulanceItemEffect
+  m_Name: Item_Ambulance_Effect
   m_TagString: Effect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,18 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3099764002456457682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 186953714286548897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e89a766a667444394ee5e884d9fa88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5921431272985655187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,3 +65,16 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &-6423104539021510488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186953714286548897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e89a766a667444394ee5e884d9fa88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeHealthAmount: 50

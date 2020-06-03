@@ -14,7 +14,6 @@ public class Player : Unit
 {
 
 	[SyncVar] public string name;
-	[SerializeField] private PlayerRole role;
 	[SerializeField] private float throwStrength;
 	[SerializeField] private GameObject itemQuickAccess;
 	[SerializeField] private GameObject skillQuickAccess;
@@ -23,11 +22,13 @@ public class Player : Unit
 
 	//private GameObject chat;
 
+	[SerializeField] private GameObject helpIcon;
 	[SerializeField] private GameObject skillMenu;
 	[SerializeField] private GameObject inGameMenu;
 	[SerializeField] private GameObject gameOverMenu;
 	[SerializeField] private GameObject tutorialMenu;
 	[SerializeField] private GameObject inventory;
+	[SerializeField] private GameObject deathScreen;
 
 	[SerializeField] private GameObject bulletSpawn;
 	[SerializeField] private GameObject gun;
@@ -37,6 +38,7 @@ public class Player : Unit
 	private GameObject playerCam;
 	private float horizontal;
 	private float vertical;
+	private int currPlayerToWatchIdx;
 
 	// movement related
 	private bool isGrounded;
@@ -70,15 +72,21 @@ public class Player : Unit
 
     protected void Update()
 	{
-		//input
-		if (isLocalPlayer && !isDead())
+		if (isLocalPlayer)
 		{
-			moveInput();
-			menuInput();
-			itemInput();
-			skillInput();
-			shootInput();
-			CmdUpdateForwardDirection(playerCam.transform.forward);
+			if (!isDead())
+			{
+				moveInput();
+				menuInput();
+				itemInput();
+				skillInput();
+				shootInput();
+				CmdUpdateForwardDirection(playerCam.transform.forward);
+			}
+			else
+			{
+				cameraSwitchInput();
+			}
 		}
 
 		base.Update();
@@ -267,16 +275,79 @@ public class Player : Unit
 		}
 	}
 
+	/// <summary>
+	/// Handles input related to switching cameras between players after death.
+	/// </summary>
+	private void cameraSwitchInput()
+	{
+		if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+			currPlayerToWatchIdx++;
+			updateDeathCam();
+		}
+	}
 
 	/// <summary>
 	/// Removes player as NPC target and tells the GameOverManager that the player is dead.
 	/// </summary>
 	protected override void onDeath()
 	{
-		GameOverManager.Instance.ProfIsBurnedOut(this);
-		gameObject.SetActive(false);
+		if (isLocalPlayer)
+		{
+			updateDeathCam();
+			CmdOnDeath();
+		}
 	}
 
+	/// <summary>
+	/// Updates the deathCam of the player after death.
+	/// </summary>
+	private void updateDeathCam()
+	{
+		GameObject[] alivePlayers = PlayerController.Instance.getAlivePlayerObjects();
+		if (!PlayerController.Instance.areAllPlayersDead())
+		{
+			currPlayerToWatchIdx %= alivePlayers.Length;
+			Player playerToWatch = alivePlayers[currPlayerToWatchIdx].GetComponent<Player>();
+			activateDeathScreen();
+			deathScreen.GetComponent<DeathScreen>().updatePlayerToWatchText(playerToWatch.name);
+			setupCameras(playerToWatch.playerCamTarget.transform,playerToWatch.transform);
+		}
+		else
+		{
+			CmdGameOver();
+		}
+	}
+
+	/// <summary>
+	/// Updates all clients about the players death.
+	/// </summary>
+	[Command]
+	private void CmdOnDeath()
+	{
+		RpcOnDeath();
+	}
+
+	/// <summary>
+	/// Makes the player invisible.
+	/// </summary>
+	[ClientRpc]
+	private void RpcOnDeath()
+	{
+		changeInvisibility(true);
+	}
+
+	[Command]
+	private void CmdGameOver()
+	{
+		RpcGameOver();
+	}
+
+	[ClientRpc]
+	private void RpcGameOver()
+	{
+		LobbyManager.Instance.LocalPlayerObject.GetComponent<Player>().activateGameOverScreen();
+	}
 	/// <summary>
 	/// Sets the UI for gameplay.
 	/// </summary>
@@ -287,7 +358,10 @@ public class Player : Unit
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
 		deactivateUI(inventory);
+		deactivateUI(deathScreen);
 
+
+		activateUI(helpIcon);
 		activateUI(itemQuickAccess);
 		activateUI(skillQuickAccess);
 		activateUI(map);
@@ -311,6 +385,8 @@ public class Player : Unit
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
 		deactivateUI(inventory);
+		deactivateUI(deathScreen);
+		deactivateUI(helpIcon);
 
 		activateUI(skillMenu);
 
@@ -332,6 +408,8 @@ public class Player : Unit
 		deactivateUI(gameOverMenu);
 		deactivateUI(tutorialMenu);
 		deactivateUI(inventory);
+		deactivateUI(deathScreen);
+		deactivateUI(helpIcon);
 
 		activateUI(inGameMenu);
 
@@ -353,8 +431,10 @@ public class Player : Unit
 		deactivateUI(gameOverMenu);
 		deactivateUI(inGameMenu);
 		deactivateUI(inventory);
+		deactivateUI(deathScreen);
 
 		activateUI(tutorialMenu);
+		activateUI(helpIcon);
 
 		canAttack = false;
 	}
@@ -372,6 +452,8 @@ public class Player : Unit
 		deactivateUI(gameOverMenu);
 		deactivateUI(inGameMenu);
 		deactivateUI(tutorialMenu);
+		deactivateUI(deathScreen);
+		deactivateUI(helpIcon);
 
 		activateUI(inventory);
 
@@ -394,8 +476,32 @@ public class Player : Unit
 		deactivateUI(inventory);
 		deactivateUI(inGameMenu);
 		deactivateUI(tutorialMenu);
+		deactivateUI(deathScreen);
+		deactivateUI(helpIcon);
 
 		activateUI(gameOverMenu);
+
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+
+		canAttack = false;
+	}
+
+	private void activateDeathScreen()
+	{
+		deactivateUI(itemQuickAccess);
+		deactivateUI(skillQuickAccess);
+		deactivateUI(map);
+		//deactivateUI(chat);
+		deactivateUI(skillMenu);
+		deactivateUI(inventory);
+		deactivateUI(inGameMenu);
+		deactivateUI(tutorialMenu);
+		deactivateUI(gameOverMenu);
+		deactivateUI(helpIcon);
+
+		activateUI(deathScreen);
+
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
@@ -414,6 +520,8 @@ public class Player : Unit
 		deactivateUI(inGameMenu);
 		deactivateUI(tutorialMenu);
 		deactivateUI(gameOverMenu);
+		deactivateUI(deathScreen);
+		deactivateUI(helpIcon);
 	}
 
 	/// <summary>
@@ -449,24 +557,25 @@ public class Player : Unit
 	/// </summary>
 	public override void OnStartLocalPlayer()
 	{
-		setupCameras();
+		setupCameras(playerCamTarget.transform,this.transform);
+		nameText.GetComponent<Text>().text = name;
 		LobbyManager.Instance.LocalPlayerObject = this.gameObject;
 	}
 
 	/// <summary>
 	/// Sets up playerCam and mapCam at start.
 	/// </summary>
-	private void setupCameras()
+	private void setupCameras(Transform playerTarget, Transform player)
 	{
 		CameraFollow playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
 		CameraFollow mapCamera = GameObject.FindGameObjectWithTag("MapCamera").GetComponent<CameraFollow>();
 
 		// setup playerCam
-		playerCamera.setupCamera(playerCamTarget.transform, this.transform);
+		playerCamera.setupCamera(playerTarget, player);
 		playerCam = playerCamera.gameObject;
 
 		// setup mapCam
-		mapCamera.setupCamera(playerCamTarget.transform, this.transform);
+		mapCamera.setupCamera(playerTarget,player);
 	}
 
 	/// <summary>
@@ -552,42 +661,12 @@ public class Player : Unit
 		skillMenu.GetComponent<SkillMenu>().addSkillPoints(amount);
 	}
 
-	// temp fix for gameOverManager
-	public void gameOver()
-	{
-		activateGameOverScreen();
-	}
-
 	// temp fix for resumeScript
 	public void CmdCloseMenu()
 	{
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		deactivateUI(inGameMenu);
-	}
-
-	// temp fix
-	public void setRole(PlayerRole role)
-	{
-		this.role = role;
-	}
-
-	/// <summary>
-	/// Registers Player at Managers.
-	/// </summary>
-	public override void OnStartServer()
-	{
-		RegisterAtManagers();
-		base.OnStartServer();
-	}
-
-
-	/// <summary>
-	/// Registers the player at the NPCManager and GameOverManager.
-	/// </summary>
-	private void RegisterAtManagers()
-	{
-		GameOverManager.Instance.AddProf(this);
 	}
 
 	/// <summary>
@@ -659,6 +738,14 @@ public class Player : Unit
 	public void changeThrowSpeed(float factor)
 	{
 
+	}
+
+	[Command]
+	public void CmdSpawn(int prefabIdx, Vector3 spawnPos, Quaternion spawnRotation)
+	{
+		GameObject objectPrefab = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
+		GameObject objectCopy = Instantiate(objectPrefab, spawnPos, spawnRotation);
+		NetworkServer.Spawn(objectCopy);
 	}
 
 }

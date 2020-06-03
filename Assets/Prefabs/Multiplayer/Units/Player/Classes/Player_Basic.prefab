@@ -542,21 +542,24 @@ MonoBehaviour:
   attackRate: 0.2
   speed: 12
   jumpForce: 55
+  pushForce: 0
+  onTouchDmg: 0
   healthBar: {fileID: 3993326069869749608}
   shieldBar: {fileID: 671234674140920168}
   forwardDirection: {x: 0, y: 0, z: 0}
   name: 
-  role: 0
   throwStrength: 1
   itemQuickAccess: {fileID: 5394590256849661559}
   skillQuickAccess: {fileID: 1082029584673623326}
   map: {fileID: 733925584964148332}
   nameText: {fileID: 8671543508117508929}
+  helpIcon: {fileID: 7793481750523649283}
   skillMenu: {fileID: 6027948003349583993}
   inGameMenu: {fileID: 673231774792730829}
   gameOverMenu: {fileID: 7034035578363499670}
   tutorialMenu: {fileID: 1823479165258937603}
   inventory: {fileID: 780930079344721257}
+  deathScreen: {fileID: 5237433012813266646}
   bulletSpawn: {fileID: 1207872790123338}
   gun: {fileID: 1032561047953330}
   playerCamTarget: {fileID: 4018324307430055485}
@@ -4919,6 +4922,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5237433012813266646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4744977506474324359, guid: 14a933af46652374e96a9842e10a61fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 681893427003887441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5394590256849661559 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
@@ -4952,6 +4961,12 @@ GameObject:
 --- !u!1 &1823479165258937603 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1168929115075000914, guid: 14a933af46652374e96a9842e10a61fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 681893427003887441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7793481750523649283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7304434154703032914, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
