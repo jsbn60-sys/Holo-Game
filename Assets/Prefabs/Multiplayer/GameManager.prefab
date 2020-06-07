@@ -928,7 +928,7 @@ MonoBehaviour:
     - {fileID: 663520158363847889, guid: 9e5037fa0fd8940418d7938fb7420c8f, type: 3}
   spawnPosContainer: {fileID: 5678609220492280927, guid: 92310a7853b671c48be975d0d7cd79e3,
     type: 3}
-  countdown: 100
+  countdown: 5
   countdownText: {fileID: 5834646012215929789}
   waveCountText: {fileID: 5834646013240350079}
 --- !u!82 &5834646013656011085

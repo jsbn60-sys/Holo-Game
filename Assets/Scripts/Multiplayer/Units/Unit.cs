@@ -13,8 +13,15 @@ using UnityEngine.Networking;
 /// </summary>
 public abstract class Unit : NetworkBehaviour
 {
+	[Header("Unit : Attributes")]
 	[SerializeField] protected float maxHealth;
 	[SerializeField] protected float maxShield;
+	[SerializeField] protected Attack attack;
+	[SerializeField] protected float attackRate;
+	[SerializeField] protected float speed;
+	[SerializeField] protected float jumpForce;
+	[SerializeField] protected float pushForce;
+	[SerializeField] protected float onTouchDmg;
 
 	protected float health;
 	protected float shield;
@@ -22,18 +29,13 @@ public abstract class Unit : NetworkBehaviour
 	protected bool isInvisible;
 	protected bool isStunned;
 
-	[SerializeField] protected Attack attack;
-	[SerializeField] protected float attackRate;
-	[SerializeField] protected float speed;
-	[SerializeField] protected float jumpForce;
-	[SerializeField] protected float pushForce;
-	[SerializeField] protected float onTouchDmg;
+	private const float POS_THRESHOLD = 1f;
+	private const float ROT_THRESHOLD = 5f;
 	protected float attackTimer;
 
+	[Header("Unit : UI")]
 	[SerializeField] private RectTransform healthBar;
 	[SerializeField] private RectTransform shieldBar;
-
-	[SyncVar] public Vector3 forwardDirection;
 	private float speedBeforeStun; //workaround: stores old speed while stunned
 
 	public float Shield => shield;
@@ -60,6 +62,29 @@ public abstract class Unit : NetworkBehaviour
 		if (attackTimer > 0f)
 		{
 			attackTimer -= Time.deltaTime;
+		}
+	}
+
+	/// <summary>
+	/// Updates the units position/rotation on the network if it is inaccurate by a certain threshold.
+	/// For players this means that all player positions/rotations are corrected, except the one of the local player,
+	/// because he calls this function on all other clients, because his version of his playerObject is the
+	/// authoritative one.
+	/// For NPCs this means that all NPCs positions/rotations are corrected, except the one of the server,
+	/// because he call this function on all other clients, because his version of the NPCs is the authoritative one.
+	/// </summary>
+	/// <param name="actualPos">The correct position of the unit</param>
+	/// <param name="actualRot">The correct rotation of the unit</param>
+	protected void checkNetworkPosition(Vector3 actualPos, Quaternion actualRot)
+	{
+		if (Vector3.Distance(actualPos,this.transform.position) >= POS_THRESHOLD)
+		{
+			this.transform.position = Vector3.Lerp(this.transform.position, actualPos, Time.deltaTime * speed);
+		}
+
+		if (Quaternion.Angle(actualRot, this.transform.rotation) >= ROT_THRESHOLD)
+		{
+			this.transform.rotation = Quaternion.Lerp(this.transform.rotation,actualRot,Time.deltaTime * speed);
 		}
 	}
 

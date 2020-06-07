@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 54005501182662504}
   - component: {fileID: 114396973123204670}
   - component: {fileID: 3616439031354131278}
-  - component: {fileID: 4039244922547554206}
+  - component: {fileID: 3469895887113495459}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -161,7 +161,7 @@ MonoBehaviour:
   onHitEffects: []
   speed: 10
   pierceAmount: 0
---- !u!114 &4039244922547554206
+--- !u!114 &3469895887113495459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.0625
+  m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

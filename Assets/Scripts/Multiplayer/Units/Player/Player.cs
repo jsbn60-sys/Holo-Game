@@ -13,8 +13,11 @@ using UnityEngine.UI;
 public class Player : Unit
 {
 
+	[Header("Player : Attribute")]
 	[SyncVar] public string name;
 	[SerializeField] private float throwSpeed;
+
+	[Header("Player : UI")]
 	[SerializeField] private GameObject itemQuickAccess;
 	[SerializeField] private GameObject skillQuickAccess;
 	[SerializeField] private GameObject map;
@@ -28,10 +31,9 @@ public class Player : Unit
 	[SerializeField] private GameObject inventory;
 	[SerializeField] private GameObject deathScreen;
 
+	[Header("Player : Attachments")]
 	[SerializeField] private GameObject bulletSpawn;
 	[SerializeField] private GameObject gun;
-
-	// Camera related
 	[SerializeField] private GameObject playerCamTarget;
 	private GameObject playerCam;
 	private float horizontal;
@@ -83,7 +85,6 @@ public class Player : Unit
 					shootInput();
 				}
 				chatInput();
-				CmdUpdateForwardDirection(playerCam.transform.forward);
 			}
 			else
 			{
@@ -109,37 +110,90 @@ public class Player : Unit
 	/// Handles input related to movement and camera.
 	/// </summary>
 	private void moveInput()
-	{
-		horizontal += Input.GetAxis("Mouse X");
-		vertical -= Input.GetAxis("Mouse Y");
-		vertical = Mathf.Clamp(vertical, 0, 60);
-		float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
-		float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+    {
+	    horizontal += Input.GetAxis("Mouse X");
+	    vertical -= Input.GetAxis("Mouse Y");
+	    vertical = Mathf.Clamp(vertical, 0, 60);
+	    float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
+	    float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+	    bool jumped = Input.GetKey(KeyCode.Space) && isGrounded && GetComponent<Rigidbody>().velocity.y < 5.0f;
 
-		// jump by applying force
-		if (Input.GetKey(KeyCode.Space) && isGrounded && GetComponent<Rigidbody>().velocity.y < 5.0f)
-		{
-			GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-		}
-		// additional gravity for better jump
-		if (!isGrounded)
-		{
-			Vector3 vel = GetComponent<Rigidbody>().velocity;
-			vel.y -= bonusGravity * Time.deltaTime;
-			GetComponent<Rigidbody>().velocity = vel;
+	    CmdPlayerMovement(x,z,horizontal,jumped,this.transform.position,this.transform.rotation);
+    }
 
-			// bounce player off wall when in air
-			if (isCollidingInAir)
-			{
-				z *= -0.5f;
-				x *= -0.5f;
-			}
-		}
+    /// <summary>
+    /// Executes the player movement on all clients.
+    /// </summary>
+    /// <param name="x">x movement</param>
+    /// <param name="z">z movement</param>
+    /// <param name="horizontal">horizontal movement</param>
+    /// <param name="jumped">has the player jumped</param>
+    /// <param name="actualPos">accurate position of the player</param>
+    /// <param name="actualRot">accurate rotation of the player</param>
+    [Command]
+    private void CmdPlayerMovement(float x, float z, float horizontal, bool jumped, Vector3 actualPos, Quaternion actualRot)
+    {
+	    RpcPlayerMovement(x,z,horizontal,jumped,actualPos,actualRot);
+    }
 
-		playerCamTarget.transform.rotation = Quaternion.Euler(vertical, horizontal, 0);
-		transform.rotation = Quaternion.Euler(0, horizontal, 0);
-		transform.Translate(x, 0, z);
-	}
+    /// <summary>
+    /// Executes the player movement on client.
+    /// If is local player updates camera, if is not local player checks network position.
+    /// </summary>
+    /// <param name="x">x movement</param>
+    /// <param name="z">z movement</param>
+    /// <param name="horizontal">horizontal movement</param>
+    /// <param name="jumped">has the player jumped</param>
+    /// <param name="actualPos">accurate position of the player</param>
+    /// <param name="actualRot">accurate rotation of the player</param>
+    [ClientRpc]
+    private void RpcPlayerMovement(float x, float z, float horizontal, bool jumped, Vector3 actualPos,Quaternion actualRot)
+    {
+	    // rotate camera on local player
+	    if (isLocalPlayer)
+	    {
+		    playerCamTarget.transform.rotation = Quaternion.Euler(vertical, horizontal, 0);
+	    }
+	    else
+	    {
+		    checkNetworkPosition(actualPos, actualRot);
+	    }
+
+	    // jump
+	    if (jumped)
+	    {
+		    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+	    }
+
+	    // additional gravity for better jump
+	    checkForAdditionalGravity(ref z, ref x);
+
+	    // rotation and position update
+	    transform.rotation = Quaternion.Euler(0, horizontal, 0);
+	    transform.Translate(x, 0, z);
+    }
+
+    /// <summary>
+    /// Applies additional gravity on the player movement for a better jump curve.
+    /// </summary>
+    /// <param name="z">z movement</param>
+    /// <param name="x">x movement</param>
+    private void checkForAdditionalGravity(ref float z, ref float x)
+    {
+	    if (!isGrounded)
+	    {
+		    Vector3 vel = GetComponent<Rigidbody>().velocity;
+		    vel.y -= bonusGravity * Time.deltaTime;
+		    GetComponent<Rigidbody>().velocity = vel;
+
+		    // bounce player off wall when in air
+		    if (isCollidingInAir)
+		    {
+			    z *= -0.5f;
+			    x *= -0.5f;
+		    }
+	    }
+    }
 
 	/// <summary>
 	/// Handles input related to toggling menus ingame.
@@ -266,13 +320,24 @@ public class Player : Unit
 	/// </summary>
 	/// <param name="prefabIdx">Idx of registeredPrefab that was shot</param>
 	[Command]
-	private void CmdShoot(int prefabIdx,float degree)
+	private void CmdShoot(int prefabIdx,float degree, Vector3 forwardDirection)
+	{
+		RpcShoot(prefabIdx, degree, forwardDirection);
+	}
+
+	/// <summary>
+	/// Shoots projectiles on all clients.
+	/// </summary>
+	/// <param name="prefabIdx"></param>
+	/// <param name="degree"></param>
+	/// <param name="forwardDirection"></param>
+	[ClientRpc]
+	private void RpcShoot(int prefabIdx, float degree, Vector3 forwardDirection)
 	{
 		Vector3 throwDirection = Quaternion.Euler(0, degree, 0) * forwardDirection;
 		Projectile projectile = LobbyManager.Instance.getPrefabAtIdx(prefabIdx).GetComponent<Projectile>();
 		GameObject bullet = Instantiate(projectile.gameObject, bulletSpawn.transform.position, gun.transform.rotation * Quaternion.Euler(0f, 90f, 0f));
 		bullet.GetComponent<Projectile>().setupProjectile(throwDirection,throwSpeed);
-		NetworkServer.Spawn(bullet);
 	}
 
 	/// <summary>
@@ -284,7 +349,7 @@ public class Player : Unit
 	{
 		if (isLocalPlayer)
 		{
-			CmdShoot(prefabIdx, degree);
+			CmdShoot(prefabIdx, degree, playerCam.transform.forward);
 		}
 	}
 
@@ -597,17 +662,6 @@ public class Player : Unit
 		mapCamera.setupCamera(playerTarget,player);
 	}
 
-	/// <summary>
-	/// WIP: Keeps the SyncVar forwardDirection
-	/// updated on all clients, for shooting.
-	/// This is a workaround.
-	/// </summary>
-	/// <param name="forward">Forward direction of the playerCam</param>
-	[Command]
-	private void CmdUpdateForwardDirection(Vector3 forward)
-	{
-		forwardDirection = forward;
-	}
 
 	/// <summary>
 	/// Players can only push NPCs.

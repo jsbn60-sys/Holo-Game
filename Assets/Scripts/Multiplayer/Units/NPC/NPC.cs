@@ -28,18 +28,33 @@ public class NPC : Unit
 	/// <summary>
 	/// Update is called once per frame.
 	/// Updates the closest target and checks if the npc can attack.
+	/// If this runs on the server, it also checks if the NPC position is accurate on the clients.
 	/// </summary>
 	void Update()
     {
+	    base.Update();
+	    updateCurrTarget();
+	    checkIfCanAttack();
+
 	    if (isServer)
 	    {
-		    base.Update();
-
-		    updateCurrTarget();
-		    checkIfCanAttack();
+		    RpcCheckPosition(this.transform.position, this.transform.rotation);
 	    }
     }
 
+	/// <summary>
+	/// Updates the NPC position on all clients.
+	/// </summary>
+	/// <param name="actualPos">The accurate position of the NPC</param>
+	/// <param name="actualRotation">The accurate rotation of the NPC</param>
+	[ClientRpc]
+	private void RpcCheckPosition(Vector3 actualPos, Quaternion actualRotation)
+	{
+		if (!isServer)
+		{
+			checkNetworkPosition(actualPos,actualRotation);
+		}
+	}
 
 	/// <summary>
 	/// Drops an item on death, removes npc from group and destroys it.
@@ -48,7 +63,6 @@ public class NPC : Unit
 	{
 		if (isServer)
 		{
-			//StartCoroutine(ItemDrop.instance.spawnItem(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z, false));
 			group.removeNpc(this);
 			NetworkServer.Destroy(gameObject);
 		}
@@ -57,7 +71,6 @@ public class NPC : Unit
 	/// <summary>
 	/// Checks if the npc can attack and attacks if possible.
 	/// </summary>
-	[Server]
 	public void checkIfCanAttack() {
 
 		if (!agent.pathPending && readyToAttack() && hasValidTarget() && agent.remainingDistance <= attackRange)
@@ -77,7 +90,6 @@ public class NPC : Unit
 	/// Targets that are invisible are skipped.
 	/// If there was no target found the npc stops working.
 	/// </summary>
-	[Server]
 	private void updateCurrTarget()
 	{
 		Collider[] targetsInRange = Physics.OverlapSphere(this.transform.position, detectionRadius, attackableLayer);

@@ -350,7 +350,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &7968432438631747925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8000099978867427209}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22672e1eb92948d49b2a1ae78bc0c868, type: 3}
   m_Name: 
@@ -426,14 +426,13 @@ MonoBehaviour:
   maxHealth: 100
   maxShield: 100
   attack: {fileID: -4556958912765953802, guid: eefa2b1597d0eb14fb567cbfb7a52aa6, type: 3}
-  attackRate: 1
+  attackRate: 1000
   speed: 12
   jumpForce: 55
   pushForce: 0
   onTouchDmg: 0
   healthBar: {fileID: 7369056069427709482}
   shieldBar: {fileID: 6377015664872282666}
-  forwardDirection: {x: 0, y: 0, z: 0}
   agent: {fileID: 7905445311449886411}
   attackableLayer:
     serializedVersion: 2
