@@ -37,6 +37,10 @@ public class SkillMenu : NetworkBehaviour
 
 	private int skillPoints;
 
+	/// <summary>
+	/// Start is called before the first frame update.
+	/// Sets up buttons.
+	/// </summary>
 	void Start()
 	{
 		skillPoints = 10;
@@ -45,9 +49,13 @@ public class SkillMenu : NetworkBehaviour
 		foreach(SkillButton button in skillButtons)
 		{
 			button.GetComponent<Image>().sprite = button.Skill.getIcon();
+			button.setNotUnlockable();
 			// Workaround because listener cant be added through editor
 			button.onClick.AddListener(() => tryUnlockSkill(button.Skill));
 		}
+
+		skillButtons[0].setUnlockable();
+		skillButtons[1].setUnlockable();
 	}
 
 	/// <summary>
@@ -99,7 +107,7 @@ public class SkillMenu : NetworkBehaviour
 	{
 		SkillButton skillButton = skillButtons[id - 1];
 
-		skillButton.IsUnlocked = true;
+		skillButton.setUnlocked();
 		activateNextButtons(id);
 
 		subtractSkillPoints(skillButton.Skill.Cost);
@@ -181,27 +189,27 @@ public class SkillMenu : NetworkBehaviour
 		switch (id)
 		{
 			case 1:
-				skillButtons[2].interactable = true;
-				skillButtons[3].interactable = true;
+				skillButtons[2].setUnlockable();
+				skillButtons[3].setUnlockable();
 				break;
 			case 2:
-				skillButtons[4].interactable = true;
-				skillButtons[5].interactable = true;
+				skillButtons[4].setUnlockable();
+				skillButtons[5].setUnlockable();
 				break;
 			case 3: case 4: case 5: case 6:
 				if (!skillButtons[6].IsUnlocked)
 				{
-					skillButtons[6].interactable = true;
+					skillButtons[6].setUnlockable();
 				}
 				break;
 			case 7:
-				skillButtons[7].interactable = true;
-				skillButtons[8].interactable = true;
+				skillButtons[7].setUnlockable();
+				skillButtons[8].setUnlockable();
 				break;
 			case 8: case 9:
 				if (!skillButtons[9].IsUnlocked)
 				{
-					skillButtons[9].interactable = true;
+					skillButtons[9].setUnlockable();
 				}
 				break;
 		}
