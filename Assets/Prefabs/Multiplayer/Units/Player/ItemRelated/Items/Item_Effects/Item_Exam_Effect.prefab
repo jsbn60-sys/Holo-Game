@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8642540001466736456}
   - component: {fileID: -3596630437591897900}
   m_Layer: 0
-  m_Name: ExamItemEffect
+  m_Name: Item_Exam_Effect
   m_TagString: Effect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7783123967810137737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a631bd65078af64ab7aa27200a46c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 70bf132e309054d4ba9e1b99572b1b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  dmgChangeAmount: 50
+  dmgChangeAmount: 25
 --- !u!114 &-3596630437591897900
 MonoBehaviour:
   m_ObjectHideFlags: 0

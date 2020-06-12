@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Serialization;
@@ -21,10 +22,7 @@ public class Skill : NetworkBehaviour, Slotable
 
 	public void activate(Player player)
 	{
-		foreach (Effect effect in effects)
-			{
-				player.attachEffect(effect);
-			}
+		player.getHit(0, effects.ToList());
 	}
 
 	public Sprite getIcon()

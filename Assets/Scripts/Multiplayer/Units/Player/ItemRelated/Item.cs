@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 public class Item : NetworkBehaviour , Slotable
 {
 	[SerializeField]
-	private	Effect effect;
+	private	List<Effect> effects;
 
 	[SerializeField]
 	private SpriteRenderer spriteRenderer;
@@ -23,7 +23,7 @@ public class Item : NetworkBehaviour , Slotable
 	}
 
 	public void activate(Player player) {
-		player.attachEffect(effect);
+		player.getHit(0,effects);
 	}
 
 	public Sprite getIcon()

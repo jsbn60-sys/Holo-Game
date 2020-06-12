@@ -325,16 +325,6 @@ public abstract class Unit : NetworkBehaviour
 	/// <param name="effect">Effect that should be attached</param>
 	public void attachEffect(Effect effect)
 	{
-		// Effects are only attached on enemies on the server
-		if (this.tag.Equals("NPC") && !isServer)
-		{
-			return;
-		}
-		if (!this.tag.Equals("Dummy") && !this.tag.Equals("NPC") && (!isClient || !isLocalPlayer))
-		{
-			return;
-		}
-
 		/*
 		 * Workaround:
 		 * PlaceObjectsEffects spawn objects on the server.
