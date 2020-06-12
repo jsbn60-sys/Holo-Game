@@ -308,9 +308,16 @@ public class Player : Unit
 	{
 		if (Input.GetKey(KeyCode.Mouse0) && readyToAttack() && canAttack)
 		{
-			base.useAttack();
-			shoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject),0);
+			useAttack();
 		}
+	}
+
+	/// <summary>
+	/// Shoots the attack projectile.
+	/// </summary>
+	protected override void execAttack()
+	{
+		shoot(LobbyManager.Instance.getIdxOfPrefab(attack.gameObject),0);
 	}
 
 	/// <summary>

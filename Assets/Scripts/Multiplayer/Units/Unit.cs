@@ -89,12 +89,18 @@ public abstract class Unit : NetworkBehaviour
 	}
 
 	/// <summary>
-	/// Resets attackTimer.
+	/// Resets attackTimer and executes attack.
 	/// </summary>
 	protected void useAttack()
 	{
 		attackTimer = attackRate;
+		execAttack();
 	}
+
+	/// <summary>
+	/// Executes attack.
+	/// </summary>
+	protected abstract void execAttack();
 
 	/// <summary>
 	/// Returns if player can attack.

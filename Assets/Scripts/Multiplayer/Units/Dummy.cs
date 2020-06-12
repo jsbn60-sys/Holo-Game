@@ -32,4 +32,12 @@ public class Dummy : Unit
 	{
 
 	}
+
+	/// <summary>
+	/// Dummies can't attack.
+	/// </summary>
+	protected override void execAttack()
+	{
+
+	}
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Leap;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
@@ -12,6 +13,7 @@ using UnityEngine.Networking;
 /// </summary>
 public class NPC : Unit
 {
+	[Header("NPC : Attributes")]
 	[SerializeField] private NavMeshAgent agent;
 	[SerializeField] private LayerMask attackableLayer;
 	[SerializeField] private float attackRange;
@@ -33,8 +35,22 @@ public class NPC : Unit
 	void Update()
     {
 	    base.Update();
-	    updateCurrTarget();
-	    checkIfCanAttack();
+
+	    if (canAttack())
+	    {
+		    stopAgent();
+		    useAttack();
+	    }
+	    else
+	    {
+		    agent.isStopped = false;
+		    updateCurrTarget();
+	    }
+
+	    if (isInRange())
+	    {
+		    RotateTowards();
+	    }
 
 	    if (isServer)
 	    {
@@ -69,15 +85,39 @@ public class NPC : Unit
 	}
 
 	/// <summary>
-	/// Checks if the npc can attack and attacks if possible.
+	/// Returns if the NPC can attack.
 	/// </summary>
-	public void checkIfCanAttack() {
+	/// <returns>Can this NPC attack</returns>
+	private bool canAttack()
+	{
+		return readyToAttack() && hasValidTarget() && isInRange();
+	}
 
-		if (!agent.pathPending && readyToAttack() && hasValidTarget() && agent.remainingDistance <= attackRange)
-		{
-			attack.onHit(currentTarget.GetComponent<Unit>());
-			base.useAttack();
-		}
+	/// <summary>
+	/// Checks if the the NPC is in range and has an active path.
+	/// </summary>
+	/// <returns>Is the NPC in range</returns>
+	private bool isInRange()
+	{
+		return !agent.pathPending && agent.remainingDistance <= attackRange;
+
+	}
+
+	/// <summary>
+	/// Stops the navmeshagent and stops movement.
+	/// </summary>
+	private void stopAgent()
+	{
+		agent.isStopped = true;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+	}
+
+	/// <summary>
+	/// A NPC attacks by hitting the current target.
+	/// </summary>
+	protected override void execAttack()
+	{
+		attack.onHit(currentTarget.GetComponent<Unit>());
 	}
 
 	/// <summary>
@@ -130,7 +170,7 @@ public class NPC : Unit
 		}
 		else
 		{
-			agent.isStopped = true;
+			stopAgent();
 		}
 	}
 
@@ -164,5 +204,15 @@ public class NPC : Unit
 	protected override void hitEffects()
 	{
 
+	}
+
+	/// <summary>
+	/// Fixes rotation towards the target, even if navmeshagent is already stopped.
+	/// </summary>
+	private void RotateTowards()
+	{
+		Vector3 direction = (currentTarget.position - transform.position).normalized;
+		Quaternion lookRotation = Quaternion.LookRotation(direction);
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
 	}
 }
