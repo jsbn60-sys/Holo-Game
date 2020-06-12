@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 206637746558379399}
   - component: {fileID: 3479379739930809955}
   - component: {fileID: 2451137338467846188}
-  - component: {fileID: 5352969626982625767}
   - component: {fileID: 3910796159730408815}
   - component: {fileID: 1725462855160972867}
   - component: {fileID: 3629740393704064169}
@@ -120,28 +119,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &5352969626982625767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424208236651526785}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22672e1eb92948d49b2a1ae78bc0c868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.11111111
-  m_SyncRotationAxis: 4
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 1
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!195 &3910796159730408815
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -156,7 +133,7 @@ NavMeshAgent:
   m_Acceleration: 9
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 5
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -202,7 +179,6 @@ MonoBehaviour:
   onTouchDmg: 0
   healthBar: {fileID: 6594248982574529893}
   shieldBar: {fileID: 7329865701096251749}
-  forwardDirection: {x: 0, y: 0, z: 0}
   agent: {fileID: 3910796159730408815}
   attackableLayer:
     serializedVersion: 2

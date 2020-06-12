@@ -157,4 +157,12 @@ public class NPC : Unit
 	{
 		return target.tag.Equals("Player");
 	}
+
+	/// <summary>
+	/// To-Do
+	/// </summary>
+	protected override void hitEffects()
+	{
+
+	}
 }

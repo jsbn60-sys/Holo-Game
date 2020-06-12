@@ -30,6 +30,7 @@ public class Player : Unit
 	[SerializeField] private GameObject tutorialMenu;
 	[SerializeField] private GameObject inventory;
 	[SerializeField] private GameObject deathScreen;
+	[SerializeField] private GameObject flashingBorder;
 
 	[Header("Player : Attachments")]
 	[SerializeField] private GameObject bulletSpawn;
@@ -651,8 +652,8 @@ public class Player : Unit
 	/// </summary>
 	private void setupCameras(Transform playerTarget, Transform player)
 	{
-		CameraFollow playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
-		CameraFollow mapCamera = GameObject.FindGameObjectWithTag("MapCamera").GetComponent<CameraFollow>();
+		CameraController playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+		CameraController mapCamera = GameObject.FindGameObjectWithTag("MapCamera").GetComponent<CameraController>();
 
 		// setup playerCam
 		playerCamera.setupCamera(playerTarget, player);
@@ -839,5 +840,17 @@ public class Player : Unit
 	public void RpcSendTextMessage(string sender, string message)
 	{
 		LobbyManager.Instance.LocalPlayerObject.GetComponent<Player>().chat.GetComponent<Chat>().postMessage(sender, message);
+	}
+
+	/// <summary>
+	/// Causes the camera to shake and to flash red.
+	/// </summary>
+	protected override void hitEffects()
+	{
+		if (isLocalPlayer)
+		{
+			playerCam.GetComponent<CameraController>().Shake();
+			flashingBorder.GetComponent<FlashingImage>().Flash(5f);
+		}
 	}
 }

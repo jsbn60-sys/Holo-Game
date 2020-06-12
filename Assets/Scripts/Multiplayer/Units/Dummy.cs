@@ -24,4 +24,12 @@ public class Dummy : Unit
 	{
 		return false;
 	}
+
+	/// <summary>
+	/// To-Do
+	/// </summary>
+	protected override void hitEffects()
+	{
+
+	}
 }

@@ -150,6 +150,7 @@ public abstract class Unit : NetworkBehaviour
 			shield = Mathf.Max(shield - amount, 0);
 
 			health -= shieldOverflowDmg;
+			hitEffects();
 			if (isDead())
 			{
 				onDeath();
@@ -158,6 +159,12 @@ public abstract class Unit : NetworkBehaviour
 		UpdateHealthbarSize();
 		UpdateShieldbarSize();
 	}
+
+	/// <summary>
+	/// Effects that will affect the unit once it was hit.
+	/// This can be used for shaking the camera, pushing or other various effects.
+	/// </summary>
+	protected abstract void hitEffects();
 
 	/// <summary>
 	/// Checks if collison is a unit and if it is a pushable target.
