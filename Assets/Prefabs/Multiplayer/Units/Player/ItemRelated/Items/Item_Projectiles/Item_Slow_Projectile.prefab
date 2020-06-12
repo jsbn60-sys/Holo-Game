@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 23827212561835946}
   - component: {fileID: 54134307068706724}
   - component: {fileID: 114966957916968464}
-  - component: {fileID: 114438178483441172}
   - component: {fileID: 2686767430887422175}
   - component: {fileID: -9013155512586559978}
   - component: {fileID: -5285877474512396231}
@@ -105,7 +104,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896931107535402}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -146,28 +145,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114438178483441172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896931107535402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13d6c522af31447398568cc65334232b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0.05882353
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!82 &2686767430887422175
 AudioSource:
   m_ObjectHideFlags: 0
@@ -279,16 +256,12 @@ MonoBehaviour:
   dmg: 0
   critChance: 0
   onHitEffects: []
-  hitFX: {fileID: 0}
   speed: 10
-  triggersOnGround: 0
-  triggersOnNpc: 0
-  triggersOnWalls: 0
-  pierceAmount: 0
   npcLayer:
     serializedVersion: 2
     m_Bits: 0
   radius: 0
+  explosionForce: 0
 --- !u!114 &-5285877474512396231
 MonoBehaviour:
   m_ObjectHideFlags: 0

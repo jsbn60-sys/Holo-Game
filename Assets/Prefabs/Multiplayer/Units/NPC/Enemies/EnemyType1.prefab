@@ -360,7 +360,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 12
+  m_Speed: 0
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 3000
@@ -404,7 +404,7 @@ MonoBehaviour:
   maxShield: 100
   attack: {fileID: -4556958912765953802, guid: eefa2b1597d0eb14fb567cbfb7a52aa6, type: 3}
   attackRate: 1
-  speed: 12
+  speed: 0
   jumpForce: 55
   pushForce: 0
   onTouchDmg: 0

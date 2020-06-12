@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Lobby;
 using UnityEngine;
+using UnityEngine.Networking;
 
 /// <summary>
 /// Simple dummy unit, that will be targeted by npcs in range.
@@ -39,5 +41,14 @@ public class Dummy : Unit
 	protected override void execAttack()
 	{
 
+	}
+
+	/// <summary>
+	/// Dummies can only be hit on the server.
+	/// </summary>
+	/// <returns>Is the localPlayer the server</returns>
+	protected override bool canBeHit()
+	{
+		return LobbyManager.Instance.LocalPlayerObject.GetComponent<NetworkBehaviour>().isServer;
 	}
 }

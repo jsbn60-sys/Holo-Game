@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Leap;
+using Multiplayer.Lobby;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
@@ -214,5 +215,14 @@ public class NPC : Unit
 		Vector3 direction = (currentTarget.position - transform.position).normalized;
 		Quaternion lookRotation = Quaternion.LookRotation(direction);
 		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+	}
+
+	/// <summary>
+	/// NPCs can only be hit on the server.
+	/// </summary>
+	/// <returns>Is the localPlayer the server</returns>
+	protected override bool canBeHit()
+	{
+		return LobbyManager.Instance.LocalPlayerObject.GetComponent<NetworkBehaviour>().isServer;
 	}
 }

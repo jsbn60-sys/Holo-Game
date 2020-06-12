@@ -37,7 +37,9 @@ public class SingleTargetProjectile : Projectile
 
 		if (amountOfEnemiesPierced >= pierceAmount)
 		{
-			Destroy(this.gameObject);
+			GetComponent<Collider>().isTrigger = false;
+			GetComponent<Rigidbody>().velocity *= 2f;
+			Destroy(this.gameObject,2f);
 		}
 		else
 		{

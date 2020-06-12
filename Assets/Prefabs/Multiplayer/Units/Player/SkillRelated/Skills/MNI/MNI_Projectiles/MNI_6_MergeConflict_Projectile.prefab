@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 3408621206013971404}
   - component: {fileID: 3408621206013969458}
   - component: {fileID: 3408621206013972525}
-  - component: {fileID: 3408621206013972524}
   - component: {fileID: 3408621206013973769}
   m_Layer: 10
-  m_Name: MNI_6_MergeConflictProjectile
+  m_Name: MNI_6_MergeConflict_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +102,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3408621206013970596}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -144,28 +143,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &3408621206013972524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3408621206013970596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13d6c522af31447398568cc65334232b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &3408621206013973769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,13 +159,9 @@ MonoBehaviour:
   critChance: 0
   onHitEffects:
   - {fileID: -1727315071048383087, guid: 50ab3164b685ceb46872ee28e8d31564, type: 3}
-  hitFX: {fileID: 0}
   speed: 10
-  triggersOnGround: 1
-  triggersOnNpc: 1
-  triggersOnWalls: 1
-  pierceAmount: 0
   npcLayer:
     serializedVersion: 2
     m_Bits: 0
   radius: 10
+  explosionForce: 0

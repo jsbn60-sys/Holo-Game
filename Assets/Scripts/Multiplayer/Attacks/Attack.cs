@@ -38,11 +38,7 @@ public abstract class Attack : NetworkBehaviour
 			dmgToDeal *= 2;
 		}
 
-		target.CmdChangeHealth(dmgToDeal);
-		foreach (Effect effect in onHitEffects)
-		{
-			target.attachEffect(effect);
-		}
+		target.getHit(dmgToDeal,onHitEffects);
 	}
 
 	/// <summary>

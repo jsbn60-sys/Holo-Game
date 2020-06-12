@@ -453,4 +453,28 @@ public abstract class Unit : NetworkBehaviour
 	{
 		onTouchDmg += amount;
 	}
+
+	/// <summary>
+	/// Gets the target hit.
+	/// </summary>
+	/// <param name="dmg">Dmg to deal</param>
+	/// <param name="effects">Effects to apply</param>
+	public void getHit(float dmg, List<Effect> effects)
+	{
+		if (canBeHit())
+		{
+			CmdChangeHealth(dmg);
+			foreach (Effect effect in effects)
+			{
+				attachEffect(effect);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Returns if the unit can be hit.
+	/// This is related to networking.
+	/// </summary>
+	/// <returns>Can the unit be hit</returns>
+	protected abstract bool canBeHit();
 }

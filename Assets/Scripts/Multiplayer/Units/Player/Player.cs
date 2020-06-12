@@ -860,4 +860,13 @@ public class Player : Unit
 			flashingBorder.GetComponent<FlashingImage>().Flash(5f);
 		}
 	}
+
+	/// <summary>
+	/// Player is only hit, if it is the localPlayer.
+	/// </summary>
+	/// <returns>Is this player the localPlayer</returns>
+	protected override bool canBeHit()
+	{
+		return isLocalPlayer;
+	}
 }
