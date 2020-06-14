@@ -53,22 +53,35 @@ public class NPCController : NetworkBehaviour
 	/// </summary>
 	private void Update()
 	{
-		if (allNpcsAreDead)
+		if (isServer && allNpcsAreDead)
 		{
 			if (countdownTimer > 0f)
 			{
 				countdownTimer -= Time.deltaTime;
-				countdownText.text = "Wave Countdown: " + (int) countdownTimer;
+
+				CmdUpdateWaveUI("Wave Countdown: " + (int) countdownTimer,(currWaveIdx + 1) + ". Semester");
 			}
 			else
 			{
 				allNpcsAreDead = false;
-				countdownText.text = "";
-				waveCountText.text = (currWaveIdx + 1) + ". Semester";
+				CmdUpdateWaveUI("",(currWaveIdx + 1) + ". Semester");
 				countdownTimer = countdown;
 				spawnWave();
 			}
 		}
+	}
+
+	[Command]
+	private void CmdUpdateWaveUI(string countdownText, string waveCountText)
+	{
+		RpcUpdateWaveUI(countdownText,waveCountText);
+	}
+
+	[ClientRpc]
+	private void RpcUpdateWaveUI(string countdownText, string waveCountText)
+	{
+		this.countdownText.text = countdownText;
+		this.waveCountText.text = waveCountText;
 	}
 
 	/// <summary>

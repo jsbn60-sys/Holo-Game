@@ -156,8 +156,6 @@ MonoBehaviour:
   height: 0
   heightDamping: 0
   rotationDamping: 0
-  shakeDuration: 0
-  shakeAmount: 0
 --- !u!20 &98935666
 Camera:
   m_ObjectHideFlags: 0
@@ -1547,7 +1545,7 @@ PrefabInstance:
     - target: {fileID: 1572238942036212536, guid: 35229db04b130054cbe17f0a1acf7896,
         type: 3}
       propertyPath: m_ServerOnly
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5834646013656011082, guid: 35229db04b130054cbe17f0a1acf7896,
         type: 3}
