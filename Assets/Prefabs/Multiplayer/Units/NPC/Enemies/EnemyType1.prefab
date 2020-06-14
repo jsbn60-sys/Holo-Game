@@ -461,7 +461,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackRange: 3
-  detectionRadius: 100
+  detectionRadius: 200
 --- !u!136 &-3370476050527333191
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -483,6 +483,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8003806174194754999}
     m_Modifications:
+    - target: {fileID: 7809818814971883007, guid: 635a4ac759f135a4da2eb35beb009f14,
+        type: 3}
+      propertyPath: m_Name
+      value: Healthbar Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 2067835325893843200, guid: 635a4ac759f135a4da2eb35beb009f14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -602,11 +607,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809818814971883007, guid: 635a4ac759f135a4da2eb35beb009f14,
-        type: 3}
-      propertyPath: m_Name
-      value: Healthbar Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635a4ac759f135a4da2eb35beb009f14, type: 3}

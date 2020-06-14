@@ -893,13 +893,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5834646013656011083}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9693b6f2d93ebf4f9a994c80d1886c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
   - npcGroups:
+    - {fileID: 8570396496854948561, guid: af6f67187301c784495304a68ded21d3, type: 3}
+    - {fileID: 8570396496854948561, guid: af6f67187301c784495304a68ded21d3, type: 3}
     - {fileID: 8570396496854948561, guid: af6f67187301c784495304a68ded21d3, type: 3}
   - npcGroups:
     - {fileID: 8159328626812291215, guid: a40843bb08267614fa624e6e9e2136c3, type: 3}

@@ -7461,6 +7461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3550152445911247828}
+  - component: {fileID: 73117080055456793}
   m_Layer: 0
   m_Name: WhooleFence (3)
   m_TagString: Untagged
@@ -7567,6 +7568,19 @@ Transform:
   m_Father: {fileID: 3550152447053561986}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &73117080055456793
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550152445911247829}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 170, y: 2, z: 1}
+  m_Center: {x: -85, y: 0, z: 0}
 --- !u!1 &3550152445913348752
 GameObject:
   m_ObjectHideFlags: 0
@@ -29189,6 +29203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3550152446560515979}
+  - component: {fileID: 2336492369973623400}
   m_Layer: 0
   m_Name: WhooleFence
   m_TagString: Untagged
@@ -29340,6 +29355,19 @@ Transform:
   m_Father: {fileID: 3550152447053561986}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2336492369973623400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550152446560515976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 256, y: 2, z: 1}
+  m_Center: {x: -128, y: 0, z: 0}
 --- !u!1 &3550152446563236546
 GameObject:
   m_ObjectHideFlags: 0
@@ -30976,6 +31004,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3550152446604850320}
+  - component: {fileID: 1009239899168016919}
   m_Layer: 0
   m_Name: WhooleFence (1)
   m_TagString: Untagged
@@ -31127,6 +31156,19 @@ Transform:
   m_Father: {fileID: 3550152447053561986}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &1009239899168016919
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550152446604850321}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 256, y: 2, z: 1}
+  m_Center: {x: -128, y: 0, z: 0}
 --- !u!1 &3550152446605355621
 GameObject:
   m_ObjectHideFlags: 0
@@ -72462,6 +72504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3550152447806857220}
+  - component: {fileID: 2264238807903992867}
   m_Layer: 0
   m_Name: WhooleFence (2)
   m_TagString: Untagged
@@ -72568,6 +72611,19 @@ Transform:
   m_Father: {fileID: 3550152447053561986}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!65 &2264238807903992867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550152447806857221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 170, y: 2, z: 1}
+  m_Center: {x: -85, y: 0, z: 0}
 --- !u!1 &3550152447807023764
 GameObject:
   m_ObjectHideFlags: 0

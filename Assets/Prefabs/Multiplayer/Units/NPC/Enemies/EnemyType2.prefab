@@ -526,7 +526,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackRange: 3
-  detectionRadius: 100
+  detectionRadius: 200
 --- !u!136 &68930881956067079
 CapsuleCollider:
   m_ObjectHideFlags: 0
