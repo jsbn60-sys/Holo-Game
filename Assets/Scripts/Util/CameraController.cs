@@ -20,9 +20,7 @@ public class CameraController : MonoBehaviour
 	[SerializeField] private float rotationDamping;
 
 	[Header("Camera : Shake")]
-	[SerializeField] private float shakeDuration;
-	[SerializeField] private float shakeAmount;
-
+	private float shakeAmount;
 	private Transform target, player;
 	private Vector3 originalPos;
 	private float shakeTimer;
@@ -101,6 +99,11 @@ public class CameraController : MonoBehaviour
 			transform.position += Random.insideUnitSphere * shakeAmount;
 
 			shakeTimer -= Time.deltaTime;
+
+			if (shakeTimer <= 0f)
+			{
+				shakeAmount = 0f;
+			}
 		}
 
 		transform.position -= currentRotation * new Vector3(0, 0, 1) * distance;
@@ -116,9 +119,14 @@ public class CameraController : MonoBehaviour
 
 	/// <summary>
 	/// Causes a shake effect.
+	/// Shake amount and shake duration are added onto previous values,
+	/// if there happen to be multiple shakes at one time.
 	/// </summary>
-	public void Shake()
+	/// <param name="shakeAmount">Amount to shake</param>
+	/// <param name="shakeDuration">Duration of shake</param>
+	public void Shake(float shakeAmount, float shakeDuration)
 	{
-		shakeTimer = shakeDuration;
+		shakeTimer += shakeDuration;
+		this.shakeAmount += shakeAmount;
 	}
 }

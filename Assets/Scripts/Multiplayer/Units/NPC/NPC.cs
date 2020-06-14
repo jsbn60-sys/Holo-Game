@@ -12,7 +12,7 @@ using UnityEngine.Networking;
 /// NPCs are only handled by the server.
 /// NPCs are spawned in Groups for more information look at NPCGroups class.
 /// </summary>
-public class NPC : Unit
+public abstract class NPC : Unit
 {
 	[Header("NPC : Attributes")]
 	[SerializeField] private NavMeshAgent agent;
@@ -21,7 +21,7 @@ public class NPC : Unit
 	[SerializeField] private float detectionRadius;
 	private Transform currentTarget;
 
-	private NPCGroup group;
+	protected NPCGroup group;
 
 	public NPCGroup Group
 	{
@@ -33,14 +33,14 @@ public class NPC : Unit
 	/// Updates the closest target and checks if the npc can attack.
 	/// If this runs on the server, it also checks if the NPC position is accurate on the clients.
 	/// </summary>
-	void Update()
+	protected void Update()
     {
 	    base.Update();
 
 	    if (canAttack())
 	    {
 		    stopAgent();
-		    useAttack();
+		    execInRangeAction();
 	    }
 	    else
 	    {
@@ -58,6 +58,11 @@ public class NPC : Unit
 		    RpcCheckPosition(this.transform.position, this.transform.rotation);
 	    }
     }
+
+	/// <summary>
+	/// Decides what to do, when the NPC has reached its target.
+	/// </summary>
+	protected abstract void execInRangeAction();
 
 	/// <summary>
 	/// Updates the NPC position on all clients.
@@ -101,7 +106,6 @@ public class NPC : Unit
 	private bool isInRange()
 	{
 		return !agent.pathPending && agent.remainingDistance <= attackRange;
-
 	}
 
 	/// <summary>
@@ -200,12 +204,9 @@ public class NPC : Unit
 	}
 
 	/// <summary>
-	/// To-Do
+	/// Nothing happens to NPCs when they are hit.
 	/// </summary>
-	protected override void hitEffects()
-	{
-
-	}
+	protected override void hitEffects() { }
 
 	/// <summary>
 	/// Fixes rotation towards the target, even if navmeshagent is already stopped.

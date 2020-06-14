@@ -47,7 +47,7 @@ MonoBehaviour:
   spawnInfos:
   - npcPrefab: {fileID: 8000099978867427209, guid: eea7190c4d63ec547b5e42a1ec5ed8fc,
       type: 3}
-    spawnAmount: 5
+    spawnAmount: 1
 --- !u!114 &-4167850052147274351
 MonoBehaviour:
   m_ObjectHideFlags: 0

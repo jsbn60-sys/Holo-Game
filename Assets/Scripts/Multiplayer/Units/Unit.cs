@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Leap;
 using Multiplayer.Lobby;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Networking;
@@ -376,12 +375,18 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	/// <param name="explosionForce">Strength of the explosion</param>
 	/// <param name="explosionLayer">Layer of the explosion</param>
-	public void explode(float explosionForce, LayerMask explosionLayer)
+	/// <param name="explosionRadius">Radius of the explosion</param>
+	public void explode(float explosionRadius, float explosionForce, LayerMask explosionLayer)
 	{
-		Collider[] npcsInRange = Physics.OverlapSphere(transform.position, 10, explosionLayer);
-		foreach (Collider npc in npcsInRange)
+		Collider[] unitInRange = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayer);
+		foreach (Collider unit in unitInRange)
 		{
-			npc.GetComponent<Rigidbody>().AddExplosionForce(explosionForce,this.transform.position,10,0,ForceMode.Impulse);
+			unit.GetComponent<Rigidbody>().AddExplosionForce(
+				explosionForce,
+				this.transform.position,
+				explosionRadius,
+				1.5f,
+				ForceMode.Impulse);
 		}
 	}
 

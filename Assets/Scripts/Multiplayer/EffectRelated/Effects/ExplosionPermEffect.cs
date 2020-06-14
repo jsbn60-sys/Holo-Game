@@ -9,8 +9,9 @@ public class ExplosionPermEffect : PermanentEffect
 {
 	[SerializeField] private LayerMask explosionLayer;
 	[SerializeField] private float explosionForce;
+	[SerializeField] private float explosionRadius;
 	protected override void execEffect()
 	{
-		target.explode(explosionForce,explosionLayer);
+		target.explode(explosionRadius,explosionForce,explosionLayer);
 	}
 }

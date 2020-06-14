@@ -856,9 +856,19 @@ public class Player : Unit
 	{
 		if (isLocalPlayer)
 		{
-			playerCam.GetComponent<CameraController>().Shake();
+			shakePlayerCam(0.1f,0.05f);
 			flashingBorder.GetComponent<FlashingImage>().Flash(5f);
 		}
+	}
+
+	/// <summary>
+	/// Shakes the playerCam.
+	/// </summary>
+	/// <param name="shakeDuration">Duration of shake</param>
+	/// <param name="shakeAmount">Amount of shake</param>
+	public void shakePlayerCam(float shakeDuration, float shakeAmount)
+	{
+		playerCam.GetComponent<CameraController>().Shake(shakeDuration,shakeAmount);
 	}
 
 	/// <summary>
