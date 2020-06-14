@@ -57,7 +57,7 @@ public class Player : Unit
 		nameText.GetComponent<Text>().text = name;
 
 		// variables
-		bonusGravity = 60.0f;
+		bonusGravity = 120.0f;
 		isGrounded = true;
 
 		if (!isLocalPlayer)
@@ -687,7 +687,6 @@ public class Player : Unit
 	/// <param name="collision">Any collision</param>
 	private void OnCollisionEnter(Collision collision)
 	{
-		base.OnCollisionEnter(collision);
 		if (collision.gameObject.tag.Equals("Plane"))
 		{
 			isGrounded = true;
@@ -713,6 +712,7 @@ public class Player : Unit
 	/// <param name="collider"></param>
 	private void OnTriggerEnter(Collider collider)
 	{
+		base.OnTriggerEnter(collider);
 		if (isLocalPlayer && collider.gameObject.tag.Equals("Item"))
 		{
 			Item item = collider.GetComponent<Item>();

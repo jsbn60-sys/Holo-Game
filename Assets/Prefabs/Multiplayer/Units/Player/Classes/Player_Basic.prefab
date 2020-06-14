@@ -229,6 +229,7 @@ Transform:
   - {fileID: 4716825861786770300}
   - {fileID: 7990113196188785120}
   - {fileID: 1833969848030471742}
+  - {fileID: 3361838054392922651}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -332,9 +333,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334398956985376}
   serializedVersion: 2
-  m_Mass: 3
+  m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -504,7 +505,7 @@ MonoBehaviour:
   attack: {fileID: 3616439031354131278, guid: f5d91ec0e04ccc746bb29f33991b7f81, type: 3}
   attackRate: 0.2
   speed: 12
-  jumpForce: 55
+  jumpForce: 30
   pushForce: 0
   onTouchDmg: 0
   healthBar: {fileID: 3993326069869749608}
@@ -527,6 +528,51 @@ MonoBehaviour:
   bulletSpawn: {fileID: 1207872790123338}
   gun: {fileID: 1032561047953330}
   playerCamTarget: {fileID: 4018324307430055485}
+--- !u!1 &3195227347307910019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3361838054392922651}
+  - component: {fileID: 4983308031673249498}
+  m_Layer: 14
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3361838054392922651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195227347307910019}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4878817215125366}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4983308031673249498
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195227347307910019}
+  m_Material: {fileID: 13400000, guid: 4cc28b3e969ab454cb54422f117b9b74, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3857214872691301797
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,14 +865,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4878817215125366}
     m_Modifications:
+    - target: {fileID: 9392917235582876, guid: 14a933af46652374e96a9842e10a61fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3745065980587346450, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 9392917235582876, guid: 14a933af46652374e96a9842e10a61fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 261483314961969720, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
@@ -5000,6 +5046,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2778119105639633582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3457443923052322303, guid: 14a933af46652374e96a9842e10a61fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 681893427003887441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7034035578363499670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7560268764775537607, guid: 14a933af46652374e96a9842e10a61fc,
@@ -5009,12 +5061,6 @@ GameObject:
 --- !u!1 &5237433012813266646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4744977506474324359, guid: 14a933af46652374e96a9842e10a61fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 681893427003887441}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5394590256849661559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
@@ -5042,9 +5088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43507501cf891648af472103f8a8f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2778119105639633582 stripped
+--- !u!1 &780930079344721257 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3457443923052322303, guid: 14a933af46652374e96a9842e10a61fc,
+  m_CorrespondingSourceObject: {fileID: 261483314961969720, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
@@ -5060,9 +5106,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7793481750523649283 stripped
+--- !u!1 &5394590256849661559 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7304434154703032914, guid: 14a933af46652374e96a9842e10a61fc,
+  m_CorrespondingSourceObject: {fileID: 4876269422470439206, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
@@ -5078,9 +5124,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &780930079344721257 stripped
+--- !u!1 &7793481750523649283 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 261483314961969720, guid: 14a933af46652374e96a9842e10a61fc,
+  m_CorrespondingSourceObject: {fileID: 7304434154703032914, guid: 14a933af46652374e96a9842e10a61fc,
     type: 3}
   m_PrefabInstance: {fileID: 681893427003887441}
   m_PrefabAsset: {fileID: 0}
@@ -5091,11 +5137,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4878817215125366}
     m_Modifications:
-    - target: {fileID: 7809818814971883007, guid: 635a4ac759f135a4da2eb35beb009f14,
-        type: 3}
-      propertyPath: m_Name
-      value: Healthbar Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 2067835325893843200, guid: 635a4ac759f135a4da2eb35beb009f14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5200,6 +5241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809818814971883007, guid: 635a4ac759f135a4da2eb35beb009f14,
+        type: 3}
+      propertyPath: m_Name
+      value: Healthbar Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635a4ac759f135a4da2eb35beb009f14, type: 3}

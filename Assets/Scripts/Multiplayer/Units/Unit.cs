@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Leap;
 using Multiplayer.Lobby;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Networking;
@@ -31,7 +33,9 @@ public abstract class Unit : NetworkBehaviour
 
 	private const float POS_THRESHOLD = 1f;
 	private const float ROT_THRESHOLD = 5f;
-	protected float attackTimer;
+	private float attackTimer;
+
+	private List<Collider> pushedTargets;
 
 	[Header("Unit : UI")]
 	[SerializeField] private RectTransform healthBar;
@@ -46,6 +50,7 @@ public abstract class Unit : NetworkBehaviour
 		isInvulnerable = false;
 		isInvisible = false;
 		attackTimer = attackRate;
+		pushedTargets = new List<Collider>();
 
 		// initializes health & shield
 		health = maxHealth;
@@ -178,22 +183,35 @@ public abstract class Unit : NetworkBehaviour
 	/// If onTouchDmg > 0f -> dealDamage
 	/// </summary>
 	/// <param name="other">Target that collided</param>
-	protected void OnCollisionEnter(Collision other)
+	protected void OnTriggerEnter(Collider other)
 	{
-
-		if (other.gameObject.GetComponent<Unit>() != null
-		    && canPushTarget(other.gameObject.GetComponent<Unit>()))
+		Transform parent = other.transform.parent;
+		Unit unitHit;
+		if (parent != null
+			&& (unitHit = parent.GetComponent<Unit>()) != null
+		    && canPushTarget(unitHit)
+		    && !pushedTargets.Contains(other))
 		{
+			pushedTargets.Add(other);
 			if (pushForce > 0f)
 			{
-				Vector3 pushDirection = (other.gameObject.transform.position - this.transform.position).normalized;
-				other.gameObject.GetComponent<Rigidbody>().AddForce(pushDirection * pushForce);
+				Vector3 pushDirection = (unitHit.transform.position - this.transform.position).normalized;
+				unitHit.GetComponent<Rigidbody>().AddForce(pushDirection * pushForce);
 			}
 			if (Math.Abs(onTouchDmg) > 0f)
 			{
-				other.gameObject.GetComponent<Unit>().CmdChangeHealth(onTouchDmg);
+				unitHit.CmdChangeHealth(onTouchDmg);
 			}
 		}
+	}
+
+	/// <summary>
+	/// Removes pushedTargets.
+	/// </summary>
+	/// <param name="other">Trigger that exited</param>
+	private void OnTriggerExit(Collider other)
+	{
+		pushedTargets.Remove(other);
 	}
 
 	/// <summary>
