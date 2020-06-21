@@ -19,9 +19,9 @@ public abstract class NPC : Unit
 	[SerializeField] private LayerMask attackableLayer;
 	[SerializeField] private float attackRange;
 	[SerializeField] private float detectionRadius;
-	private Transform currentTarget;
+	protected Transform currentTarget;
 
-	protected NPCGroup group;
+	private NPCGroup group;
 
 	public NPCGroup Group
 	{
@@ -40,7 +40,7 @@ public abstract class NPC : Unit
 	    if (canAttack())
 	    {
 		    stopAgent();
-		    execInRangeAction();
+		    execCanAttackActions();
 	    }
 	    else
 	    {
@@ -51,6 +51,11 @@ public abstract class NPC : Unit
 	    if (isInRange())
 	    {
 		    RotateTowards();
+		    execInRangeActions();
+	    }
+	    else
+	    {
+			execTargetNotInRangeActions();
 	    }
 
 	    if (isServer)
@@ -62,7 +67,12 @@ public abstract class NPC : Unit
 	/// <summary>
 	/// Decides what to do, when the NPC has reached its target.
 	/// </summary>
-	protected abstract void execInRangeAction();
+	protected abstract void execCanAttackActions();
+
+	/// <summary>
+	/// Executes any action that the npc should do, while the target is not in range yet.
+	/// </summary>
+	protected abstract void execTargetNotInRangeActions();
 
 	/// <summary>
 	/// Updates the NPC position on all clients.
@@ -96,17 +106,18 @@ public abstract class NPC : Unit
 	/// <returns>Can this NPC attack</returns>
 	private bool canAttack()
 	{
-		return readyToAttack() && hasValidTarget() && isInRange();
+		return readyToAttack() && hasValidTarget() && isInRange() && !agent.pathPending;
 	}
 
 	/// <summary>
 	/// Checks if the the NPC is in range and has an active path.
 	/// </summary>
 	/// <returns>Is the NPC in range</returns>
-	private bool isInRange()
+	protected bool isInRange()
 	{
-		return !agent.pathPending && agent.remainingDistance <= attackRange;
+		return Vector3.Distance(currentTarget.transform.position,this.transform.position) <= attackRange;
 	}
+
 
 	/// <summary>
 	/// Stops the navmeshagent and stops movement.
@@ -168,6 +179,7 @@ public abstract class NPC : Unit
 
 		if (closestTarget != null)
 		{
+
 			currentTarget = closestTarget;
 			agent.isStopped = false;
 			agent.speed = speed;
@@ -178,6 +190,7 @@ public abstract class NPC : Unit
 			stopAgent();
 		}
 	}
+
 
 	/// <summary>
 	/// Checks if the current target is valid.
@@ -207,6 +220,11 @@ public abstract class NPC : Unit
 	/// Nothing happens to NPCs when they are hit.
 	/// </summary>
 	protected override void hitEffects() { }
+
+	/// <summary>
+	/// Executes the actions that the npc should perform, when he is in range of the target.
+	/// </summary>
+	protected abstract void execInRangeActions();
 
 	/// <summary>
 	/// Fixes rotation towards the target, even if navmeshagent is already stopped.

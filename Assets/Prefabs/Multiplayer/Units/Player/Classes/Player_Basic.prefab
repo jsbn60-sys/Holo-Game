@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 4983308031673249498}
   m_Layer: 14
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -865,14 +865,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4878817215125366}
     m_Modifications:
-    - target: {fileID: 9392917235582876, guid: 14a933af46652374e96a9842e10a61fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3745065980587346450, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9392917235582876, guid: 14a933af46652374e96a9842e10a61fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 261483314961969720, guid: 14a933af46652374e96a9842e10a61fc,
         type: 3}
@@ -5137,6 +5137,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4878817215125366}
     m_Modifications:
+    - target: {fileID: 7809818814971883007, guid: 635a4ac759f135a4da2eb35beb009f14,
+        type: 3}
+      propertyPath: m_Name
+      value: Healthbar Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 2067835325893843200, guid: 635a4ac759f135a4da2eb35beb009f14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5241,11 +5246,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809818814971883007, guid: 635a4ac759f135a4da2eb35beb009f14,
-        type: 3}
-      propertyPath: m_Name
-      value: Healthbar Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635a4ac759f135a4da2eb35beb009f14, type: 3}

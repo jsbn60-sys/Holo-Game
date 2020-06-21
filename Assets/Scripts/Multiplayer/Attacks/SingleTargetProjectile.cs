@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// This class represents any projectile in the game that only hits one unit.
@@ -38,7 +39,7 @@ public class SingleTargetProjectile : Projectile
 		if (amountOfEnemiesPierced >= pierceAmount)
 		{
 			GetComponent<Collider>().isTrigger = false;
-			GetComponent<Rigidbody>().velocity *= 2f;
+			GetComponent<Rigidbody>().velocity = Random.insideUnitSphere * 5f;
 			Destroy(this.gameObject,2f);
 		}
 		else

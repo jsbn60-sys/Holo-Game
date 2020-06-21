@@ -900,11 +900,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - npcGroups:
-    - {fileID: 8618367268671136523, guid: 573acfb4819d4764e9fadd9d6e884447, type: 3}
+    - {fileID: 8570396496854948561, guid: af6f67187301c784495304a68ded21d3, type: 3}
   - npcGroups:
     - {fileID: 8159328626812291215, guid: a40843bb08267614fa624e6e9e2136c3, type: 3}
   - npcGroups:
     - {fileID: 8618367268671136523, guid: 573acfb4819d4764e9fadd9d6e884447, type: 3}
+  - npcGroups:
+    - {fileID: 7717672748150278766, guid: 81626d00dcd0ad442ac2a2d3fb5f83f1, type: 3}
   spawnPosContainer: {fileID: 5678609220492280927, guid: 92310a7853b671c48be975d0d7cd79e3,
     type: 3}
   countdown: 5

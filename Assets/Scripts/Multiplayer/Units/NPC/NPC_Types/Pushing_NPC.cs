@@ -10,5 +10,15 @@ public class Pushing_NPC : NPC
 	/// <summary>
 	/// Because pushing is handled over the pushForce and trigger collision, we don't need any additional implementations.
 	/// </summary>
-	protected override void execInRangeAction() { }
+	protected override void execCanAttackActions() { }
+
+	/// <summary>
+	/// Not needed.
+	/// </summary>
+	protected override void execTargetNotInRangeActions() { }
+
+	/// <summary>
+	/// Not needed.
+	/// </summary>
+	protected override void execInRangeActions() { }
 }

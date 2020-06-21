@@ -21,11 +21,21 @@ public class Exploding_NPC : NPC
 	/// <summary>
 	/// Explode once in range.
 	/// </summary>
-	protected override void execInRangeAction()
+	protected override void execCanAttackActions()
 	{
 		explosionTimer = 0.5f;
 		StartCoroutine(setupExplosion());
 	}
+
+	/// <summary>
+	/// Not needed.
+	/// </summary>
+	protected override void execTargetNotInRangeActions() { }
+
+	/// <summary>
+	/// Not needed.
+	/// </summary>
+	protected override void execInRangeActions() { }
 
 	/// <summary>
 	/// Coroutine that lets the NPC grow before destroying it.

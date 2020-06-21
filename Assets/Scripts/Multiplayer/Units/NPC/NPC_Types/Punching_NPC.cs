@@ -10,8 +10,18 @@ public class Punching_NPC : NPC
 	/// <summary>
 	/// Use attack once in range.
 	/// </summary>
-	protected override void execInRangeAction()
+	protected override void execCanAttackActions()
     {
 	    useAttack();
     }
+
+	/// <summary>
+	/// Not needed.
+	/// </summary>
+	protected override void execTargetNotInRangeActions() { }
+
+	/// <summary>
+	/// Not needed.
+	/// </summary>
+	protected override void execInRangeActions() { }
 }
