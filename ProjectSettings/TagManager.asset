@@ -45,6 +45,8 @@ TagManager:
   - NPC
   - LobbyPlayer
   - PlayerCollider
+  - Obstacle
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -61,7 +63,7 @@ TagManager:
   - IgnoreCollision
   - Minimap
   - UnitTrigger
-  - 
+  - Door
   - 
   - 
   - 

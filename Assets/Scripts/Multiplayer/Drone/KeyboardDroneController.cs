@@ -25,8 +25,10 @@ public class KeyboardDroneController: MonoBehaviour
 		aircraft.Pitch(Input.GetAxis("AircraftPitch"));
 		aircraft.Yaw(Input.GetAxis("AircraftYaw"));
 		aircraft.Roll(Input.GetAxis("AircraftRoll"));
-		
+
 		// checking if space was hit to drop an item
-		if (Input.GetKeyDown("space")) aircraft.Drop(); 
+		if (Input.GetKeyDown("space")) aircraft.Drop();
 	}
+
+
 }

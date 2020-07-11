@@ -9,7 +9,7 @@ using UnityEngine;
 public class Beam_NPC : NPC
 {
 	[Header("Throwing_NPC : Attributes")]
-	[SerializeField] private LineRenderer laserPointer;
+	[SerializeField] private LineRenderer[] lineRenderers;
 	[SerializeField] private LayerMask hittableLayer;
 
 	/// <summary>
@@ -28,7 +28,10 @@ public class Beam_NPC : NPC
 	/// </summary>
 	protected override void execTargetNotInRangeActions()
 	{
-		laserPointer.gameObject.SetActive(false);
+		foreach (LineRenderer lineRenderer in lineRenderers)
+		{
+			lineRenderer.gameObject.SetActive(false);
+		}
 	}
 
 	/// <summary>
@@ -39,12 +42,18 @@ public class Beam_NPC : NPC
 	{
 		if (hasLineOfSight())
 		{
-			laserPointer.gameObject.SetActive(true);
+			foreach (LineRenderer lineRenderer in lineRenderers)
+			{
+				lineRenderer.gameObject.SetActive(true);
+			}
 			updateLaserPointer();
 		}
 		else
 		{
-			laserPointer.gameObject.SetActive(false);
+			foreach (LineRenderer lineRenderer in lineRenderers)
+			{
+				lineRenderer.gameObject.SetActive(false);
+			}
 		}
 	}
 
@@ -70,7 +79,10 @@ public class Beam_NPC : NPC
 	/// </summary>
 	private void updateLaserPointer()
 	{
-		laserPointer.SetPosition(0,transform.position);
-		laserPointer.SetPosition(1,currentTarget.transform.position);
+		foreach (LineRenderer lineRenderer in lineRenderers)
+		{
+			lineRenderer.SetPosition(0,lineRenderer.transform.position);
+			lineRenderer.SetPosition(1,currentTarget.transform.position);
+		}
 	}
 }

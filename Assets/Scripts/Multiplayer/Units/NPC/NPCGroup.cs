@@ -33,7 +33,6 @@ public class NPCGroup : NetworkBehaviour
 				NetworkServer.Spawn(npc);
 				npcs.Add(npc.GetComponent<NPC>());
 				npc.GetComponent<NPC>().Group = this;
-				NPCController.Instance.increaseNpcCount();
 			}
 		}
 	}
@@ -46,7 +45,6 @@ public class NPCGroup : NetworkBehaviour
 	public void removeNpc(NPC npc)
 	{
 		npcs.Remove(npc);
-		NPCController.Instance.reduceNpcCount();
 		if (npcs.Count == 0)
 		{
 			NPCController.Instance.removeAliveGroup(this);

@@ -14,17 +14,11 @@ using UnityEngine.UI;
 public class NPCController : NetworkBehaviour
 {
 	[SerializeField] private Wave[] waves;
-	[SerializeField] private SpawnPositionContainer spawnPosContainer;
 
 	public static NPCController Instance { get; private set; }
 
-	[SerializeField] private float countdown;
-	[SerializeField] private Text countdownText;
 	[SerializeField] private Text waveCountText;
-	private float countdownTimer;
-	private int npcCount;
 	private int currWaveIdx;
-	private bool allNpcsAreDead;
 	private List<NPCGroup> currAliveGroups;
 
 	/// <summary>
@@ -40,69 +34,44 @@ public class NPCController : NetworkBehaviour
 	/// </summary>
 	private void Start()
 	{
-		currAliveGroups = new List<NPCGroup>();
-		countdownTimer = countdown;
-		allNpcsAreDead = true;
+		if (!isServer) return;
+
 		currWaveIdx = 0;
+		currAliveGroups = new List<NPCGroup>();
+		SpawnNextWave();
 	}
 
 	/// <summary>
-	/// Update is called once per frame.
-	/// Updates countdown and spawns wave,
-	/// when countdown is expired.
+	/// Spawns the next wave.
 	/// </summary>
-	private void Update()
+	public void SpawnNextWave()
 	{
-		if (isServer && allNpcsAreDead)
-		{
-			if (countdownTimer > 0f)
-			{
-				countdownTimer -= Time.deltaTime;
-
-				CmdUpdateWaveUI("Wave Countdown: " + (int) countdownTimer,(currWaveIdx + 1) + ". Semester");
-			}
-			else
-			{
-				allNpcsAreDead = false;
-				CmdUpdateWaveUI("",(currWaveIdx + 1) + ". Semester");
-				countdownTimer = countdown;
-				spawnWave();
-			}
-		}
+		if (!isServer) return;
+		waves[currWaveIdx].StartWave();
+		CmdUpdateWaveUI((currWaveIdx + 1) + ". Semester");
+		currWaveIdx++;
 	}
 
+	/// <summary>
+	/// Updates the wave ui on all clients.
+	/// </summary>
+	/// <param name="waveCountText">Wave text</param>
 	[Command]
-	private void CmdUpdateWaveUI(string countdownText, string waveCountText)
+	private void CmdUpdateWaveUI(string waveCountText)
 	{
-		RpcUpdateWaveUI(countdownText,waveCountText);
+		RpcUpdateWaveUI(waveCountText);
 	}
 
+	/// <summary>
+	/// Updates the wave ui on all clients.
+	/// </summary>
+	/// <param name="waveCountText">Wave text</param>
 	[ClientRpc]
-	private void RpcUpdateWaveUI(string countdownText, string waveCountText)
+	private void RpcUpdateWaveUI(string waveCountText)
 	{
-		this.countdownText.text = countdownText;
 		this.waveCountText.text = waveCountText;
 	}
 
-	/// <summary>
-	/// Spawns a wave by spawning all its npcgroups.
-	/// The spawning of the npcs is handled by the npcgroups.
-	/// Only runs on the server.
-	/// </summary>
-	[Server]
-	private void spawnWave()
-	{
-		for (int i = 0; i < waves[currWaveIdx].NpcGroups.Length; i++)
-		{
-			NPCGroup npcGroup = Instantiate(waves[currWaveIdx].NpcGroups[i],
-				spawnPosContainer.SpawnPositions[i].position, Quaternion.identity);
-			NetworkServer.Spawn(npcGroup.gameObject);
-			npcGroup.spawnGroup();
-			currAliveGroups.Add(npcGroup);
-		}
-
-		currWaveIdx++;
-	}
 
 	/// <summary>
 	/// Removes a npc group from the alive groups.
@@ -114,27 +83,12 @@ public class NPCController : NetworkBehaviour
 	}
 
 	/// <summary>
-	/// Reduces npcCount by 1.
-	/// Only runs on the server.
+	/// Adds a new group as alive.
 	/// </summary>
-	[Server]
-	public void reduceNpcCount()
+	/// <param name="npcGroup">Group to add</param>
+	public void addAliveGroup(NPCGroup npcGroup)
 	{
-		npcCount--;
-		if (npcCount <= 0)
-		{
-			allNpcsAreDead = true;
-		}
-	}
-
-	/// <summary>
-	/// Increases the npcCount by 1.
-	/// Only runs on the server.
-	/// </summary>
-	[Server]
-	public void increaseNpcCount()
-	{
-		npcCount++;
+		currAliveGroups.Add(npcGroup);
 	}
 
 
@@ -149,17 +103,4 @@ public class NPCController : NetworkBehaviour
 			npcGroup.stunGroup(turnOn);
 		}
 	}
-
-	/// <summary>
-	/// Workaround for storing the npcgroups of a wave,
-	/// so it can be used in the editor.
-	/// (Using a 2d-array of npcgroup won't show correctly)
-	/// </summary>
-	[System.Serializable]
-	private struct Wave
-	{
-		[SerializeField] private NPCGroup[] npcGroups;
-		public NPCGroup[] NpcGroups => npcGroups;
-	}
-
 }

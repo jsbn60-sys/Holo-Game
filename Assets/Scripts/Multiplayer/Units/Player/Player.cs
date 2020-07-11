@@ -16,6 +16,7 @@ public class Player : Unit
 	[Header("Player : Attribute")]
 	[SyncVar] public string name;
 	[SerializeField] private float throwSpeed;
+	[SerializeField] private LayerMask jumpableLayers;
 
 	[Header("Player : UI")]
 	[SerializeField] private GameObject itemQuickAccess;
@@ -42,8 +43,8 @@ public class Player : Unit
 	private int currPlayerToWatchIdx;
 
 	// movement related
-	private bool isGrounded;
 	private bool isCollidingInAir;
+	private bool isGrounded;
 	private float bonusGravity;
 
 	private bool canAttack;
@@ -51,6 +52,7 @@ public class Player : Unit
 	// called at start
     protected void Start()
     {
+
 	    //chat = LobbyManager.Instance.Chat;
 		// UI
 		skillMenu.GetComponent<SkillMenu>().setSkillQuickAccess(skillQuickAccess.GetComponent<SkillQuickAccess>());
@@ -112,12 +114,34 @@ public class Player : Unit
 	/// </summary>
 	private void moveInput()
     {
+	    float z;
+	    float x;
+	    bool jumped = false;
+
 	    horizontal += Input.GetAxis("Mouse X");
 	    vertical -= Input.GetAxis("Mouse Y");
 	    vertical = Mathf.Clamp(vertical, 0, 60);
-	    float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
-	    float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
-	    bool jumped = Input.GetKey(KeyCode.Space) && isGrounded && GetComponent<Rigidbody>().velocity.y < 5.0f;
+	    z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
+	    x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+
+
+	    if (Input.GetKeyDown(KeyCode.Space))
+	    {
+		    RaycastHit hit;
+		    if(Physics.Raycast(this.transform.position, Vector3.down, out hit, 1.1f, jumpableLayers))
+		    {
+			    jumped = true;
+		    }
+	    }
+
+	    /* need better solution
+	    if (isCollidingInAir)
+	    {
+		    z *= 0f;
+		    x *= 0f;
+		    jumped = false;
+	    }
+	    */
 
 	    CmdPlayerMovement(x,z,horizontal,jumped,this.transform.position,this.transform.rotation);
     }
@@ -186,13 +210,6 @@ public class Player : Unit
 		    Vector3 vel = GetComponent<Rigidbody>().velocity;
 		    vel.y -= bonusGravity * Time.deltaTime;
 		    GetComponent<Rigidbody>().velocity = vel;
-
-		    // bounce player off wall when in air
-		    if (isCollidingInAir)
-		    {
-			    z *= -0.5f;
-			    x *= -0.5f;
-		    }
 	    }
     }
 
@@ -681,17 +698,25 @@ public class Player : Unit
 		return target.tag.Equals("NPC");
 	}
 
+	[SerializeField] private float jumpReg;
+
 	/// <summary>
 	/// Updates airCollision and isGrounded variable.
 	/// </summary>
 	/// <param name="collision">Any collision</param>
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag.Equals("Plane"))
+		RaycastHit hit;
+		if(Physics.Raycast(this.transform.position, Vector3.down, out hit, jumpReg, jumpableLayers))
 		{
 			isGrounded = true;
 		}
 		isCollidingInAir = !isGrounded;
+
+		if (!isGrounded)
+		{
+			GetComponent<Rigidbody>().velocity = Vector3.Reflect(GetComponent<Rigidbody>().velocity, collision.contacts[0].normal);
+		}
 	}
 
 	/// <summary>
@@ -700,7 +725,8 @@ public class Player : Unit
 	/// <param name="collision">Any collision</param>
 	private void OnCollisionExit(Collision collision)
 	{
-		if (collision.gameObject.tag.Equals("Plane"))
+		RaycastHit hit;
+		if(!Physics.Raycast(this.transform.position, Vector3.down, out hit, jumpReg, jumpableLayers))
 		{
 			isGrounded = false;
 		}

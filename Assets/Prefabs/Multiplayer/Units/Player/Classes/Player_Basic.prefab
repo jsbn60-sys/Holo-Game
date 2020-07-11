@@ -505,13 +505,16 @@ MonoBehaviour:
   attack: {fileID: 3616439031354131278, guid: f5d91ec0e04ccc746bb29f33991b7f81, type: 3}
   attackRate: 0.2
   speed: 12
-  jumpForce: 30
+  jumpForce: 25
   pushForce: 0
   onTouchDmg: 0
   healthBar: {fileID: 3993326069869749608}
   shieldBar: {fileID: 671234674140920168}
   name: 
   throwSpeed: 1
+  jumpableLayers:
+    serializedVersion: 2
+    m_Bits: 35328
   itemQuickAccess: {fileID: 5394590256849661559}
   skillQuickAccess: {fileID: 1082029584673623326}
   map: {fileID: 733925584964148332}
@@ -528,6 +531,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 1207872790123338}
   gun: {fileID: 1032561047953330}
   playerCamTarget: {fileID: 4018324307430055485}
+  jumpReg: 1.05
 --- !u!1 &3195227347307910019
 GameObject:
   m_ObjectHideFlags: 0

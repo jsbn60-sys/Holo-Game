@@ -115,7 +115,7 @@ public abstract class NPC : Unit
 	/// <returns>Is the NPC in range</returns>
 	protected bool isInRange()
 	{
-		return Vector3.Distance(currentTarget.transform.position,this.transform.position) <= attackRange;
+		return currentTarget!=null && Vector3.Distance(currentTarget.transform.position,this.transform.position) <= attackRange;
 	}
 
 

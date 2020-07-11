@@ -306,7 +306,6 @@ public abstract class Unit : NetworkBehaviour
 		GameObject objectPrefab = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
 		GameObject objectCopy = Instantiate(objectPrefab, this.transform.position, Quaternion.identity);
 		NetworkServer.Spawn(objectCopy);
-
 	}
 
 	/// <summary>

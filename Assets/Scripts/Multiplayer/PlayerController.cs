@@ -37,6 +37,15 @@ public class PlayerController : NetworkBehaviour
 	}
 
 	/// <summary>
+	/// Gets amount of alive players in game.
+	/// </summary>
+	/// <returns>Amount of alive players</returns>
+	public int getPlayerCount()
+	{
+		return getAlivePlayerObjects().Length;
+	}
+
+	/// <summary>
 	/// Returns all player objects that are still alive.
 	/// </summary>
 	/// <returns>Players that are alive</returns>
