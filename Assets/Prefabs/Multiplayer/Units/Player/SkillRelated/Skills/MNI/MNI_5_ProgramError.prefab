@@ -84,3 +84,8 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: Program Error
+  popupContent: 'Additonaly:
+
+    Your software projects cause program errors that force students to reconsider.'
+  effectsList: '- Projectile Push Force +'

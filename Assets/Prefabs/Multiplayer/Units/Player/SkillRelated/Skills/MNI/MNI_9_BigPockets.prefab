@@ -84,3 +84,8 @@ MonoBehaviour:
   cost: 1
   maxCharges: 3
   cooldown: 10
+  skillName: Big Pockets
+  popupContent: 'Additonaly:
+
+    You prepared well and are able to store multiple SWT-Ps to hand out.'
+  effectsList: '- Increase Skill Charges'

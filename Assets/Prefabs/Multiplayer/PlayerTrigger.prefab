@@ -92,9 +92,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5734992904621016458}
-  normalColor: {fileID: 2100000, guid: a5ccd6e8945cc664c866f3ca0c8ae2cd, type: 2}
-  activatingTag: Player
+  inactiveColor: {fileID: 2100000, guid: a5ccd6e8945cc664c866f3ca0c8ae2cd, type: 2}
   activatedColor: {fileID: 2100000, guid: 1c98be40e6a99764cb9e35b111f81340, type: 2}
+  activatingTag: Player
+  isPermanent: 0
 --- !u!65 &5734992904621016453
 BoxCollider:
   m_ObjectHideFlags: 0

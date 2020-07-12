@@ -48,7 +48,7 @@ public class NPCController : NetworkBehaviour
 	{
 		if (!isServer) return;
 		waves[currWaveIdx].StartWave();
-		CmdUpdateWaveUI((currWaveIdx + 1) + ". Semester");
+		CmdUpdateWaveUI(GetWaveDisplayName());
 		currWaveIdx++;
 	}
 
@@ -101,6 +101,32 @@ public class NPCController : NetworkBehaviour
 		foreach (NPCGroup npcGroup in currAliveGroups)
 		{
 			npcGroup.stunGroup(turnOn);
+		}
+	}
+
+	private string GetWaveDisplayName()
+	{
+		switch (currWaveIdx)
+		{
+			case 0:
+				return "Precourses";
+				break;
+			case 1: case 2: case 3: case 4: case 5:
+				return currWaveIdx + ". Semester BA";
+				break;
+			case 6:
+				return "Bachelorthesis";
+				break;
+			case 7: case 8: case 9:
+				return (currWaveIdx - 6) + ". Semester MA";
+				break;
+			case 10:
+				return "Masterthesis";
+				break;
+			case 11:
+				return "Doctorthesis";
+			default:
+				throw new Exception("Illegal wave idx!");
 		}
 	}
 }

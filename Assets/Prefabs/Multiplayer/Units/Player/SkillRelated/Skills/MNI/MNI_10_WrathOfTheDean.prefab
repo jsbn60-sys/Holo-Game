@@ -84,3 +84,9 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: Wrath of the Dean
+  popupContent: Unleash your full strength and release a ungodly barrage of tasks
+    upon your students
+  effectsList: '- Multi-Throw
+
+    - Auto-Throw'

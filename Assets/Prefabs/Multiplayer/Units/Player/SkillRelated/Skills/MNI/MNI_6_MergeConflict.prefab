@@ -84,3 +84,8 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: Merge Conflict
+  popupContent: 'Additionaly:
+
+    Your software projects cause merge conflicts, that shock the students.'
+  effectsList: '- Projectile Stun Effect'

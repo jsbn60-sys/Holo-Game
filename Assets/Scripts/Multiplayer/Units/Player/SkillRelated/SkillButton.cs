@@ -22,6 +22,14 @@ public class SkillButton : Button
 	[SerializeField] private Color UNLOCKED_COLOR;
 	[SerializeField] private Color HOVER_COLOR;
 
+
+	private SkillMenu skillMenu;
+
+	public SkillMenu SkillMenu
+	{
+		set => skillMenu = value;
+	}
+
 	/// <summary>
 	/// Start is called before the first frame update.
 	/// </summary>
@@ -65,6 +73,8 @@ public class SkillButton : Button
 		{
 			GetComponent<Image>().color = HOVER_COLOR;
 		}
+
+		skillMenu.LoadSkillPopup(skill.SkillName,skill.PopupContent,Skill.EffectsList);
 	}
 
 	/// <summary>
@@ -76,6 +86,13 @@ public class SkillButton : Button
 		{
 			GetComponent<Image>().color = UNLOCKABLE_COLOR;
 		}
+		skillMenu.HideSkillPopup();
+	}
+
+	protected override void OnDisable()
+	{
+		base.OnDisable();
+		OnHoverExit();
 	}
 }
 

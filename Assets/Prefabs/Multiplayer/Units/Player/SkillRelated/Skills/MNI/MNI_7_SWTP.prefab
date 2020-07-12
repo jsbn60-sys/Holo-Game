@@ -84,3 +84,7 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: SWT-P
+  popupContent: Throw a huge software project at the students, that will cause massive
+    education, to all students it reaches.
+  effectsList: '- Throw Piercing Projectile'

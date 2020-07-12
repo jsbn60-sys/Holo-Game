@@ -84,3 +84,8 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: NullPointerExecption
+  popupContent: 'Additionaly:
+
+    Your SWT-P cause a NullPointerException that all students close to it learn from.'
+  effectsList: '- Drop DMG Aura'

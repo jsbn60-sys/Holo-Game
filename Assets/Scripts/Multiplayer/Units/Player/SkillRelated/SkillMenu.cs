@@ -33,6 +33,8 @@ public class SkillMenu : NetworkBehaviour
 
 	[SerializeField] private Text skillPointsText;
 
+	[SerializeField] private Popup skillPopup;
+
 	private SkillQuickAccess skillQuickAccess;
 
 	private int skillPoints;
@@ -50,6 +52,7 @@ public class SkillMenu : NetworkBehaviour
 		{
 			button.GetComponent<Image>().sprite = button.Skill.getIcon();
 			button.setNotUnlockable();
+			button.SkillMenu = this;
 			// Workaround because listener cant be added through editor
 			button.onClick.AddListener(() => tryUnlockSkill(button.Skill));
 		}
@@ -258,5 +261,15 @@ public class SkillMenu : NetworkBehaviour
 			default:
 				throw new System.ArgumentException("Illegal skillId!");
 		}
+	}
+
+	public void LoadSkillPopup(string headline, string content, string effectsList)
+	{
+		skillPopup.ActivatePopup(headline,content,effectsList);
+	}
+
+	public void HideSkillPopup()
+	{
+		skillPopup.DeactivePopup();
 	}
 }

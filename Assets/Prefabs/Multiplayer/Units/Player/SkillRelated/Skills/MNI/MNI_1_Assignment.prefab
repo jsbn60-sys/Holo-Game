@@ -84,3 +84,6 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: Assignment
+  popupContent: Your tasks become more difficult
+  effectsList: '- DMG +'

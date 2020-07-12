@@ -227,6 +227,7 @@ public class Player : Unit
 			}
 			else
 			{
+				skillMenu.GetComponent<SkillMenu>().HideSkillPopup();
 				setForGameplay();
 			}
 		}

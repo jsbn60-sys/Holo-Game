@@ -51,7 +51,6 @@ public class Door : MonoBehaviour
 
 	public void activateDoor()
 	{
-		Debug.Log("DOOR IS ACTIVATED");
 		isActivated = true;
 	}
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4712319811582940656}
   - component: {fileID: 8297711994956438218}
   m_Layer: 0
-  m_Name: MNI_2_Project
+  m_Name: MNI_2_SoftwareProject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,3 +84,7 @@ MonoBehaviour:
   cost: 1
   maxCharges: 1
   cooldown: 10
+  skillName: Software Project
+  popupContent: Throw a software project, that educates all students close to where
+    it lands
+  effectsList: '- Throw AoE projectile'

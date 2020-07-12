@@ -20,6 +20,16 @@ public class Skill : NetworkBehaviour, Slotable
 	[SerializeField] private int maxCharges;
 	[SerializeField] private float cooldown;
 
+	[SerializeField] private string skillName;
+	[TextArea(3, 10)] [SerializeField] private string popupContent;
+	[TextArea(3, 10)] [SerializeField] private string effectsList;
+
+	public string SkillName => skillName;
+
+	public string PopupContent => popupContent;
+
+	public string EffectsList => effectsList;
+
 	public void activate(Player player)
 	{
 		player.getHit(0, effects.ToList());
@@ -38,12 +48,6 @@ public class Skill : NetworkBehaviour, Slotable
 	public int Cost => cost;
 
 	public int SkillId => skillId;
-
-
-	public void changeCooldown(float factor)
-    {
-	    cooldown *= factor;
-    }
 
 	public float Cooldown => cooldown;
 

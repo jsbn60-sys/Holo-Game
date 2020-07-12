@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 8264481431256022512}
-  normalColor: {fileID: 2100000, guid: a5ccd6e8945cc664c866f3ca0c8ae2cd, type: 2}
+  inactiveColor: {fileID: 2100000, guid: a5ccd6e8945cc664c866f3ca0c8ae2cd, type: 2}
   activatedColor: {fileID: 2100000, guid: 1c98be40e6a99764cb9e35b111f81340, type: 2}
   activatingTag: Bullet
   isPermanent: 1
