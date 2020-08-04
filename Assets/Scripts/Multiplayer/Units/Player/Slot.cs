@@ -38,7 +38,7 @@ public abstract class Slot<T> : MonoBehaviour where T : Slotable
 	/// Uses content in the slot.
 	/// </summary>
 	/// <param name="player">Player that used it.</param>
-	public virtual void useContent(Player player)
+	public virtual void useContent(Unit player)
 	{
 		if (!isEmpty)
 		{

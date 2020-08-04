@@ -25,6 +25,8 @@ public class SkillButton : Button
 
 	private SkillMenu skillMenu;
 
+	private DroneSkillMenu droneSkillMenu;
+
 	public SkillMenu SkillMenu
 	{
 		set => skillMenu = value;
@@ -74,7 +76,14 @@ public class SkillButton : Button
 			GetComponent<Image>().color = HOVER_COLOR;
 		}
 
-		skillMenu.LoadSkillPopup(skill.SkillName,skill.PopupContent,Skill.EffectsList);
+		if (skillMenu != null)
+		{
+			skillMenu.LoadSkillPopup(skill.SkillName,skill.PopupContent,Skill.EffectsList);
+		}
+		else
+		{
+			droneSkillMenu.HideSkillPopup();
+		}
 	}
 
 	/// <summary>

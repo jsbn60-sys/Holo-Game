@@ -31,7 +31,7 @@ public interface IAircraft
 	/// </summary>
 	/// <param name="lift">The applied lift factor between -1 and 1.</param>
 	void Lift(float lift);
-	
+
 	/// <summary>
 	/// Drop enables the Drone to drp a crafted item on the map.
 	/// </summary>

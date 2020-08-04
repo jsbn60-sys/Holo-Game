@@ -1,4 +1,5 @@
 /* edited by: SWT-P_WS_2018_Holo */
+
 using UnityEngine;
 
 /// <summary>
@@ -9,26 +10,58 @@ using UnityEngine;
 ///
 /// The default Key-Layout can be alterted in Unitys Input handler.
 /// </summary>
-public class KeyboardDroneController: MonoBehaviour
+public class KeyboardDroneController : MonoBehaviour
 {
-	IAircraft aircraft;
+	private Drone drone;
 
+	/// <summary>
+	/// Start is called before the first frame update.
+	/// </summary>
 	private void Start()
 	{
-		aircraft = GameObject.FindGameObjectWithTag("Drone")
-			.GetComponent<Drone>();
+		drone = GetComponent<Drone>();
 	}
 
+	/// <summary>
+	/// Updates Input.
+	/// </summary>
 	private void FixedUpdate()
 	{
-        aircraft.Lift(Input.GetAxis("AircraftLift"));
-		aircraft.Pitch(Input.GetAxis("AircraftPitch"));
-		aircraft.Yaw(Input.GetAxis("AircraftYaw"));
-		aircraft.Roll(Input.GetAxis("AircraftRoll"));
+		drone.GetComponent<IAircraft>().Lift(Input.GetAxis("AircraftLift"));
+		drone.GetComponent<IAircraft>().Pitch(Input.GetAxis("AircraftPitch"));
+		drone.GetComponent<IAircraft>().Yaw(Input.GetAxis("AircraftYaw"));
+		drone.GetComponent<IAircraft>().Roll(Input.GetAxis("AircraftRoll"));
 
-		// checking if space was hit to drop an item
-		if (Input.GetKeyDown("space")) aircraft.Drop();
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			drone.DroneSkillMenu.gameObject.SetActive(!drone.DroneSkillMenu.gameObject.activeSelf);
+
+			if (drone.DroneSkillMenu.gameObject.activeSelf)
+			{
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+			}
+			else
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+			}
+		}
+
+
+		// for slot 0
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			drone.SkillQuickAccess.useContent(0, drone);
+		}
+
+		// for slot 1 - 4
+		for (int i = 1; i <= 4; i++)
+		{
+			if (Input.GetKeyDown("" + i))
+			{
+				drone.SkillQuickAccess.useContent(i, drone);
+			}
+		}
 	}
-
-
 }

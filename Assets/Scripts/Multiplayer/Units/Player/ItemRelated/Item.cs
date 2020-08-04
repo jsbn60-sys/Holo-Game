@@ -22,7 +22,7 @@ public class Item : NetworkBehaviour , Slotable
 		hasBeenPickedUp = false;
 	}
 
-	public void activate(Player player) {
+	public void activate(Unit player) {
 		player.getHit(0,effects);
 	}
 

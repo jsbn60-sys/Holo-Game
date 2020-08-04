@@ -9,16 +9,21 @@ public class DroneCameraFollow : MonoBehaviour
 	// The target of the camera, which might be set in the inspector.
 	// In this special case the drone.
 	public Transform target;
-	public bool IsDroneCamera = false;
 
-	void LateUpdate () {
+	[SerializeField] private Vector3 positionOffset;
+	[SerializeField] private Quaternion rotationOffset;
+
+	void LateUpdate()
+	{
 		if (!target)
 		{
 			return;
 		}
-		
+
 		//set position and rotation of the camera to the target, while maintaining the "god view"
-		transform.position = target.position;
-		transform.rotation = target.rotation * Quaternion.Euler(90, 0, 0);
+		transform.position = target.position + positionOffset;
+		transform.rotation =
+			Quaternion.Inverse(new Quaternion(target.rotation.x, -target.rotation.y, target.rotation.z, target.rotation.w)) *
+			Quaternion.Euler(rotationOffset.x, rotationOffset.y, rotationOffset.z);
 	}
 }

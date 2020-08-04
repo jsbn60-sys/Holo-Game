@@ -39,7 +39,7 @@ public class SkillSlot : Slot<Skill>
 	/// Only executes if there is atleast one charge.
 	/// </summary>
 	/// <param name="player">Player that used skill</param>
-	public override void useContent(Player player)
+	public override void useContent(Unit player)
 	{
 		if (currCharges > 0)
 		{

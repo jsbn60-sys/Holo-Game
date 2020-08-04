@@ -9,6 +9,6 @@ using UnityEngine;
 public interface Slotable {
 
 	Sprite getIcon();
-	void activate(Player player);
+	void activate(Unit player);
 	GameObject getInstance();
 }

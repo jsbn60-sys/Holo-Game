@@ -25,6 +25,7 @@ public class SingleTargetProjectile : Projectile
 	/// <returns>Was the collider a valid target</returns>
 	protected override bool hitValidTarget(Collider hit)
 	{
+		Debug.Log("HIT: " + hit.name);
 		return hit.tag.Equals("NPC");
 	}
 

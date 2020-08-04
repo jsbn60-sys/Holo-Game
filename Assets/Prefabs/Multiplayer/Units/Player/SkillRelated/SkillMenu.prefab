@@ -4679,7 +4679,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8535704194740720976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43507501cf891648af472103f8a8f2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f8119e67d1d4386af164c74185bc8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillButtons:
@@ -4693,12 +4693,12 @@ MonoBehaviour:
   - {fileID: 8584683284417304157}
   - {fileID: 8928934114214600007}
   - {fileID: 2054700913253430354}
+  skillPointsText: {fileID: 8972959117851906268}
+  skillPopup: {fileID: 2208602517305410910}
   doubleUpgradeSkills:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  skillPointsText: {fileID: 8972959117851906268}
-  skillPopup: {fileID: 2208602517305410910}
 --- !u!1 &8689387290651021696
 GameObject:
   m_ObjectHideFlags: 0

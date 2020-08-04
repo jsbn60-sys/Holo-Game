@@ -11,6 +11,9 @@ using UnityEngine.Networking;
 /// </summary>
 public abstract class Wave : NetworkBehaviour
 {
+	[SerializeField] private MessageTrigger waveStartTrigger;
+
+	[SerializeField] private float waveDelay;
 	/// <summary>
 	/// Doors to activate on finish.
 	/// </summary>
@@ -46,7 +49,7 @@ public abstract class Wave : NetworkBehaviour
 	/// </summary>
 	public void StartWave()
 	{
-		intervalTimer = spawnInterval;
+		intervalTimer = waveDelay;
 		isActive = true;
 		initWave();
 	}
@@ -73,6 +76,8 @@ public abstract class Wave : NetworkBehaviour
 	protected void Update()
 	{
 		if (!isActive) return;
+		if (waveStartTrigger != null && !waveStartTrigger.IsTriggered) return;
+
 		UpdateActiveCondition();
 		updateDoors();
 

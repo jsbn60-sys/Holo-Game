@@ -38,6 +38,7 @@ public class AOEProjectile : Projectile
 		Collider[] npcsInRange = Physics.OverlapSphere(transform.position, radius, npcLayer);
 		foreach (Collider npc in npcsInRange)
 		{
+			Debug.Log("TARGETS IN RANGE");
 			npc.GetComponent<Rigidbody>().AddExplosionForce(explosionForce,this.transform.position,radius,0,ForceMode.Impulse);
 			onHit(npc.GetComponent<Unit>());
 		}

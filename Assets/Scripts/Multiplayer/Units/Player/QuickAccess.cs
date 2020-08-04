@@ -45,7 +45,7 @@ public class QuickAccess<S,C> : MonoBehaviour where S : Slot<C> where C : Slotab
 	/// </summary>
 	/// <param name="idx">index of slot</param>
 	/// <param name="player">player that used it</param>
-	public void useContent(int idx, Player player)
+	public void useContent(int idx, Unit player)
 	{
 		if (!slots[idx].IsEmpty)
 		{

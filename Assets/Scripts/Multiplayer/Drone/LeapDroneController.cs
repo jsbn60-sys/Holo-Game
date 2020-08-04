@@ -22,7 +22,7 @@ public class LeapDroneController : MonoBehaviour{
         aircraft = GameObject.FindGameObjectWithTag("Drone")
             .GetComponent<Drone>();
     }
-	
+
     private void FixedUpdate()
     {
         Frame frame = controller.Frame();
@@ -36,7 +36,7 @@ public class LeapDroneController : MonoBehaviour{
 
 			// fetch values from leap motion and apply low pass filter
             float mapedLift = MapInterval(firstHand.PalmPosition.y, 60, 260, -20F, 20F);
-			
+
 			// check if the hand is a fist
 			IsDropping(firstHand.GrabAngle);
 
@@ -69,8 +69,8 @@ public class LeapDroneController : MonoBehaviour{
         if (val <= srcMin) return dstMin;
         return dstMin + (val - srcMin) / (srcMax - srcMin) * (dstMax - dstMin);
     }
-	
-	
+
+
 	/// <summary>
 	/// if the angle between the fingers and the hand is >= 90 degrees, the gesture to drop an item is detected
 	/// </summary>
@@ -78,8 +78,8 @@ public class LeapDroneController : MonoBehaviour{
 	/// <returns></returns>
 	void IsDropping(float grabAngle){
 		if(grabAngle >= 2.9f){
-			aircraft.Drop();
+			// aircraft.Drop();
 		}
-	}		
+	}
 
 }

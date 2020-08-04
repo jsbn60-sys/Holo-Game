@@ -166,6 +166,8 @@ public abstract class Unit : NetworkBehaviour
 				onDeath();
 			}
 		}
+
+		Debug.Log("HEALTH : " + health + ", SHIELD: " + shield);
 		UpdateHealthbarSize();
 		UpdateShieldbarSize();
 	}
@@ -489,4 +491,18 @@ public abstract class Unit : NetworkBehaviour
 	/// </summary>
 	/// <returns>Can the unit be hit</returns>
 	protected abstract bool canBeHit();
+
+	/// <summary>
+	/// Spawns an object on the network.
+	/// </summary>
+	/// <param name="prefabIdx">Idx of prefab to spawn</param>
+	/// <param name="spawnPos">Position at which to spawn object</param>
+	/// <param name="spawnRotation">Rotation of the object</param>
+	[Command]
+	public void CmdSpawn(int prefabIdx, Vector3 spawnPos, Quaternion spawnRotation)
+	{
+		GameObject objectPrefab = LobbyManager.Instance.getPrefabAtIdx(prefabIdx);
+		GameObject objectCopy = Instantiate(objectPrefab, spawnPos, spawnRotation);
+		NetworkServer.Spawn(objectCopy);
+	}
 }

@@ -30,7 +30,7 @@ public class Skill : NetworkBehaviour, Slotable
 
 	public string EffectsList => effectsList;
 
-	public void activate(Player player)
+	public void activate(Unit player)
 	{
 		player.getHit(0, effects.ToList());
 	}
